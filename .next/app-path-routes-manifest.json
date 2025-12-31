@@ -1,0 +1,20 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/about/registration/page": "/about/registration",
+  "/contact/page": "/contact",
+  "/downloads/page": "/downloads",
+  "/favicon.ico/route": "/favicon.ico",
+  "/gallery/page": "/gallery",
+  "/new-contact/page": "/new-contact",
+  "/new-vacancy/page": "/new-vacancy",
+  "/news/archive/page": "/news/archive",
+  "/news/facebook/page": "/news/facebook",
+  "/news/latest-updates/page": "/news/latest-updates",
+  "/news/page": "/news",
+  "/news/success-stories/page": "/news/success-stories",
+  "/page": "/",
+  "/success-story/[id]/page": "/success-story/[id]",
+  "/success-story/page": "/success-story",
+  "/vacancy/page": "/vacancy"
+}
