@@ -1,0 +1,483 @@
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Phone, Menu, X, ChevronDown } from 'lucide-react';
+
+const navLinkStyle = {
+  display: 'block',
+  position: 'relative' as const,
+  color: 'rgba(255, 255, 255, 0.7)',
+  transition: '0.3s',
+  fontSize: '14px',
+  padding: '0 3px',
+  fontFamily: '"Open Sans", sans-serif',
+  cursor: 'pointer'
+};
+
+export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isNewsDropdownOpen, setIsNewsDropdownOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  return (
+    <>
+      {/* Top Bar */}
+      <div className="text-white overflow-hidden transition-all duration-500" style={{
+        background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
+        color: 'rgba(255, 255, 255, 0.9)',
+        height: '45px',
+        fontSize: '14px',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        position: 'relative' as const,
+        zIndex: 999
+      }}>
+        <div className="mx-auto px-4" style={{ maxWidth: '1160px' }}>
+          <div className="flex items-center justify-between h-11">
+            <div className="flex items-center gap-2 sm:gap-6">
+              <div className="flex items-center gap-2 cursor-pointer hover:text-white transition-colors">
+                <span className="hidden sm:inline">✉</span>
+                <span className="text-xs sm:text-sm">rwua.haripur@rwua.org</span>
+              </div>
+              <div className="hidden sm:block cursor-pointer hover:text-white transition-colors">☎ 046-411109</div>
+              <div className="hidden md:block cursor-pointer hover:text-white transition-colors">Sun-Fri 10am – 5pm</div>
+            </div>
+            <a
+              href="tel:046-411109"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-2 sm:px-4 py-1.5 sm:py-2 rounded-full flex items-center gap-1 sm:gap-2 transition-all duration-300 text-xs sm:text-sm shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              <Phone className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">046-411109</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Horizontal Separator */}
+      <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+
+      {/* Main Navbar - Hidden on mobile when sidebar is open */}
+      <div className={`text-white sticky top-0 shadow-lg transition-all duration-300 ${isMobileMenuOpen ? 'lg:block hidden' : 'block'}`} style={{
+        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
+        transition: 'all 0.5s',
+        zIndex: 1000,
+        padding: '12px 0',
+        position: 'relative' as const,
+        fontSize: '14px',
+        borderBottom: '2px solid rgba(59, 130, 246, 0.3)'
+      }}>
+        <div className="mx-auto px-4" style={{ maxWidth: '1160px' }}>
+          <div className="flex items-center justify-between" style={{ minHeight: '60px' }}>
+            {/* Logo */}
+            <Link href="/" className="logo" style={{
+              fontSize: '32px',
+              margin: 0,
+              padding: 0,
+              lineHeight: 1,
+              fontWeight: 400,
+              letterSpacing: '2px',
+              textTransform: 'uppercase' as const,
+              position: 'relative' as const,
+              zIndex: 1
+            }}>
+              <Image
+                src="https://rwua.com.np/wp-content/uploads/2023/02/cropped-RWUA-Logo-Approval-2.jpg"
+                alt="RWUA Logo"
+                width={80}
+                height={80}
+                className="img-fluid rounded-full"
+                style={{
+                  maxHeight: '80px',
+                  maxWidth: '80px',
+                  height: 'auto',
+                  width: 'auto',
+                  verticalAlign: 'middle',
+                  borderStyle: 'none',
+                  borderRadius: '50%',
+                  objectFit: 'cover' as const
+                }}
+                priority
+              />
+            </Link>
+
+            {/* Desktop Navigation Only - No mobile button here */}
+            <nav className="hidden lg:flex items-center gap-8">
+              <Link
+                href="/"
+                className="nav-link font-medium transition-colors relative"
+                style={navLinkStyle}
+              >
+                Home
+              </Link>
+              <div className="relative group hover-precise">
+                <Link
+                  href="/news"
+                  className="nav-link font-medium transition-colors relative flex items-center px-2 py-1"
+                  style={{ ...navLinkStyle, display: 'flex', alignItems: 'center' }}
+                >
+                  <span>News & Press</span>
+                  <ChevronDown className="w-3 h-3 ml-1 transform group-hover:rotate-180 transition-transform" />
+                </Link>
+
+                {/* Animated Mega Menu */}
+                <div className="mega-menu-container absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[1001]">
+                  <div className="mega-menu-arrow"></div>
+                  <div className="mega-menu-content bg-white rounded-lg shadow-2xl overflow-hidden">
+                    {/* All News Section - Top */}
+                    <div className="border-b border-gray-200 p-6">
+                      <Link href="/news" className="mega-menu-item group flex items-center p-4 rounded-md hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 border border-transparent hover:border-blue-200">
+                        <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                          <i className="fas fa-newspaper text-white text-lg"></i>
+                        </div>
+                        <div>
+                          <div className="text-gray-800 font-bold text-base group-hover:text-blue-700">सम्पूर्ण समाचारहरू</div>
+                          <div className="text-gray-500 text-sm group-hover:text-blue-600">सबै समाचार र अपडेटहरू एकै ठाउँमा</div>
+                        </div>
+                        <div className="ml-auto">
+                          <ChevronDown className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transform rotate-[-90deg] group-hover:translate-x-1 transition-all" />
+                        </div>
+                      </Link>
+                    </div>
+
+                    <div className="flex">
+                      {/* News Section */}
+                      <div className="mega-menu-section p-6 border-r border-gray-200">
+                        <div className="text-gray-500 uppercase font-semibold tracking-wide text-xs mb-4">समाचार</div>
+                        <div className="space-y-2">
+                          <Link href="/news/success-stories" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
+                            <div className="w-8 h-8 bg-blue-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors">
+                              <i className="fas fa-trophy text-blue-600 text-sm"></i>
+                            </div>
+                            <div>
+                              <div className="text-gray-800 font-semibold text-sm">सफलताको कथा</div>
+                              <div className="text-gray-500 text-xs">उपलब्धि र सफलताका कथाहरू</div>
+                            </div>
+                          </Link>
+                          <Link href="/news/facebook-live" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
+                            <div className="w-8 h-8 bg-blue-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors">
+                              <i className="fab fa-facebook text-blue-600 text-sm"></i>
+                            </div>
+                            <div>
+                              <div className="text-gray-800 font-semibold text-sm">फेस्बूक बाट ल्याइेका समाचार</div>
+                              <div className="text-gray-500 text-xs">सामाजिक सञ्जालका समाचारहरू</div>
+                            </div>
+                          </Link>
+                          <Link href="/news/latest-updates" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
+                            <div className="w-8 h-8 bg-green-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-green-200 transition-colors">
+                              <i className="fas fa-newspaper text-green-600 text-sm"></i>
+                            </div>
+                            <div>
+                              <div className="text-gray-800 font-semibold text-sm">ताजा अपडेट</div>
+                              <div className="text-gray-500 text-xs">नवीनतम समाचार र जानकारी</div>
+                            </div>
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* Archive Section */}
+                      <div className="mega-menu-section p-6">
+                        <div className="text-gray-500 uppercase font-semibold tracking-wide text-xs mb-4">अभिलेख</div>
+                        <div className="space-y-2">
+                          <Link href="/news/archive" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
+                            <div className="w-8 h-8 bg-purple-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-purple-200 transition-colors">
+                              <i className="fas fa-archive text-purple-600 text-sm"></i>
+                            </div>
+                            <div>
+                              <div className="text-gray-800 font-semibold text-sm">पुराना र नयाँ जानकारी</div>
+                              <div className="text-gray-500 text-xs">सम्पूर्ण अभिलेख र डाटाबेस</div>
+                            </div>
+                          </Link>
+                          <Link href="/about/registration" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
+                            <div className="w-8 h-8 bg-orange-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-orange-200 transition-colors">
+                              <i className="fas fa-certificate text-orange-600 text-sm"></i>
+                            </div>
+                            <div>
+                              <div className="text-gray-800 font-semibold text-sm">दर्ता नं. ८/५०/५१</div>
+                              <div className="text-gray-500 text-xs">संस्थाको दर्ता विवरण</div>
+                            </div>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <Link
+                href="/success-story"
+                className="nav-link font-medium transition-colors relative"
+                style={navLinkStyle}
+              >
+                Success Story
+              </Link>
+              <Link
+                href="/vacancy"
+                className="nav-link font-medium transition-colors relative"
+                style={navLinkStyle}
+              >
+                All Vacancy
+              </Link>
+              <Link
+                href="/contact"
+                className="nav-link font-medium transition-colors relative"
+                style={navLinkStyle}
+              >
+                Contact Us
+              </Link>
+              <Link
+                href="/downloads"
+                className="nav-link font-medium transition-colors relative"
+                style={navLinkStyle}
+              >
+                Downloads
+              </Link>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Mobile Toggle Button - Always visible on mobile */}
+      <button
+        onClick={toggleMobileMenu}
+        className={`fixed z-[9999] lg:hidden flex items-center justify-center p-3 rounded-full shadow-lg transition-all duration-1000 hover:scale-110 active:scale-95 ${isMobileMenuOpen ? 'top-[85px] right-4' : 'top-[85px] right-4'
+          }`}
+        style={{
+          background: isMobileMenuOpen
+            ? 'linear-gradient(135deg, #1e293b 0%, #334155 100%)'
+            : 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
+          border: '2px solid rgba(59, 130, 246, 0.3)',
+          backdropFilter: 'blur(10px)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)'
+        }}
+        aria-label="Toggle mobile menu"
+      >
+        <div className="relative">
+          {isMobileMenuOpen ? (
+            <X className="w-5 h-5 sm:w-6 sm:h-6 text-white transition-transform duration-300" />
+          ) : (
+            <Menu className="w-5 h-5 sm:w-6 sm:h-6 text-white transition-transform duration-300" />
+          )}
+        </div>
+      </button>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-[9000] lg:hidden transition-opacity duration-300"
+          onClick={closeMobileMenu}
+        />
+      )}
+
+      {/* Mobile Sidebar */}
+      <div className={`fixed top-0 right-0 h-full transition-all duration-1000 ease-in-out z-[9500] lg:hidden ${isMobileMenuOpen ? 'w-64 sm:w-80' : 'w-0'
+        }`} style={{
+          background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
+          boxShadow: '-10px 0 25px rgba(0, 0, 0, 0.3)',
+          borderLeft: '2px solid rgba(59, 130, 246, 0.3)'
+        }}>
+        {/* Sidebar Content */}
+        <div className="flex flex-col h-full border-r border-gray-200 pt-16 pb-4 overflow-hidden">
+          {/* Logo Section */}
+          <div className="px-4 mb-8">
+            <div className="flex items-center">
+              <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
+                <img
+                  src="https://rwua.com.np/wp-content/uploads/2023/02/cropped-RWUA-Logo-Approval-2.jpg"
+                  alt="RWUA Logo"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className={`transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                <span className="text-white font-bold text-xl">RWUA</span>
+                <span className="text-white text-xs italic block">Organization</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className="flex-grow flex flex-col">
+            <nav className="flex-1 px-2 space-y-2" aria-label="Sidebar">
+              {/* Main Navigation */}
+              <div className="space-y-1">
+                <Link
+                  href="/"
+                  className="text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-blue-800 transition-colors duration-200"
+                  onClick={closeMobileMenu}
+                >
+                  <svg className="text-white mr-3 flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                  </svg>
+                  <span className={`transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                    Home
+                  </span>
+                </Link>
+
+                {/* News & Press with Dropdown */}
+                <div>
+                  <button
+                    className="w-full text-white hover:bg-blue-800 group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-200"
+                    onClick={() => setIsNewsDropdownOpen(!isNewsDropdownOpen)}
+                  >
+                    <svg className="text-white mr-3 flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                    </svg>
+                    <span className={`flex-1 text-left transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                      News & Press
+                    </span>
+                    <ChevronDown className={`w-4 h-4 transform transition-all duration-200 ${isNewsDropdownOpen ? 'rotate-180' : ''} ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`} />
+                  </button>
+
+                  {/* Dropdown Items */}
+                  <div className={`overflow-hidden transition-all duration-300 ${isNewsDropdownOpen && isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <div className="ml-8 mt-1 space-y-1">
+                      <Link
+                        href="/news"
+                        className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
+                        onClick={closeMobileMenu}
+                      >
+                        <span className="truncate">सम्पूर्ण समाचारहरू</span>
+                      </Link>
+                      <Link
+                        href="/news/success-stories"
+                        className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
+                        onClick={closeMobileMenu}
+                      >
+                        <span className="truncate">सफलताको कथा</span>
+                      </Link>
+                      <Link
+                        href="/news/facebook-live"
+                        className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
+                        onClick={closeMobileMenu}
+                      >
+                        <span className="truncate">फेस्बूक समाचार</span>
+                      </Link>
+                      <Link
+                        href="/news/latest-updates"
+                        className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
+                        onClick={closeMobileMenu}
+                      >
+                        <span className="truncate">ताजा अपडेट</span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  href="/success-story"
+                  className="text-white hover:bg-blue-800 group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-200"
+                  onClick={closeMobileMenu}
+                >
+                  <svg className="text-white mr-3 flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                  <span className={`transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                    Success Story
+                  </span>
+                </Link>
+
+                <Link
+                  href="/vacancy"
+                  className="text-white hover:bg-blue-800 group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-200"
+                  onClick={closeMobileMenu}
+                >
+                  <svg className="text-white mr-3 flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span className={`transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                    All Vacancy
+                  </span>
+                </Link>
+
+                <Link
+                  href="/contact"
+                  className="text-white hover:bg-blue-800 group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-200"
+                  onClick={closeMobileMenu}
+                >
+                  <Phone className="text-white mr-3 flex-shrink-0 h-6 w-6" />
+                  <span className={`transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                    Contact Us
+                  </span>
+                </Link>
+
+                <Link
+                  href="/downloads"
+                  className="text-white hover:bg-blue-800 group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-200"
+                  onClick={closeMobileMenu}
+                >
+                  <svg className="text-white mr-3 flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span className={`transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                    Downloads
+                  </span>
+                </Link>
+              </div>
+
+              {/* Quick Links Section */}
+              <div className="space-y-1 mt-8">
+                <h3 className={`px-3 text-xs font-semibold text-white uppercase tracking-wider transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                  Quick Links
+                </h3>
+                <div className="space-y-1">
+                  <Link
+                    href="/about"
+                    className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
+                    onClick={closeMobileMenu}
+                  >
+                    <span className={`truncate transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                      About Us
+                    </span>
+                  </Link>
+                  <Link
+                    href="/gallery"
+                    className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
+                    onClick={closeMobileMenu}
+                  >
+                    <span className={`truncate transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                      Photo Gallery
+                    </span>
+                  </Link>
+                  <Link
+                    href="/events"
+                    className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
+                    onClick={closeMobileMenu}
+                  >
+                    <span className={`truncate transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                      Events
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </nav>
+          </div>
+
+          {/* User Profile Section */}
+          <div className="flex-shrink-0 flex p-4">
+            <div className="flex-shrink-0 w-full group block">
+              <div className="flex items-center">
+                <div>
+                  <img
+                    className="inline-block h-9 w-9 rounded-full object-cover"
+                    src="https://rwua.com.np/wp-content/uploads/2023/02/cropped-RWUA-Logo-Approval-2.jpg"
+                    alt="RWUA Logo"
+                  />
+                </div>
+                <div className={`ml-3 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                  <p className="text-sm font-medium text-white group-hover:text-gray-300">RWUA Admin</p>
+                  <p className="text-xs font-medium text-gray-300 group-hover:text-gray-400">View Profile</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
