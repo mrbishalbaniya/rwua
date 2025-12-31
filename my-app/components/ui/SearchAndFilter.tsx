@@ -10,7 +10,7 @@ interface SearchAndFilterProps {
   activeCategory: string;
   placeholder?: string;
   resultsCount?: number;
-  pageType?: 'stories' | 'vacancies';
+  pageType?: 'stories' | 'vacancies' | 'articles';
 }
 
 export default function SearchAndFilter({
@@ -56,6 +56,12 @@ export default function SearchAndFilter({
       return {
         title: 'Career Opportunities',
         subtitle: 'Join our mission to empower rural communities across Nepal'
+      };
+    }
+    if (pageType === 'articles') {
+      return {
+        title: 'News & Press',
+        subtitle: 'Latest updates and news from our community development initiatives'
       };
     }
     return {
@@ -109,11 +115,10 @@ export default function SearchAndFilter({
               <button
                 key={category}
                 onClick={() => handleCategoryClick(category)}
-                className={`px-4 py-2 rounded-lg transition-colors cursor-pointer ${
-                  activeCategory === category
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
+                className={`px-4 py-2 rounded-lg transition-colors cursor-pointer ${activeCategory === category
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
               >
                 {category}
               </button>
@@ -130,11 +135,10 @@ export default function SearchAndFilter({
               <button
                 key={category}
                 onClick={() => handleCategoryClick(category)}
-                className={`px-3 py-2 rounded-lg text-sm transition-colors cursor-pointer ${
-                  activeCategory === category
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
+                className={`px-3 py-2 rounded-lg text-sm transition-colors cursor-pointer ${activeCategory === category
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
               >
                 {category}
               </button>

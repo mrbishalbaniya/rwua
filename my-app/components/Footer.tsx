@@ -5,10 +5,10 @@ import {
   MapPin,
   Phone,
   Mail,
-  Facebook,
   Instagram,
   Twitter,
   Youtube,
+  Facebook,
   Heart
 } from 'lucide-react';
 

@@ -1,40 +1,31 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Calendar, User, Tag, Share2, Heart, MessageCircle } from 'lucide-react';
 import { successStories, SuccessStory } from '@/lib/data';
 
 export default function StoryDetailPage() {
   const params = useParams();
-  const router = useRouter();
   const [story, setStory] = useState<SuccessStory | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
-  const [relatedStories, setRelatedStories] = useState<SuccessStory[]>([]);
 
   useEffect(() => {
     const loadStory = async () => {
       setIsLoading(true);
-      
+
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 800));
-      
+
       const storyId = params.id as string;
       const foundStory = successStories.find(s => s.id === storyId);
-      
+
       if (foundStory) {
         setStory(foundStory);
-        
-        // Get related stories (same category, excluding current story)
-        const related = successStories
-          .filter(s => s.id !== storyId && s.category === foundStory.category)
-          .slice(0, 3);
-        setRelatedStories(related);
       }
-      
+
       setIsLoading(false);
     };
 
@@ -116,7 +107,7 @@ export default function StoryDetailPage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8">
             <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <MessageCircle className="w-12 h-12 text-gray-400" />
+              <span className="text-4xl text-gray-400">📖</span>
             </div>
             <h1 className="text-3xl font-bold text-gray-800 mb-4">Story Not Found</h1>
             <p className="text-gray-600 mb-8">
@@ -126,7 +117,7 @@ export default function StoryDetailPage() {
               href="/success-story"
               className="inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <span className="mr-2">←</span>
               Back to Success Stories
             </Link>
           </div>
@@ -143,7 +134,7 @@ export default function StoryDetailPage() {
           href="/success-story"
           className="inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors mb-8 group"
         >
-          <ArrowLeft className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" />
+          <span className="mr-2 transition-transform group-hover:-translate-x-1">←</span>
           Back to Success Stories
         </Link>
 
@@ -164,13 +155,13 @@ export default function StoryDetailPage() {
               <div className="w-full h-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
                 <div className="text-white text-center">
                   <div className="w-20 h-20 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
-                    <Heart className="w-10 h-10" />
+                    <span className="text-4xl">❤️</span>
                   </div>
                   <p className="text-lg font-medium">{story.category}</p>
                 </div>
               </div>
             )}
-            
+
             {/* Category Badge */}
             <div className="absolute top-6 left-6">
               <span className="px-4 py-2 bg-white/90 backdrop-blur-sm text-gray-800 rounded-full font-medium">
@@ -185,7 +176,7 @@ export default function StoryDetailPage() {
                 className="p-3 bg-white/90 backdrop-blur-sm text-gray-800 rounded-full hover:bg-white transition-colors"
                 aria-label="Share this story"
               >
-                <Share2 className="w-5 h-5" />
+                <span className="text-lg">📤</span>
               </button>
             </div>
           </div>
@@ -200,11 +191,11 @@ export default function StoryDetailPage() {
             {/* Meta Information */}
             <div className="flex flex-wrap items-center gap-6 mb-8 text-sm text-gray-600">
               <div className="flex items-center">
-                <User className="w-4 h-4 mr-2" />
+                <span className="mr-2">👤</span>
                 <span>{story.author}</span>
               </div>
               <div className="flex items-center">
-                <Calendar className="w-4 h-4 mr-2" />
+                <span className="mr-2">📅</span>
                 <span>{formatDate(story.date)}</span>
               </div>
             </div>
@@ -258,42 +249,16 @@ export default function StoryDetailPage() {
           </div>
         </article>
 
-        {/* Related Stories */}
-        {relatedStories.length > 0 && (
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold text-gray-800 mb-8">Related Stories</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {relatedStories.map((relatedStory) => (
-                <Link
-                  key={relatedStory.id}
-                  href={`/success-story/${relatedStory.id}`}
-                  className="group block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-                >
-                  <div className="relative h-32 bg-gradient-to-r from-blue-400 to-purple-400">
-                    <Image
-                      src={relatedStory.image}
-                      alt={relatedStory.title}
-                      fill
-                      className="object-cover"
-                      onError={() => {}}
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-gray-800 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                      {relatedStory.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 line-clamp-2">
-                      {relatedStory.description}
-                    </p>
-                    <div className="mt-3 text-xs text-gray-500">
-                      {formatDate(relatedStory.date)}
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+        {/* Back to Stories */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/success-story"
+            className="inline-flex items-center px-8 py-4 bg-white text-gray-700 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+          >
+            <span className="mr-2">📚</span>
+            View More Success Stories
+          </Link>
+        </div>
       </div>
     </div>
   );

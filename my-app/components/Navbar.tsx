@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Phone, Menu, X, ChevronDown } from 'lucide-react';
+import { Phone, Menu, X, ChevronDown, Newspaper, Trophy, Facebook, Clock, Archive, FileText } from 'lucide-react';
 
 const navLinkStyle = {
   display: 'block',
@@ -117,6 +117,13 @@ export default function Navbar() {
               >
                 Home
               </Link>
+              <Link
+                href="/gallery"
+                className="nav-link font-medium transition-colors relative"
+                style={navLinkStyle}
+              >
+                Gallery
+              </Link>
               <div className="relative group hover-precise">
                 <Link
                   href="/news"
@@ -133,16 +140,16 @@ export default function Navbar() {
                   <div className="mega-menu-content bg-white rounded-lg shadow-2xl overflow-hidden">
                     {/* All News Section - Top */}
                     <div className="border-b border-gray-200 p-6">
-                      <Link href="/news" className="mega-menu-item group flex items-center p-4 rounded-md hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 border border-transparent hover:border-blue-200">
-                        <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
-                          <i className="fas fa-newspaper text-white text-lg"></i>
+                      <Link href="/news" className="mega-menu-item group flex items-center p-4 rounded-md hover:bg-gray-50 transition-all duration-200">
+                        <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-4 group-hover:bg-gray-200 transition-colors">
+                          <Newspaper className="text-gray-600 w-5 h-5" />
                         </div>
                         <div>
-                          <div className="text-gray-800 font-bold text-base group-hover:text-blue-700">सम्पूर्ण समाचारहरू</div>
-                          <div className="text-gray-500 text-sm group-hover:text-blue-600">सबै समाचार र अपडेटहरू एकै ठाउँमा</div>
+                          <div className="text-gray-800 font-bold text-base">सम्पूर्ण समाचारहरू</div>
+                          <div className="text-gray-500 text-sm">सबै समाचार र अपडेटहरू एकै ठाउँमा</div>
                         </div>
                         <div className="ml-auto">
-                          <ChevronDown className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transform rotate-[-90deg] group-hover:translate-x-1 transition-all" />
+                          <ChevronDown className="w-5 h-5 text-gray-400 transform rotate-[-90deg] group-hover:translate-x-1 transition-all" />
                         </div>
                       </Link>
                     </div>
@@ -153,26 +160,26 @@ export default function Navbar() {
                         <div className="text-gray-500 uppercase font-semibold tracking-wide text-xs mb-4">समाचार</div>
                         <div className="space-y-2">
                           <Link href="/news/success-stories" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
-                            <div className="w-8 h-8 bg-blue-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors">
-                              <i className="fas fa-trophy text-blue-600 text-sm"></i>
+                            <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
+                              <Trophy className="text-gray-600 w-4 h-4" />
                             </div>
                             <div>
                               <div className="text-gray-800 font-semibold text-sm">सफलताको कथा</div>
                               <div className="text-gray-500 text-xs">उपलब्धि र सफलताका कथाहरू</div>
                             </div>
                           </Link>
-                          <Link href="/news/facebook-live" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
-                            <div className="w-8 h-8 bg-blue-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors">
-                              <i className="fab fa-facebook text-blue-600 text-sm"></i>
+                          <Link href="/news/facebook" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
+                            <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
+                              <Facebook className="text-gray-600 w-4 h-4" />
                             </div>
                             <div>
-                              <div className="text-gray-800 font-semibold text-sm">फेस्बूक बाट ल्याइेका समाचार</div>
+                              <div className="text-gray-800 font-semibold text-sm">फेसबुक समाचार</div>
                               <div className="text-gray-500 text-xs">सामाजिक सञ्जालका समाचारहरू</div>
                             </div>
                           </Link>
                           <Link href="/news/latest-updates" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
-                            <div className="w-8 h-8 bg-green-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-green-200 transition-colors">
-                              <i className="fas fa-newspaper text-green-600 text-sm"></i>
+                            <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
+                              <Clock className="text-gray-600 w-4 h-4" />
                             </div>
                             <div>
                               <div className="text-gray-800 font-semibold text-sm">ताजा अपडेट</div>
@@ -187,8 +194,8 @@ export default function Navbar() {
                         <div className="text-gray-500 uppercase font-semibold tracking-wide text-xs mb-4">अभिलेख</div>
                         <div className="space-y-2">
                           <Link href="/news/archive" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
-                            <div className="w-8 h-8 bg-purple-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-purple-200 transition-colors">
-                              <i className="fas fa-archive text-purple-600 text-sm"></i>
+                            <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
+                              <Archive className="text-gray-600 w-4 h-4" />
                             </div>
                             <div>
                               <div className="text-gray-800 font-semibold text-sm">पुराना र नयाँ जानकारी</div>
@@ -196,8 +203,8 @@ export default function Navbar() {
                             </div>
                           </Link>
                           <Link href="/about/registration" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
-                            <div className="w-8 h-8 bg-orange-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-orange-200 transition-colors">
-                              <i className="fas fa-certificate text-orange-600 text-sm"></i>
+                            <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
+                              <FileText className="text-gray-600 w-4 h-4" />
                             </div>
                             <div>
                               <div className="text-gray-800 font-semibold text-sm">दर्ता नं. ८/५०/५१</div>
@@ -319,6 +326,19 @@ export default function Navbar() {
                   </span>
                 </Link>
 
+                <Link
+                  href="/gallery"
+                  className="text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-blue-800 transition-colors duration-200"
+                  onClick={closeMobileMenu}
+                >
+                  <svg className="text-white mr-3 flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span className={`transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                    Gallery
+                  </span>
+                </Link>
+
                 {/* News & Press with Dropdown */}
                 <div>
                   <button
@@ -352,11 +372,11 @@ export default function Navbar() {
                         <span className="truncate">सफलताको कथा</span>
                       </Link>
                       <Link
-                        href="/news/facebook-live"
+                        href="/news/facebook"
                         className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
                         onClick={closeMobileMenu}
                       >
-                        <span className="truncate">फेस्बूक समाचार</span>
+                        <span className="truncate">फेसबुक समाचार</span>
                       </Link>
                       <Link
                         href="/news/latest-updates"

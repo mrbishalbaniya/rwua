@@ -5,58 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Home } from 'lucide-react';
 import TopSearch from './TopSearch';
-
-// Sample news data - in a real app, this would come from an API or database
-const newsData = [
-  {
-    id: 1,
-    title: "हरिपुरका बिपन्न घरपरिवारलाई न्यानो कम्बल वितरण कार्यक्रम",
-    excerpt: "सर्लाहीको हरिपुर नगरपालिकामा सिमान्तकृत दलित तथा मुसहर समुदायलाई लक्षित गरी न्यानो कम्बल वितरण कार्यक्रम सम्पन्न भएको छ।",
-    image: "https://rwua.com.np/wp-content/uploads/2025/12/blimket-780x470-1.png",
-    category: "Community Support",
-    featured: true
-  },
-  {
-    id: 2,
-    title: "बालक्लब गठन तथा बालबालिकाको अधिकार",
-    excerpt: "सर्लाहीमा विद्यालयको पहुँचमा पुग्न नसकेका २० जना अपाङ्ग बालबालिकालाई घरमै शिक्षा प्रदान हुने भएको छ।",
-    image: "https://rwua.com.np/wp-content/uploads/2025/02/shared-image.jpeg",
-    category: "Child Rights",
-    featured: false
-  },
-  {
-    id: 3,
-    title: "न्यानो कम्मल बितरण कार्यक्रम",
-    excerpt: "Save The Children संस्थाको सहयोगमा न्यानो कम्बल वितरण कार्यक्रम सम्पन्न भएको छ।",
-    image: "https://rwua.com.np/wp-content/uploads/2020/01/13.jpg",
-    category: "Winter Relief",
-    featured: false
-  },
-  {
-    id: 4,
-    title: "समावेशी तथा दिगो ग्रामीण खानेपानी सुविधा कार्यक्रम",
-    excerpt: "स्वच्छ खानेपानी पहुँचका लागि सञ्चालित कार्यक्रमका गतिविधिहरू र समुदायिक सहभागिता।",
-    image: "https://rwua.com.np/wp-content/uploads/2021/04/11.jpg",
-    category: "Water & Sanitation",
-    featured: false
-  },
-  {
-    id: 5,
-    title: "ग्रामिण नारी उत्थान संघको २९ औं साधारण सभा",
-    excerpt: "ग्रामीण महिलाहरूको सशक्तिकरणका लागि आयोजित वार्षिक साधारण सभाको मुख्य बिन्दुहरू।",
-    image: "https://rwua.com.np/wp-content/uploads/2021/10/1.jpg",
-    category: "General Assembly",
-    featured: false
-  },
-  {
-    id: 6,
-    title: "बालबालिकाको अधिकार संरक्षण कार्यक्रम",
-    excerpt: "बालबालिकाको अधिकार संरक्षणका लागि बालक्लब गठन र सचेतना कार्यक्रमहरू।",
-    image: "https://rwua.com.np/wp-content/uploads/2025/02/shared-image.jpeg",
-    category: "Child Rights",
-    featured: false
-  }
-];
+import { newsArticles } from '@/lib/data';
 
 export default function NewsPressPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -64,11 +13,11 @@ export default function NewsPressPage() {
   // Filter news based on search query
   const filteredNews = useMemo(() => {
     if (!searchQuery.trim()) {
-      return newsData;
+      return newsArticles;
     }
 
     const query = searchQuery.toLowerCase();
-    return newsData.filter(news =>
+    return newsArticles.filter(news =>
       news.title.toLowerCase().includes(query) ||
       news.excerpt.toLowerCase().includes(query) ||
       news.category.toLowerCase().includes(query)
@@ -76,13 +25,11 @@ export default function NewsPressPage() {
   }, [searchQuery]);
 
   // Get featured article
-  const featuredArticle = filteredNews.find(news => news.featured) || filteredNews[0];
+  const featuredArticle = filteredNews[0];
 
   // Get other articles (excluding featured)
   const otherArticles = filteredNews.filter(news => news.id !== featuredArticle?.id);
-
-  // Split other articles into groups
-  const subMainPosts = otherArticles.slice(0, 4);
+  const subMainPosts = otherArticles.slice(0, 2);
   const latestNews = otherArticles.slice(0, 3);
   const popularNews = otherArticles.slice(3, 6);
 
@@ -146,14 +93,14 @@ export default function NewsPressPage() {
                 />
                 <span className="text-green-700 text-sm hidden md:block mt-4">{featuredArticle.category}</span>
                 <h1 className="text-gray-800 text-4xl font-bold mt-2 mb-2 leading-tight cursor-pointer hover:text-blue-800 transition-colors duration-200">
-                  <Link href="/article" className="hover:text-blue-800 transition-colors duration-200">
+                  <Link href="/news" className="hover:text-blue-800 transition-colors duration-200">
                     {featuredArticle.title}
                   </Link>
                 </h1>
                 <p className="text-gray-600 mb-4">
                   {featuredArticle.excerpt}
                 </p>
-                <Link href="/article" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm mt-4 transition-colors duration-200 group">
+                <Link href="/news" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm mt-4 transition-colors duration-200 group">
                   Read more
                   <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -161,89 +108,123 @@ export default function NewsPressPage() {
                 </Link>
               </div>
 
-              {/* Sub-main Posts */}
+              {/* Sub-main Posts - Using Success Story Card Design */}
               <div className="w-full md:w-4/7">
-                {subMainPosts.map((post) => (
-                  <div key={post.id} className="rounded w-full flex flex-col md:flex-row mb-10 cursor-pointer hover:shadow-lg transition-all duration-300">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      width={300}
-                      height={200}
-                      className="block md:hidden lg:block rounded-md h-64 md:h-32 m-4 md:m-0 hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="rounded px-4 hover:shadow-lg transition-all duration-300" style={{
-                      background: 'rgba(255, 255, 255, 0.8)',
-                      backdropFilter: 'blur(8px)',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
-                      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)'
-                    }}>
-                      <span className="text-green-700 text-sm hidden md:block">{post.category}</span>
-                      <div className="md:mt-0 text-gray-800 font-semibold text-xl mb-2 cursor-pointer hover:text-blue-800 transition-colors duration-200">
-                        <Link href="/article" className="hover:text-blue-800 transition-colors duration-200">
-                          {post.title}
-                        </Link>
-                      </div>
-                      <p className="block md:hidden p-2 pl-0 pt-1 text-sm text-gray-600">
-                        {post.excerpt}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Latest News Section */}
-          {latestNews.length > 0 && (
-            <>
-              <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
-                <h2 className="font-bold text-3xl text-gray-800 cursor-pointer hover:text-blue-800 transition-colors duration-200">
-                  <Link href="/news" className="hover:text-blue-800 transition-colors duration-200">
-                    Latest News
-                  </Link>
-                </h2>
-                <Link href="/news" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors duration-200 group bg-transparent border-2 border-blue-600 hover:border-blue-800 rounded-lg py-2 px-4">
-                  View all
-                  <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-              <div className="block space-x-0 lg:flex lg:space-x-6">
-                {latestNews.map((news) => (
-                  <div key={news.id} className="rounded w-full lg:w-1/3 p-4 lg:p-0 mb-6 lg:mb-0">
-                    <div className="rounded-lg shadow-lg overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-xl cursor-pointer" style={{
-                      background: '#ffffff',
-                      border: '1px solid rgba(0, 0, 0, 0.08)',
-                      boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06)'
-                    }}>
-                      <div className="h-48 overflow-hidden">
+                <div className="grid grid-cols-1 gap-4">
+                  {subMainPosts.map((post) => (
+                    <div key={post.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group border border-gray-100">
+                      {/* Image Section - Smaller */}
+                      <div className="relative h-32 bg-gradient-to-r from-blue-500 to-purple-500 overflow-hidden">
                         <Image
-                          src={news.image}
-                          alt={news.title}
-                          width={400}
-                          height={250}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          src={post.image}
+                          alt={post.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
                         />
+
+                        {/* Category Badge */}
+                        <div className="absolute top-2 left-2">
+                          <span className="px-2 py-1 bg-white/90 backdrop-blur-sm text-gray-800 rounded-full text-xs font-medium">
+                            {post.category}
+                          </span>
+                        </div>
                       </div>
-                      <div className="p-4 flex-1 flex flex-col bg-white">
-                        <h2 className="font-bold text-xl text-gray-800 mb-2 line-clamp-2 hover:text-blue-800 transition-colors duration-200 cursor-pointer">
-                          <Link href="/article" className="hover:text-blue-800 transition-colors duration-200">
-                            {news.title}
-                          </Link>
-                        </h2>
-                        <p className="text-gray-600 text-sm flex-1 line-clamp-3">
-                          {news.excerpt}
+
+                      {/* Content Section - More compact */}
+                      <div className="p-3">
+                        {/* Header */}
+                        <h3 className="text-base font-bold text-gray-800 line-clamp-2 mb-2">
+                          {post.title}
+                        </h3>
+
+                        {/* Description - Much shorter */}
+                        <p className="text-gray-600 text-sm mb-3 line-clamp-2 leading-relaxed">
+                          {post.excerpt.length > 80 ? post.excerpt.substring(0, 80) + '...' : post.excerpt}
                         </p>
-                        <div className="mt-4">
-                          <Link href="/article" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors duration-200 group">
-                            Read more
-                            <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                        {/* Footer - Inline Read More */}
+                        <div className="flex justify-between items-center">
+                          {/* Date */}
+                          <div className="flex items-center text-xs text-gray-500">
+                            <span>{post.date ? new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Recent'}</span>
+                          </div>
+
+                          {/* Read More Button - Better design */}
+                          <Link
+                            href="/news"
+                            className="inline-flex items-center text-blue-600 hover:text-white text-sm font-medium transition-all duration-300 hover:bg-blue-600 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-600 group hover:shadow-md cursor-pointer"
+                          >
+                            <span>Read More</span>
+                            <svg className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                             </svg>
                           </Link>
                         </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Latest News Section - Using Success Story Card Design */}
+          {latestNews.length > 0 && (
+            <>
+              <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
+                <h2 className="font-bold text-3xl text-gray-800 cursor-pointer hover:text-blue-800 transition-colors duration-200">
+                  Latest News
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {latestNews.map((news) => (
+                  <div key={news.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group border border-gray-100">
+                    {/* Image Section - Smaller */}
+                    <div className="relative h-32 bg-gradient-to-r from-blue-500 to-purple-500 overflow-hidden">
+                      <Image
+                        src={news.image}
+                        alt={news.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+
+                      {/* Category Badge */}
+                      <div className="absolute top-2 left-2">
+                        <span className="px-2 py-1 bg-white/90 backdrop-blur-sm text-gray-800 rounded-full text-xs font-medium">
+                          {news.category}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Content Section - More compact */}
+                    <div className="p-3">
+                      {/* Header */}
+                      <h3 className="text-base font-bold text-gray-800 line-clamp-2 mb-2">
+                        {news.title}
+                      </h3>
+
+                      {/* Description - Much shorter */}
+                      <p className="text-gray-600 text-sm mb-3 line-clamp-2 leading-relaxed">
+                        {news.excerpt.length > 80 ? news.excerpt.substring(0, 80) + '...' : news.excerpt}
+                      </p>
+
+                      {/* Footer - Inline Read More */}
+                      <div className="flex justify-between items-center">
+                        {/* Date */}
+                        <div className="flex items-center text-xs text-gray-500">
+                          <span>{news.date ? new Date(news.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Recent'}</span>
+                        </div>
+
+                        {/* Read More Button - Better design */}
+                        <Link
+                          href="/news"
+                          className="inline-flex items-center text-blue-600 hover:text-white text-sm font-medium transition-all duration-300 hover:bg-blue-600 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-600 group hover:shadow-md cursor-pointer"
+                        >
+                          <span>Read More</span>
+                          <svg className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -288,57 +269,63 @@ export default function NewsPressPage() {
             </div>
           </div>
 
-          {/* Popular News Section */}
+          {/* Popular News Section - Using Success Story Card Design */}
           {popularNews.length > 0 && (
             <>
               <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
                 <h2 className="font-bold text-3xl text-gray-800 cursor-pointer hover:text-blue-800 transition-colors duration-200">
-                  <Link href="/news" className="hover:text-blue-800 transition-colors duration-200">
-                    Popular News
-                  </Link>
+                  Popular News
                 </h2>
-                <Link href="/news" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors duration-200 group bg-transparent border-2 border-blue-600 hover:border-blue-800 rounded-lg py-2 px-4">
-                  View all
-                  <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
               </div>
-              <div className="block space-x-0 lg:flex lg:space-x-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {popularNews.map((news) => (
-                  <div key={news.id} className="rounded w-full lg:w-1/3 p-4 lg:p-0 mb-6 lg:mb-0">
-                    <div className="rounded-lg shadow-lg overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-xl cursor-pointer" style={{
-                      background: 'linear-gradient(135deg, rgba(243, 232, 255, 0.6) 0%, rgba(219, 234, 254, 0.6) 50%, rgba(224, 231, 255, 0.6) 100%)',
-                      backdropFilter: 'blur(12px)',
-                      border: '1px solid rgba(255, 255, 255, 0.4)',
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)'
-                    }}>
-                      <div className="h-48 overflow-hidden">
-                        <Image
-                          src={news.image}
-                          alt={news.title}
-                          width={400}
-                          height={250}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                        />
+                  <div key={news.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group border border-gray-100">
+                    {/* Image Section - Smaller */}
+                    <div className="relative h-32 bg-gradient-to-r from-blue-500 to-purple-500 overflow-hidden">
+                      <Image
+                        src={news.image}
+                        alt={news.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+
+                      {/* Category Badge */}
+                      <div className="absolute top-2 left-2">
+                        <span className="px-2 py-1 bg-white/90 backdrop-blur-sm text-gray-800 rounded-full text-xs font-medium">
+                          {news.category}
+                        </span>
                       </div>
-                      <div className="p-4 flex-1 flex flex-col bg-white">
-                        <h2 className="font-bold text-xl text-gray-800 mb-2 line-clamp-2 hover:text-blue-800 transition-colors duration-200 cursor-pointer">
-                          <Link href="/article" className="hover:text-blue-800 transition-colors duration-200">
-                            {news.title}
-                          </Link>
-                        </h2>
-                        <p className="text-gray-600 text-sm flex-1 line-clamp-3">
-                          {news.excerpt}
-                        </p>
-                        <div className="mt-4">
-                          <Link href="/article" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors duration-200 group">
-                            Read more
-                            <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </Link>
+                    </div>
+
+                    {/* Content Section - More compact */}
+                    <div className="p-3">
+                      {/* Header */}
+                      <h3 className="text-base font-bold text-gray-800 line-clamp-2 mb-2">
+                        {news.title}
+                      </h3>
+
+                      {/* Description - Much shorter */}
+                      <p className="text-gray-600 text-sm mb-3 line-clamp-2 leading-relaxed">
+                        {news.excerpt.length > 80 ? news.excerpt.substring(0, 80) + '...' : news.excerpt}
+                      </p>
+
+                      {/* Footer - Inline Read More */}
+                      <div className="flex justify-between items-center">
+                        {/* Date */}
+                        <div className="flex items-center text-xs text-gray-500">
+                          <span>{news.date ? new Date(news.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Recent'}</span>
                         </div>
+
+                        {/* Read More Button - Better design */}
+                        <Link
+                          href="/news"
+                          className="inline-flex items-center text-blue-600 hover:text-white text-sm font-medium transition-all duration-300 hover:bg-blue-600 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-600 group hover:shadow-md cursor-pointer"
+                        >
+                          <span>Read More</span>
+                          <svg className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -350,10 +337,6 @@ export default function NewsPressPage() {
       </div>
 
       <div className="pb-24"></div>
-
-      <style jsx>{`
-        /* Removed unused gallery button styles since we're now using styled links */
-      `}</style>
     </div>
   );
 }
