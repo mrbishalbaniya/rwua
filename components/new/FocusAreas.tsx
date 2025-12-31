@@ -4,9 +4,9 @@ import React, { useEffect, useRef, useState } from 'react';
 const pillars = [
   {
     id: 1,
-    title: "Quality Education",
+    title: "Core Vision",
     impact: "1,200+ Students",
-    description: "Bridging systemic gaps for marginalized children through tailored home-based learning and resource centers.",
+    description: "Desire of Rural Women Upliftment Association “Establishment of Quality and Equitable and Prosperous Society.",
     color: "bg-deep-purple",
     textColor: "text-deep-purple",
     accent: "border-deep-purple/30",
@@ -16,9 +16,9 @@ const pillars = [
   },
   {
     id: 2,
-    title: "Equitable Society",
+    title: "Core Mission",
     impact: "45+ Cooperatives",
-    description: "Advocating for rights through social mobilization and strengthening women's leadership in community governance.",
+    description: "To transform the community by mobilizing and empowering the target group, improving economic, social and healthy life.",
     color: "bg-terracotta",
     textColor: "text-terracotta",
     accent: "border-terracotta/30",
@@ -28,9 +28,9 @@ const pillars = [
   },
   {
     id: 3,
-    title: "Prosperous Livelihoods",
+    title: "Core Goal",
     impact: "5k+ Lives",
-    description: "Harnessing agroecological techniques to build climate resilience and ensure sustainable economic independence.",
+    description: "A dignified life will be built by improving the quality of education healthy life and income of the Community.",
     color: "bg-vibrant-gold",
     textColor: "text-vibrant-gold",
     accent: "border-vibrant-gold/30",
@@ -60,14 +60,14 @@ export const FocusAreas: React.FC = () => {
     <section ref={sectionRef} className="pb-20 lg:pb-36 bg-white relative overflow-hidden">
       <div className="container mx-auto px-8 md:px-16 lg:px-24 relative z-10">
         
-        <div className={`mb-32 max-w-5xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`mb-28 max-w-5xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex items-center justify-center gap-6 mb-10">
             <div className="h-[2px] w-16 bg-stone-100"></div>
             <span className="text-terracotta font-black uppercase tracking-[0.6em] text-[10px]">Strategic Framework</span>
             <div className="h-[2px] w-16 bg-stone-100"></div>
           </div>
-          <h2 className="text-6xl md:text-8xl lg:text-9xl font-serif-impact text-deep-purple leading-[0.9] tracking-tighter">
-            Pillars of <br/><span className="italic text-terracotta">Transformation.</span>
+          <h2 className="text-6xl md:text-7xl lg:text-8xl font-serif-impact text-deep-purple leading-[0.9] tracking-tighter">
+            Pillars of <span className="italic text-terracotta">Transformation.</span>
           </h2>
         </div>
         

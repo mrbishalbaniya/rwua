@@ -34,7 +34,7 @@ export const ORG_MEMBERS: OrgMember[] = [
     name: 'Goma Devi Neupane',
     nepaliName: 'गोमा देवी न्यौपाने',
     role: 'CHAIRPERSON, RWUA',
-    imageUrl: 'https://images.unsplash.com/photo-1531123897727-8f129e16fd3c?auto=format&fit=crop&q=80&w=800',
+    imageUrl: 'https://rwua.com.np/wp-content/uploads/2014/12/goma.jpg',
     contactPerson: 'Bishnu Prasad Chalise',
     phone: '9854035079',
     quote: (
@@ -45,32 +45,18 @@ export const ORG_MEMBERS: OrgMember[] = [
   },
   {
     id: 'm2',
-    name: 'Saraswati Kumari',
-    nepaliName: 'सरस्वती कुमारी',
+    name: 'Bishnu Parshad Chalise',
+    nepaliName: 'बिष्णु प्रसाद चालिसे',
     role: 'SECRETARY, RWUA',
-    imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800',
+    imageUrl: 'https://rwua.com.np/wp-content/uploads/2023/03/Bishnu-chalise-scaled.jpg',
     contactPerson: 'Technical Team',
-    phone: '98XXXXXXXX',
+    phone: '९८५४०३५०७९',
     quote: (
       <>
         हाम्रो अभियान भनेको महिलाहरूलाई आर्थिक र सामाजिक रूपमा सक्षम बनाउनु हो। जबसम्म <span className="bg-blue-700 px-1">महिला नेतृत्व</span> समाजको हरेक तहमा पुग्दैन, तबसम्म वास्तविक विकास सम्भव छैन। हामीले स्थानीय स्रोत र साधनको अधिकतम परिचालन गर्दै समुदायमा सकारात्मक परिवर्तन ल्याउने प्रयास गरिरहेका छौं।
       </>
     )
   },
-  {
-    id: 'm3',
-    name: 'Radha Devi',
-    nepaliName: 'राधा देवी',
-    role: 'TREASURER, RWUA',
-    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800',
-    contactPerson: 'Finance Dept',
-    phone: '98XXXXXXXX',
-    quote: (
-      <>
-        दिगो विकासका लागि <span className="bg-blue-700 px-1">पारदर्शिता र जवाफदेहिता</span> प्रमुख सर्त हुन्। ग्रामीण नारी उत्थान संघले हरेक कार्यक्रममा समुदायको सहभागिता र स्रोतको सही सदुपयोगलाई प्राथमिकता दिँदै आएको छ। हाम्रो लक्ष्य भनेको विपन्न वर्गको जीवनस्तरमा सुधार ल्याउनु हो।
-      </>
-    )
-  }
 ];
 
 export const SUCCESS_STORIES: ImpactStory[] = [

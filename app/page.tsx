@@ -9,6 +9,7 @@ import { NewsUpdates } from '@/components/new/NewsUpdates';
 import { PartnerSection } from '@/components/new/PartnerSection';
 import { GallerySection } from '@/components/new/GallerySection';
 import { CoolDivider } from '@/components/new/CoolDivider';
+import { About } from '@/components/new/About';
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <MissionSection />
       <FocusAreas />
       <ChairpersonSection />
+      <About />
       <CoolDivider />
       <NewsUpdates />
       <GallerySection />

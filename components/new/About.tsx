@@ -23,7 +23,7 @@ interface CardState {
   zIndex: number;
 }
 
-export const MissionSection: React.FC = () => {
+export const About: React.FC = () => {
   const [cards, setCards] = useState<CardState[]>([]);
   const [isGrabbing, setIsGrabbing] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -145,11 +145,23 @@ export const MissionSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 lg:py-36 bg-white overflow-hidden select-none" onMouseUp={handleMouseUp} onTouchEnd={handleMouseUp}>
+    <section className="py-24 bg-white overflow-hidden select-none" onMouseUp={handleMouseUp} onTouchEnd={handleMouseUp}>
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
           
-          <div className="w-full lg:w-1/2 relative flex flex-col items-center">
+          
+
+          <div className="w-full lg:w-1/2">
+            <h2 className="text-6xl lg:text-[65px] font-serif-impact text-deep-purple leading-[0.9] tracking-tighter mb-10">
+              Rural Women <br />
+              <span className="text-terracotta text-nowrap italic">Upliftment Association</span>
+            </h2>
+            <div className="text-xl lg:text-base font-nepali leading-[1.8] text-black">
+                ग्रामीण नारी उत्थान संघ हरिपुरले विगत लामो समय देखि ग्रामीण भेगका नागरिकहरुको ज्ञान एवं शिपसाग सम्बन्धित विविध किसिमका सशक्तिकरणको कार्यलाई अगाडि बढाउादै आएको छ । लोकतन्त्रको सम्बद्र्वन र सुशासनको अभिवृद्विका लागि सामाीजक तथा नागरिक समूह एवं संगठनहरुको महत्वपुर्ण भूमिका हुन्छ । प्रजातन्त्रको विकास सगै जनउत्तरदायी व्यवस्थाको विकासमा बल पुग्ने हुादा यसका अति आवश्यक संयन्त्रहरु र अवलम्बन गरिएका प्रक्रियाहरु जब मजबुत र फलदायी हुदैनन तब सम्म नागरिक तथा सामाजिक संगठनहरुले प्रभाकारी र रचनात्मक भूमिका निर्वाह गर्न सक्दैनन् । नागरिक तथा सामाजिक संगठनहरुको भूमिका प्रभावकारी र फलदायी बनाउान उनीहरुको सांगठनिक एवं नेतृत्वदयी क्षमता चुस्त र मजबुत हुनु अति आवश्यक पर्दछ । यति मात्र होईन समान उद्देश्य बोकेका संगठन एवं मञ्चहरुसाग हातेमालो गरी बलियो संञ्जाल निर्माण गर्ने, विकास एवं अधिकारको पैरवि एवं वकालत गर्दै प्रभावकारी जनपरिचालनका माध्यमबाट सरकारी संयन्त्रहरुलाई जनउत्तरदायी बनाउन सक्दो प्रयत्न गर्ने, विद्यमान नीति तथा कार्यक्रमहरु कार्यान्वयन गर्न सामुहिक दवाव श्रृजना गर्ने साथै नागरिकहरुका हक अधिकार, मर्यादा र चाहानाहरुको संरक्षण र सम्बद्र्वनका लागि राज्यका विभिन्न निकायहरुलाई जिम्मेवारी बोध गराउाने जस्ता विषयहरुमा सामाजिक एवं नागरिक संगठनहरुले अहंम भूमिका निर्वाह गर्नु पर्दछ । यस्तो कार्यको लागि ग्रामीण नारी उत्थान संघले स्थापना कालदेखिनै आफ्ना प्राय: सबै किमिका प्रयत्नहरु अगाडि बढाउदै समुदायको मन मष्तिक सम्म पुग्न सफल भएको छ ।
+            </div>
+          </div>
+
+              <div className="w-full lg:w-1/2 relative flex flex-col items-center">
             <div 
               ref={containerRef}
               className="relative w-full max-w-[460px] aspect-square flex items-center justify-center"
@@ -196,37 +208,6 @@ export const MissionSection: React.FC = () => {
               <div className="w-12 h-[1px] bg-stone-200 group-hover:w-20 transition-all"></div>
             </div>
           </div>
-
-          <div className="w-full lg:w-1/2">
-            <h2 className="text-6xl lg:text-[84px] font-serif-impact text-deep-purple leading-[0.9] tracking-tighter mb-10">
-              A Dignified <br />
-              <span className="text-terracotta italic">Life for All.</span>
-            </h2>
-            
-            <div className="mb-12 p-8 bg-stone-50 border-l-8 border-vibrant-gold rounded-r-3xl">
-              <p className="text-stone-800 text-xl lg:text-2xl font-bold italic leading-relaxed">
-                "{CORE_GOAL}"
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-              {OBJECTIVES.map((obj, index) => (
-                <div key={index} className="group flex gap-5 items-start">
-                  <span className="text-terracotta font-black text-xs shrink-0 mt-1 transition-transform group-hover:scale-125">0{index + 1}</span>
-                  <p className="text-stone-500 text-[15px] leading-relaxed font-semibold opacity-80 group-hover:opacity-100 transition-opacity">
-                    {obj}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-16">
-              <button className="bg-deep-purple text-white font-black py-5 px-12 rounded-2xl text-[10px] tracking-[0.3em] uppercase hover:bg-black transition-all shadow-2xl active:scale-95">
-                Explore Our Ecosystem
-              </button>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>

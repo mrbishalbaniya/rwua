@@ -4,7 +4,7 @@ import { CORE_VISION, CORE_MISSION } from '@/lib/constants';
 
 export const ImpactHero: React.FC = () => {
   return (
-    <section className="relative min-h-[95vh] flex items-center pt-32 lg:pt-0 bg-white overflow-hidden">
+    <section className="relative min-h-[95vh] flex items-center pt-32 lg:pt-10 bg-white overflow-hidden">
       {/* Decorative Topographical Background */}
       <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.03]">
         <svg className="w-full h-full text-deep-purple" viewBox="0 0 1000 1000" preserveAspectRatio="none">
@@ -39,7 +39,7 @@ export const ImpactHero: React.FC = () => {
             </div>
             
             <div className="flex flex-wrap gap-8 animate-in fade-in duration-1000 delay-500">
-              <button className="bg-deep-purple hover:bg-black text-vibrant-gold font-black py-6 px-14 rounded-2xl transition-all shadow-[0_30px_70px_-15px_rgba(76,29,149,0.35)] hover:scale-105 active:scale-95 text-[11px] uppercase tracking-[0.3em]">
+              <button className="bg-deep-purple hover:bg-black text-white font-black py-6 px-14 rounded-2xl transition-all shadow-[0_30px_70px_-15px_rgba(76,29,149,0.35)] hover:scale-105 active:scale-95 text-[11px] uppercase tracking-[0.3em]">
                 Join the movement
               </button>
               <button className="flex items-center gap-6 text-deep-purple font-black text-[11px] uppercase tracking-[0.3em] group">
@@ -77,7 +77,7 @@ export const ImpactHero: React.FC = () => {
               </div>
 
               {/* Enhanced Rotating Text Badge */}
-              <div className="absolute -top-10 -left-10 w-40 h-40 bg-white rounded-full shadow-[0_30px_60px_-10px_rgba(0,0,0,0.15)] flex items-center justify-center border border-stone-50 group cursor-default">
+              <div className="absolute -top-[650px] -left-10 w-40 h-40 bg-white rounded-full shadow-[0_30px_60px_-10px_rgba(0,0,0,0.15)] flex items-center justify-center border border-stone-50 group cursor-default">
                 <div className="relative w-full h-full animate-[spin_15s_linear_infinite] group-hover:pause flex items-center justify-center">
                    <svg viewBox="0 0 100 100" className="w-32 h-32">
                     <path id="badgePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="transparent"/>

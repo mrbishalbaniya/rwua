@@ -25,7 +25,7 @@ export default function DownloadsPage() {
   return (
     <div className="min-h-screen bg-[#F9F8F6] pb-32 animate-in fade-in duration-1000">
       {/* Hero Section */}
-      <section className="container mx-auto px-8 md:px-16 lg:px-24 py-24">
+      <section className="container mx-auto px-8 px-16 lg:px-24 py-16">
         <div className="max-w-4xl">
           <div className="flex items-center gap-4 mb-6 animate-in slide-in-from-left duration-700">
             <span className="w-8 h-[2px] bg-terracotta"></span>
@@ -53,7 +53,7 @@ export default function DownloadsPage() {
                 className={`px-7 py-3 rounded-2xl md:rounded-3xl text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 whitespace-nowrap ${
                   filter === c 
                   ? 'bg-deep-purple text-white shadow-xl translate-y-[-1px]' 
-                  : 'text-stone-300 hover:text-deep-purple hover:bg-stone-50'
+                  : 'text-stone-400 hover:text-deep-purple hover:bg-stone-50'
                 }`}
               >
                 {c}
@@ -121,7 +121,7 @@ export default function DownloadsPage() {
                 </div>
 
                 {/* Minimalist Action Button */}
-                <button className="shrink-0 w-full md:w-auto bg-stone-50 hover:bg-deep-purple group-hover:text-deep-purple text-deep-purple hover:text-vibrant-gold px-12 py-5 rounded-2xl font-black text-[10px] uppercase tracking-[0.25em] transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-4 border border-transparent shadow-sm">
+                <button className="shrink-0 w-full md:w-auto bg-stone-50 hover:bg-deep-purple group-hover:text-white text-deep-purple px-12 py-5 rounded-2xl font-black text-[10px] uppercase tracking-[0.25em] transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-4 border border-transparent shadow-sm">
                   <span>Download</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M12 4v12m0 0l-4-4m4 4l4-4" />

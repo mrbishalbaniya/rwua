@@ -4,12 +4,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const partners = [
-  { name: 'UNDP', url: 'https://logo.clearbit.com/undp.org', id: '1' },
-  { name: 'WORLD BANK', url: 'https://logo.clearbit.com/worldbank.org', id: '2' },
-  { name: 'WFP', url: 'https://logo.clearbit.com/wfp.org', id: '3' },
-  { name: 'NEPAL GOVT', url: 'https://logo.clearbit.com/nepal.gov.np', id: '4' },
-  { name: 'RED CROSS', url: 'https://logo.clearbit.com/redcross.org', id: '5' },
-  { name: 'WHO', url: 'https://logo.clearbit.com/who.int', id: '6' },
+  { name: 'Past Partners', url: 'https://rwua.com.np/wp-content/uploads/2024/04/SC_USA_Logo_RedBlack_Stacked-003-150x150-1.png', id: '1' },
+  { name: 'DPTNet Nepal', url: 'https://rwua.com.np/wp-content/uploads/2014/12/21.jpg', id: '2' },
+  { name: 'SNV Nepal', url: 'https://rwua.com.np/wp-content/uploads/2024/04/snv.jpg', id: '3' },
+  { name: 'UNDP', url: 'https://rwua.com.np/wp-content/uploads/2022/01/undppp.png', id: '4' },
+  { name: 'Nepal Gov', url: 'https://rwua.com.np/wp-content/uploads/2014/12/1.jpg', id: '5' },
+  { name: 'OXFAM', url: 'https://rwua.com.np/wp-content/uploads/2022/01/images.jpeg', id: '6' },
 ];
 
 export const PartnerSection: React.FC = () => {
@@ -83,7 +83,7 @@ export const PartnerSection: React.FC = () => {
           </div>
 
           {/* Sub Stat 2 */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left border-y md:border-y-0 md:border-x border-stone-100 py-12 md:py-0 md:px-12 lg:px-24">
             <div className="text-deep-purple text-6xl lg:text-7xl font-black tracking-tighter mb-4">
               SDG
             </div>
@@ -105,7 +105,7 @@ export const PartnerSection: React.FC = () => {
       </div>
 
       {/* Infinite Scrolling Partners */}
-      <div className="relative overflow-hidden">
+      <div className="relative">
         {/* Gradient masks for smooth fade effect */}
         <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
         <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
@@ -129,16 +129,19 @@ export const PartnerSection: React.FC = () => {
                   backgroundSize: '10px 10px'
                 }}
               ></div>
+
+              
               
               <div className="relative z-10 flex flex-col items-center transition-all duration-500 gap-3">
                 <img 
                   src={partner.url} 
                   alt={partner.name}
-                  className={`w-auto object-contain transition-all duration-700 
-                    ${activePartnerId === partner.id 
-                      ? 'max-h-20 grayscale-0 opacity-100' 
-                      : 'max-h-10 grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-100'
-                    }`}
+                  className={`w-auto object-contain transition-all duration-700 max-h-20 grayscale-0 opacity-100
+                     ${activePartnerId === partner.id 
+                      ? '' 
+                      : 'max-h-10'
+                    }`
+                  }
                   onError={(e) => (e.currentTarget.style.display = 'none')}
                 />
                 

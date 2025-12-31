@@ -26,7 +26,7 @@ export const NewsUpdates: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 bg-[#F9F8F6] relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 bg-[#F9F8F6] relative overflow-hidden">
       {/* Decorative Background Element */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-terracotta opacity-[0.02] rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
       

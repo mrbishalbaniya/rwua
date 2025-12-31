@@ -82,14 +82,7 @@ export const FacesOfChange: React.FC = () => {
                     className="aspect-[4/3] overflow-hidden relative cursor-pointer"
                     onClick={() => setExpandedImage({url: story.imageUrl, name: story.name})}
                   >
-                    <div className="absolute inset-0 bg-deep-purple/10 group-hover:bg-deep-purple/40 transition-all duration-500 z-10 flex items-center justify-center">
-                      {/* Expansion Arrow Overlay */}
-                      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center transform scale-0 group-hover:scale-100 rotate-45 group-hover:rotate-0 transition-all duration-500 shadow-2xl">
-                        <svg className="w-6 h-6 text-deep-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                        </svg>
-                      </div>
-                    </div>
+                  
                     
                     <img 
                       src={story.imageUrl} 
