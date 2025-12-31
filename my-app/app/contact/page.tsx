@@ -45,7 +45,7 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             Let&apos;s Work<br />
-            <span className="text-gray-700">Together</span>
+            <span className="text-blue-600">Together</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Connect with RWUA Nepal. We&apos;re here to help and answer any questions about our programs and services.
@@ -92,7 +92,7 @@ export default function ContactPage() {
                       <Phone className="w-5 h-5 text-black" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">Phone</p>
+                      <p className="text-sm text-gray-500 uppercase tracking-wide">Phone</p>
                       <p className="font-medium text-gray-900">046-411109</p>
                     </div>
                   </div>
@@ -105,7 +105,7 @@ export default function ContactPage() {
                       <Mail className="w-5 h-5 text-black" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">Email</p>
+                      <p className="text-sm text-gray-500 uppercase tracking-wide">Email</p>
                       <p className="font-medium text-gray-900">info@rwua.org</p>
                     </div>
                   </div>
@@ -118,7 +118,7 @@ export default function ContactPage() {
                       <MapPin className="w-5 h-5 text-black" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">Address</p>
+                      <p className="text-sm text-gray-500 uppercase tracking-wide">Address</p>
                       <p className="font-medium text-gray-900">Haripur, Nepal</p>
                     </div>
                   </div>
@@ -131,7 +131,7 @@ export default function ContactPage() {
                       <Clock className="w-5 h-5 text-black" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">Hours</p>
+                      <p className="text-sm text-gray-500 uppercase tracking-wide">Hours</p>
                       <p className="font-medium text-gray-900">10AM - 5PM</p>
                     </div>
                   </div>
@@ -150,7 +150,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent text-lg placeholder-gray-400 focus:border-gray-800 focus:outline-none transition-colors"
+                    className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent text-lg placeholder-gray-400 focus:border-blue-600 focus:outline-none transition-colors"
                     placeholder="Your Name"
                   />
                 </div>
@@ -163,7 +163,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent text-lg placeholder-gray-400 focus:border-gray-800 focus:outline-none transition-colors"
+                    className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent text-lg placeholder-gray-400 focus:border-blue-600 focus:outline-none transition-colors"
                     placeholder="Your e-Mail"
                   />
                 </div>
@@ -176,7 +176,7 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent text-lg placeholder-gray-400 focus:border-gray-800 focus:outline-none transition-colors resize-none"
+                    className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent text-lg placeholder-gray-400 focus:border-blue-600 focus:outline-none transition-colors resize-none"
                     placeholder="Your message to us"
                   />
                 </div>
@@ -197,11 +197,12 @@ export default function ContactPage() {
                 </div>
 
                 {/* Submit Button */}
+                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full bg-black text-white font-medium py-4 px-8 rounded-lg hover:bg-gray-800 disabled:bg-gray-400 transition-all duration-200 flex items-center justify-center space-x-3 group ${
-                    isSubmitting ? 'cursor-not-allowed' : 'cursor-pointer'
+                  className={`w-full py-3 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition flex items-center justify-center space-x-3 group ${
+                    isSubmitting ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
                   }`}
                 >
                   {isSubmitting ? (

@@ -5,25 +5,25 @@ import { gsap } from 'gsap';
 
 export default function GalleryPage() {
   useEffect(() => {
-    let hideDetailsRef = null;
+    let hideDetailsRef: (() => void) | null = null;
 
     // Dynamically import Flip to avoid build issues
     import('gsap/dist/Flip').then(({ Flip }) => {
       gsap.registerPlugin(Flip);
 
-      const items = gsap.utils.toArray(".gallery-item");
-      const details = document.querySelector('.gallery-detail');
-      const detailContent = document.querySelector('.gallery-content');
-      const detailImage = document.querySelector('.gallery-detail img');
-      const detailTitle = document.querySelector('.gallery-detail .gallery-title');
-      const detailSecondary = document.querySelector('.gallery-detail .gallery-secondary');
-      const detailDescription = document.querySelector('.gallery-detail .gallery-description');
+      const items = gsap.utils.toArray(".gallery-item") as Element[];
+      const details = document.querySelector('.gallery-detail') as HTMLElement;
+      const detailContent = document.querySelector('.gallery-content') as HTMLElement;
+      const detailImage = document.querySelector('.gallery-detail img') as HTMLImageElement;
+      const detailTitle = document.querySelector('.gallery-detail .gallery-title') as HTMLElement;
+      const detailSecondary = document.querySelector('.gallery-detail .gallery-secondary') as HTMLElement;
+      const detailDescription = document.querySelector('.gallery-detail .gallery-description') as HTMLElement;
 
-      let activeItem;
+      let activeItem: Element | null = null;
 
       gsap.set(detailContent, { yPercent: -100 });
 
-      function showDetails(item) {
+      function showDetails(item: Element) {
         if (activeItem) {
           return hideDetails();
         }
@@ -41,19 +41,19 @@ export default function GalleryPage() {
             duration: 0.5,
             ease: "power2.inOut",
             scale: true,
-            onComplete: () => gsap.set(details, { overflow: "auto" })
+            onComplete: () => { gsap.set(details, { overflow: "auto" }); }
           }).to(detailContent, { yPercent: 0 }, 0.2);
 
           detailImage.removeEventListener("load", onLoad);
           document.addEventListener('click', hideDetails);
         };
 
-        const data = item.dataset;
+        const data = (item as HTMLElement).dataset;
         detailImage.addEventListener("load", onLoad);
-        detailImage.src = item.querySelector('img').src;
-        detailTitle.innerText = data.title;
-        detailSecondary.innerText = data.secondary;
-        detailDescription.innerText = data.text;
+        detailImage.src = (item.querySelector('img') as HTMLImageElement).src;
+        detailTitle.innerText = data.title || '';
+        detailSecondary.innerText = data.secondary || '';
+        detailDescription.innerText = data.text || '';
 
         gsap.to(items, {
           opacity: 0.3,
@@ -77,14 +77,14 @@ export default function GalleryPage() {
         const tl = gsap.timeline();
         tl.set(details, { overflow: "hidden" })
           .to(detailContent, { yPercent: -100 })
-          .to(items, { opacity: 1, stagger: { amount: 0.7, from: items.indexOf(activeItem), grid: "auto" } })
+          .to(items, { opacity: 1, stagger: { amount: 0.7, from: activeItem ? items.indexOf(activeItem) : 0, grid: "auto" } })
           .to(".gallery-app", { backgroundColor: "#fff" }, "<");
 
         Flip.from(state, {
           scale: true,
           duration: 0.5,
           delay: 0.2,
-          onInterrupt: () => tl.kill()
+          onInterrupt: () => { tl.kill(); }
         }).set(details, { visibility: "hidden" });
 
         activeItem = null;
@@ -93,7 +93,7 @@ export default function GalleryPage() {
       // Store reference for cleanup
       hideDetailsRef = hideDetails;
 
-      gsap.utils.toArray('.gallery-item').forEach(item =>
+      gsap.utils.toArray('.gallery-item').forEach((item: any) =>
         item.addEventListener('click', () => showDetails(item))
       );
     });
