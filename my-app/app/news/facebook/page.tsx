@@ -3,87 +3,72 @@
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Home, Clock } from 'lucide-react';
+import { Home } from 'lucide-react';
 import TopSearch from '../../../components/TopSearch';
 
-// Latest Updates data
-const latestUpdatesData = [
+// Facebook News data
+const facebookNewsData = [
     {
         id: 1,
-        title: "हरिपुर नगरपालिकामा नयाँ स्वास्थ्य चौकी स्थापना",
-        excerpt: "हरिपुर नगरपालिकाको वडा नं. ५ मा नयाँ स्वास्थ्य चौकी स्थापना गरिएको छ। यस स्वास्थ्य चौकीले स्थानीय बासिन्दाहरूलाई आधारभूत स्वास्थ्य सेवा प्रदान गर्नेछ।",
-        image: "https://rwua.com.np/wp-content/uploads/2021/04/11.jpg",
-        category: "Health",
+        title: "फेसबुक: हरिपुर नगरपालिकामा न्यानो कम्बल वितरण",
+        excerpt: "आजको फेसबुकमा हरिपुर नगरपालिकामा सञ्चालित न्यानो कम्बल वितरण कार्यक्रमको जानकारी साझा गरिएको थियो। यस कार्यक्रममा स्थानीय जनप्रतिनिधिहरूको उपस्थिति रहेको थियो।",
+        image: "https://rwua.com.np/wp-content/uploads/2025/12/blimket-780x470-1.png",
+        category: "Facebook",
         featured: true,
-        publishDate: "२०२५ जनवरी २०",
-        isNew: true
+        publishDate: "२०२५ जनवरी १५"
     },
     {
         id: 2,
-        title: "शिक्षा सामग्री वितरण कार्यक्रम सुरु",
-        excerpt: "विद्यालयमा पढ्ने गरिब परिवारका बालबालिकाहरूलाई निःशुल्क शिक्षा सामग्री वितरण कार्यक्रम सुरु गरिएको छ। यस कार्यक्रमले ५०० बालबालिकालाई फाइदा पुर्याउनेछ।",
+        title: "फेसबुक: बालक्लब गठन कार्यक्रम",
+        excerpt: "बालबालिकाको अधिकार संरक्षणका लागि बालक्लब गठन कार्यक्रमको फेसबुक पोस्ट। यस कार्यक्रममा बालबालिकाहरूको सक्रिय सहभागिता रहेको थियो।",
         image: "https://rwua.com.np/wp-content/uploads/2025/02/shared-image.jpeg",
-        category: "Education",
+        category: "Facebook",
         featured: false,
-        publishDate: "२०२५ जनवरी १८",
-        isNew: true
+        publishDate: "२०२५ जनवरी १०"
     },
     {
         id: 3,
-        title: "कृषि तालिम कार्यक्रम घोषणा",
-        excerpt: "आधुनिक कृषि प्रविधिका बारेमा किसानहरूलाई तालिम दिने कार्यक्रम घोषणा गरिएको छ। यस तालिममा जैविक खेती र बीउ उत्पादनका विषयहरू समावेश छन्।",
+        title: "फेसबुक: महिला सशक्तिकरण तालिम",
+        excerpt: "ग्रामीण महिलाहरूको आर्थिक सशक्तिकरणका लागि सञ्चालित तालिम कार्यक्रमको फेसबुक अपडेट। तालिममा स्वरोजगारका विभिन्न विषयहरूमा छलफल भएको थियो।",
         image: "https://rwua.com.np/wp-content/uploads/2020/01/13.jpg",
-        category: "Agriculture",
+        category: "Facebook",
         featured: false,
-        publishDate: "२०२५ जनवरी १६",
-        isNew: true
+        publishDate: "२०२५ जनवरी ५"
     },
     {
         id: 4,
-        title: "महिला उद्यमी विकास कार्यक्रम",
-        excerpt: "ग्रामीण महिलाहरूलाई उद्यमशीलता विकासका लागि विशेष कार्यक्रम सञ्चालन गरिने भएको छ। यस कार्यक्रममा व्यवसायिक सीप विकास र ऋण सुविधाका विषयहरू समावेश छन्।",
-        image: "https://rwua.com.np/wp-content/uploads/2021/10/1.jpg",
-        category: "Women Empowerment",
+        title: "फेसबुक: खानेपानी सुविधा उद्घाटन",
+        excerpt: "समावेशी तथा दिगो ग्रामीण खानेपानी सुविधा कार्यक्रमको उद्घाटन समारोहको फेसबुक पोस्ट। यस अवसरमा स्थानीय समुदायका प्रतिनिधिहरूले खुशी व्यक्त गरेका थिए।",
+        image: "https://rwua.com.np/wp-content/uploads/2021/04/11.jpg",
+        category: "Facebook",
         featured: false,
-        publishDate: "२०२५ जनवरी १४",
-        isNew: false
+        publishDate: "२०२४ डिसेम्बर २८"
     },
     {
         id: 5,
-        title: "सामुदायिक वन संरक्षण अभियान",
-        excerpt: "वातावरण संरक्षणका लागि सामुदायिक वन संरक्षण अभियान सुरु गरिएको छ। यस अभियानमा स्थानीय युवाहरूको सक्रिय सहभागिता रहेको छ।",
-        image: "https://rwua.com.np/wp-content/uploads/2025/12/blimket-780x470-1.png",
-        category: "Environment",
+        title: "फेसबुक: वार्षिक साधारण सभा",
+        excerpt: "ग्रामिण नारी उत्थान संघको २९ औं वार्षिक साधारण सभाको फेसबुक अपडेट। सभामा संस्थाको वार्षिक प्रगति प्रतिवेदन प्रस्तुत गरिएको थियो।",
+        image: "https://rwua.com.np/wp-content/uploads/2021/10/1.jpg",
+        category: "Facebook",
         featured: false,
-        publishDate: "२०२५ जनवरी १२",
-        isNew: false
-    },
-    {
-        id: 6,
-        title: "डिजिटल साक्षरता कार्यक्रम विस्तार",
-        excerpt: "ग्रामीण क्षेत्रमा डिजिटल साक्षरता बढाउनका लागि कम्प्युटर तालिम कार्यक्रम विस्तार गरिएको छ। यस कार्यक्रममा आधारभूत कम्प्युटर सीप सिकाइन्छ।",
-        image: "https://rwua.com.np/wp-content/uploads/2021/04/11.jpg",
-        category: "Technology",
-        featured: false,
-        publishDate: "२०२५ जनवरी १०",
-        isNew: false
+        publishDate: "२०२४ डिसेम्बर २०"
     }
 ];
 
-export default function LatestUpdatesPage() {
+export default function FacebookPage() {
     const [searchQuery, setSearchQuery] = useState('');
 
-    // Filter updates based on search query
-    const filteredUpdates = useMemo(() => {
+    // Filter news based on search query
+    const filteredNews = useMemo(() => {
         if (!searchQuery.trim()) {
-            return latestUpdatesData;
+            return facebookNewsData;
         }
 
         const query = searchQuery.toLowerCase();
-        return latestUpdatesData.filter(update =>
-            update.title.toLowerCase().includes(query) ||
-            update.excerpt.toLowerCase().includes(query) ||
-            update.category.toLowerCase().includes(query)
+        return facebookNewsData.filter(news =>
+            news.title.toLowerCase().includes(query) ||
+            news.excerpt.toLowerCase().includes(query) ||
+            news.category.toLowerCase().includes(query)
         );
     }, [searchQuery]);
 
@@ -106,7 +91,7 @@ export default function LatestUpdatesPage() {
                                 News & Press
                             </Link>
                             <span className="mx-2">/</span>
-                            <span className="text-gray-600 font-medium">ताजा अपडेट</span>
+                            <span className="text-gray-600 font-medium">फेसबुक समाचार</span>
                         </nav>
                     </div>
                 </div>
@@ -116,9 +101,9 @@ export default function LatestUpdatesPage() {
             <div className="max-w-screen-lg mx-auto px-4">
                 {/* Page Header */}
                 <div className="text-center py-12">
-                    <h1 className="text-4xl font-bold text-gray-800 mb-4">ताजा अपडेट</h1>
+                    <h1 className="text-4xl font-bold text-gray-800 mb-4">फेसबुक समाचार</h1>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        नवीनतम समाचार र जानकारीहरू जसले हाम्रो समुदायमा भइरहेका गतिविधिहरूको जानकारी दिन्छ
+                        हाम्रो फेसबुक पेजबाट साझा गरिएका कार्यक्रमहरू र सामाजिक सञ्जालका समाचारहरू
                     </p>
                 </div>
 
@@ -130,28 +115,28 @@ export default function LatestUpdatesPage() {
                     {searchQuery && (
                         <div className="mb-6 text-gray-600">
                             <p className="text-sm">
-                                Showing {filteredUpdates.length} result{filteredUpdates.length !== 1 ? 's' : ''} for "{searchQuery}"
+                                Showing {filteredNews.length} result{filteredNews.length !== 1 ? 's' : ''} for "{searchQuery}"
                             </p>
                         </div>
                     )}
 
                     {/* No results message */}
-                    {searchQuery && filteredUpdates.length === 0 && (
+                    {searchQuery && filteredNews.length === 0 && (
                         <div className="text-center py-12">
-                            <p className="text-gray-500 text-lg">No updates found for "{searchQuery}"</p>
+                            <p className="text-gray-500 text-lg">No Facebook news found for "{searchQuery}"</p>
                             <p className="text-gray-400 text-sm mt-2">Try searching with different keywords</p>
                         </div>
                     )}
 
-                    {/* Latest Updates Grid - Using Latest News Card Design */}
+                    {/* Facebook News Grid - Using Latest News Card Design */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {filteredUpdates.map((update) => (
-                            <div key={update.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group border border-gray-100">
+                        {filteredNews.map((news) => (
+                            <div key={news.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group border border-gray-100">
                                 {/* Image Section - Smaller */}
                                 <div className="relative h-32 bg-gradient-to-r from-blue-500 to-purple-500 overflow-hidden">
                                     <Image
-                                        src={update.image}
-                                        alt={update.title}
+                                        src={news.image}
+                                        alt={news.title}
                                         fill
                                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                                     />
@@ -159,7 +144,7 @@ export default function LatestUpdatesPage() {
                                     {/* Category Badge */}
                                     <div className="absolute top-2 left-2">
                                         <span className="px-2 py-1 bg-white/90 backdrop-blur-sm text-gray-800 rounded-full text-xs font-medium">
-                                            {update.category}
+                                            {news.category}
                                         </span>
                                     </div>
                                 </div>
@@ -168,19 +153,19 @@ export default function LatestUpdatesPage() {
                                 <div className="p-3">
                                     {/* Header */}
                                     <h3 className="text-base font-bold text-gray-800 line-clamp-2 mb-2">
-                                        {update.title}
+                                        {news.title}
                                     </h3>
 
                                     {/* Description - Much shorter */}
                                     <p className="text-gray-600 text-sm mb-3 line-clamp-2 leading-relaxed">
-                                        {update.excerpt.length > 80 ? update.excerpt.substring(0, 80) + '...' : update.excerpt}
+                                        {news.excerpt.length > 80 ? news.excerpt.substring(0, 80) + '...' : news.excerpt}
                                     </p>
 
                                     {/* Footer - Inline Read More */}
                                     <div className="flex justify-between items-center">
                                         {/* Date */}
                                         <div className="flex items-center text-xs text-gray-500">
-                                            <span>{update.publishDate}</span>
+                                            <span>{news.publishDate}</span>
                                         </div>
 
                                         {/* Read More Button - Better design */}
@@ -202,7 +187,7 @@ export default function LatestUpdatesPage() {
                     {/* Load More Button */}
                     <div className="text-center mt-12">
                         <button className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors duration-200 group bg-transparent border-2 border-blue-600 hover:border-blue-800 rounded-lg py-3 px-6">
-                            Load More Updates
+                            Load More Facebook News
                             <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>

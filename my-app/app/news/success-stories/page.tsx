@@ -123,41 +123,53 @@ export default function SuccessStoriesPage() {
                         </div>
                     )}
 
-                    {/* Success Stories Grid */}
+                    {/* Success Stories Grid - Using Latest News Card Design */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {filteredStories.map((story) => (
-                            <div key={story.id} className="rounded-lg shadow-lg overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-xl cursor-pointer" style={{
-                                background: '#ffffff',
-                                border: '1px solid rgba(0, 0, 0, 0.08)',
-                                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06)'
-                            }}>
-                                <div className="h-48 overflow-hidden">
+                            <div key={story.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group border border-gray-100">
+                                {/* Image Section - Smaller */}
+                                <div className="relative h-32 bg-gradient-to-r from-blue-500 to-purple-500 overflow-hidden">
                                     <Image
                                         src={story.image}
                                         alt={story.title}
-                                        width={400}
-                                        height={250}
-                                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                        fill
+                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
                                     />
-                                </div>
-                                <div className="p-6 flex-1 flex flex-col bg-white">
-                                    <div className="mb-3">
-                                        <span className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-medium">
+
+                                    {/* Category Badge */}
+                                    <div className="absolute top-2 left-2">
+                                        <span className="px-2 py-1 bg-white/90 backdrop-blur-sm text-gray-800 rounded-full text-xs font-medium">
                                             {story.category}
                                         </span>
                                     </div>
-                                    <h2 className="font-bold text-xl text-gray-800 mb-3 line-clamp-2 hover:text-blue-800 transition-colors duration-200 cursor-pointer">
-                                        <Link href="/article" className="hover:text-blue-800 transition-colors duration-200">
-                                            {story.title}
-                                        </Link>
-                                    </h2>
-                                    <p className="text-gray-600 text-sm flex-1 line-clamp-3 mb-4">
-                                        {story.excerpt}
+                                </div>
+
+                                {/* Content Section - More compact */}
+                                <div className="p-3">
+                                    {/* Header */}
+                                    <h3 className="text-base font-bold text-gray-800 line-clamp-2 mb-2">
+                                        {story.title}
+                                    </h3>
+
+                                    {/* Description - Much shorter */}
+                                    <p className="text-gray-600 text-sm mb-3 line-clamp-2 leading-relaxed">
+                                        {story.excerpt.length > 80 ? story.excerpt.substring(0, 80) + '...' : story.excerpt}
                                     </p>
-                                    <div className="mt-auto">
-                                        <Link href="/article" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors duration-200 group">
-                                            Read more
-                                            <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                                    {/* Footer - Inline Read More */}
+                                    <div className="flex justify-between items-center">
+                                        {/* Date */}
+                                        <div className="flex items-center text-xs text-gray-500">
+                                            <span>Recent</span>
+                                        </div>
+
+                                        {/* Read More Button - Better design */}
+                                        <Link
+                                            href="/news"
+                                            className="inline-flex items-center text-blue-600 hover:text-white text-sm font-medium transition-all duration-300 hover:bg-blue-600 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-600 group hover:shadow-md cursor-pointer"
+                                        >
+                                            <span>Read More</span>
+                                            <svg className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                             </svg>
                                         </Link>
