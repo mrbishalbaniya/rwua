@@ -1,39 +1,38 @@
-// Core data models for RWUA Nepal website clone
 
-export interface Story {
+export interface ImpactStory {
   id: string;
-  title: string; // Nepali title
-  description: string; // Full Nepali content
-  image: string; // Actual image from website
-  date: string; // Publication date
-  author?: string; // Story author/source
-  category?: string; // Story category
+  name: string;
+  location: string;
+  content: string;
+  imageUrl: string;
+  category: 'Entrepreneurship' | 'Education' | 'Leadership' | 'Agriculture';
 }
 
-export interface Vacancy {
+export interface ProjectLocation {
   id: string;
-  title: string; // Job title (English/Nepali)
-  description: string; // Job description
-  image: string; // Vacancy image (reused as per original site)
-  deadline?: string; // Application deadline
-  requirements?: string[]; // Job requirements
-  location?: string; // Job location
-  organization: string; // RWUA Nepal
-  contactEmail?: string; // Application email
+  name: string;
+  lat: number;
+  lng: number;
+  impactCount: number;
+  description: string;
 }
 
-export interface ContactInfo {
-  address: string; // Nepal address
-  phone: string; // Nepal phone numbers
-  email: string; // RWUA Nepal email
-  workingHours: string; // Office hours
-  socialLinks?: {
-    facebook?: string;
-    twitter?: string;
-    website?: string;
-  };
+export interface ImpactDataPoint {
+  year: string;
+  womenReached: number;
+  projectsCompleted: number;
 }
 
+// Added NewsUpdate interface to resolve export error in constants.tsx
+export interface NewsUpdate {
+  id: string;
+  date: string;
+  category: string;
+  title: string;
+  content: string;
+}
+
+// Contact form types
 export interface ContactFormData {
   name: string;
   email: string;
@@ -41,28 +40,45 @@ export interface ContactFormData {
   message: string;
 }
 
-export interface SearchSidebarProps {
-  onSearch: (query: string) => void;
-  placeholder?: string;
-  title?: string;
+export interface ContactFormProps {
+  onSubmit: (data: ContactFormData) => void;
 }
 
+// Search types
 export interface SearchBoxProps {
   onSearch: (query: string) => void;
   placeholder?: string;
+  className?: string;
   debounceMs?: number;
 }
 
+// Story types
 export interface StoryCardProps {
-  story: Story;
+  story: {
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+    author: string;
+    image: string;
+    date: string;
+    tags: string[];
+  };
   className?: string;
 }
 
+// Vacancy types
 export interface VacancyCardProps {
-  vacancy: Vacancy;
+  vacancy: {
+    id: string;
+    position: string;
+    description: string;
+    department: string;
+    deadline: string;
+    location: string;
+    tags: string[];
+    image?: string;
+    status: 'open' | 'closed';
+  };
   className?: string;
-}
-
-export interface ContactFormProps {
-  onSubmit: (data: ContactFormData) => void;
 }
