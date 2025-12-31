@@ -173,7 +173,7 @@ export default function Navbar() {
                               <Facebook className="text-gray-600 w-4 h-4" />
                             </div>
                             <div>
-                              <div className="text-gray-800 font-semibold text-sm">फेसबुक समाचार</div>
+                              <div className="text-gray-800 font-semibold text-sm">फेस्बूक बाट ल्याइेका समाचार</div>
                               <div className="text-gray-500 text-xs">सामाजिक सञ्जालका समाचारहरू</div>
                             </div>
                           </Link>
@@ -376,7 +376,7 @@ export default function Navbar() {
                         className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
                         onClick={closeMobileMenu}
                       >
-                        <span className="truncate">फेसबुक समाचार</span>
+                        <span className="truncate">फेस्बूक बाट ल्याइेका समाचार</span>
                       </Link>
                       <Link
                         href="/news/latest-updates"
@@ -394,9 +394,6 @@ export default function Navbar() {
                   className="text-white hover:bg-blue-800 group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-200"
                   onClick={closeMobileMenu}
                 >
-                  <svg className="text-white mr-3 flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
                   <span className={`transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
                     Success Story
                   </span>
@@ -440,62 +437,11 @@ export default function Navbar() {
                 </Link>
               </div>
 
-              {/* Quick Links Section */}
-              <div className="space-y-1 mt-8">
-                <h3 className={`px-3 text-xs font-semibold text-white uppercase tracking-wider transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
-                  Quick Links
-                </h3>
-                <div className="space-y-1">
-                  <Link
-                    href="/about"
-                    className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
-                    onClick={closeMobileMenu}
-                  >
-                    <span className={`truncate transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
-                      About Us
-                    </span>
-                  </Link>
-                  <Link
-                    href="/gallery"
-                    className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
-                    onClick={closeMobileMenu}
-                  >
-                    <span className={`truncate transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
-                      Photo Gallery
-                    </span>
-                  </Link>
-                  <Link
-                    href="/events"
-                    className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
-                    onClick={closeMobileMenu}
-                  >
-                    <span className={`truncate transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
-                      Events
-                    </span>
-                  </Link>
-                </div>
-              </div>
+
             </nav>
           </div>
 
-          {/* User Profile Section */}
-          <div className="flex-shrink-0 flex p-4">
-            <div className="flex-shrink-0 w-full group block">
-              <div className="flex items-center">
-                <div>
-                  <img
-                    className="inline-block h-9 w-9 rounded-full object-cover"
-                    src="https://rwua.com.np/wp-content/uploads/2023/02/cropped-RWUA-Logo-Approval-2.jpg"
-                    alt="RWUA Logo"
-                  />
-                </div>
-                <div className={`ml-3 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
-                  <p className="text-sm font-medium text-white group-hover:text-gray-300">RWUA Admin</p>
-                  <p className="text-xs font-medium text-gray-300 group-hover:text-gray-400">View Profile</p>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </>

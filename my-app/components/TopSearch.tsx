@@ -38,12 +38,12 @@ export default function TopSearch({ onSearch }: TopSearchProps) {
                         name="q"
                         value={searchValue}
                         onChange={handleInputChange}
-                        className="w-full border h-12 shadow p-4 rounded-full dark:text-gray-800 dark:border-gray-700 dark:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-teal-400 transition-all duration-200"
+                        className="w-full border h-12 shadow p-4 rounded-full dark:text-gray-800 dark:border-gray-700 dark:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-slate-400 transition-all duration-200"
                         placeholder="Search News & Articles..."
                     />
                     <button type="submit" className="absolute top-3.5 right-3 hover:scale-110 transition-transform duration-200">
                         <svg
-                            className="text-teal-400 h-5 w-5 fill-current dark:text-teal-300"
+                            className="text-slate-400 h-5 w-5 fill-current dark:text-slate-500"
                             xmlns="http://www.w3.org/2000/svg"
                             xmlnsXlink="http://www.w3.org/1999/xlink"
                             version="1.1"

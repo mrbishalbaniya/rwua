@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Home } from 'lucide-react';
 
@@ -40,7 +38,6 @@ const galleryData: GalleryItem[] = [
 ];
 
 export default function Gallery() {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
     <div className="gallery-wrapper">
@@ -123,8 +120,6 @@ export default function Gallery() {
                     key={item.id}
                     className={cardClass}
                     style={cardStyle}
-                    onMouseEnter={() => setHoveredCard(item.id)}
-                    onMouseLeave={() => setHoveredCard(null)}
                   >
                     <div className="card-content">
                       <h3 className="card-title">{item.title}</h3>
@@ -155,14 +150,18 @@ export default function Gallery() {
         .gallery-wrapper {
           min-height: 100vh;
           background-color: #ffffff;
+          overflow-x: hidden;
+          width: 100%;
         }
 
         .card-container {
           position: relative;
           height: 505px;
           width: 512px;
+          max-width: 100%;
           overflow: hidden;
           border-radius: 16px;
+          margin: 0 auto;
         }
 
         .card {
@@ -185,6 +184,7 @@ export default function Gallery() {
         .card:hover {
           height: 512px !important;
           width: 512px !important;
+          max-width: 100vw !important;
           top: 0 !important;
           left: 0 !important;
           right: auto !important;
@@ -213,6 +213,7 @@ export default function Gallery() {
         .card-d3:hover {
           height: 512px !important;
           width: 512px !important;
+          max-width: 100vw !important;
           top: auto !important;
           left: auto !important;
           right: 0 !important;
@@ -261,16 +262,19 @@ export default function Gallery() {
           .card-container {
             height: 400px;
             width: 350px;
+            max-width: calc(100vw - 2rem);
           }
 
           .card:hover {
             height: 400px !important;
             width: 350px !important;
+            max-width: calc(100vw - 2rem) !important;
           }
 
           .card-d3:hover {
             height: 400px !important;
             width: 350px !important;
+            max-width: calc(100vw - 2rem) !important;
           }
 
           .card-title {
@@ -279,6 +283,34 @@ export default function Gallery() {
 
           .card-description {
             font-size: 0.75rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .card-container {
+            height: 350px;
+            width: 300px;
+            max-width: calc(100vw - 2rem);
+          }
+
+          .card:hover {
+            height: 350px !important;
+            width: 300px !important;
+            max-width: calc(100vw - 2rem) !important;
+          }
+
+          .card-d3:hover {
+            height: 350px !important;
+            width: 300px !important;
+            max-width: calc(100vw - 2rem) !important;
+          }
+
+          .card-title {
+            font-size: 0.9rem;
+          }
+
+          .card-description {
+            font-size: 0.7rem;
           }
         }
       `}</style>
