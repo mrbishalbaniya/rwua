@@ -61,11 +61,11 @@ export default function Gallery() {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-16 px-4" style={{ backgroundColor: '#ffffff' }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">फोटो ग्यालरी</h1>
-            <p className="text-lg text-gray-600">हाम्रा गतिविधिहरू र कार्यक्रमहरूका तस्बिरहरू</p>
+      <section className="py-4 px-2" style={{ backgroundColor: '#ffffff', maxHeight: '90vh', overflow: 'hidden' }}>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-4">
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">फोटो ग्यालरी</h1>
+            <p className="text-sm text-gray-600">हाम्रा गतिविधिहरू र कार्यक्रमहरूका तस्बिरहरू</p>
           </div>
 
           <div className="flex justify-center">
@@ -80,8 +80,8 @@ export default function Gallery() {
                   cardStyle = {
                     top: '0px',
                     left: '0px',
-                    width: '250px',
-                    height: '250px',
+                    width: '145px',
+                    height: '145px',
                     backgroundImage: `url(${item.image})`
                   };
                 } else if (index === 1) {
@@ -90,8 +90,8 @@ export default function Gallery() {
                   cardStyle = {
                     top: '0px',
                     right: '0px',
-                    width: '250px',
-                    height: '250px',
+                    width: '145px',
+                    height: '145px',
                     backgroundImage: `url(${item.image})`
                   };
                 } else if (index === 2) {
@@ -99,8 +99,8 @@ export default function Gallery() {
                   cardStyle = {
                     bottom: '0px',
                     left: '0px',
-                    width: '250px',
-                    height: '250px',
+                    width: '145px',
+                    height: '145px',
                     backgroundImage: `url(${item.image})`
                   };
                 } else if (index === 3) {
@@ -109,8 +109,8 @@ export default function Gallery() {
                   cardStyle = {
                     bottom: '0px',
                     right: '0px',
-                    width: '250px',
-                    height: '250px',
+                    width: '145px',
+                    height: '145px',
                     backgroundImage: `url(${item.image})`
                   };
                 }
@@ -130,19 +130,6 @@ export default function Gallery() {
               })}
             </div>
           </div>
-
-          {/* View More Button */}
-          <div className="text-center mt-12">
-            <Link
-              href="/gallery/all"
-              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              सबै तस्बिरहरू हेर्नुहोस्
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -151,13 +138,15 @@ export default function Gallery() {
           min-height: 100vh;
           background-color: #ffffff;
           overflow-x: hidden;
+          overflow-y: hidden;
           width: 100%;
+          max-width: 100vw;
         }
 
         .card-container {
           position: relative;
-          height: 505px;
-          width: 512px;
+          height: 300px;
+          width: 300px;
           max-width: 100%;
           overflow: hidden;
           border-radius: 16px;
@@ -182,11 +171,13 @@ export default function Gallery() {
         }
 
         .card:hover {
-          height: 512px !important;
-          width: 512px !important;
-          max-width: 100vw !important;
-          top: 0 !important;
-          left: 0 !important;
+          height: 280px !important;
+          width: 280px !important;
+          max-width: 65vw !important;
+          max-height: 55vh !important;
+          top: 50% !important;
+          left: 50% !important;
+          transform: translate(-50%, -50%) !important;
           right: auto !important;
           bottom: auto !important;
           z-index: 10;
@@ -211,13 +202,15 @@ export default function Gallery() {
         }
 
         .card-d3:hover {
-          height: 512px !important;
-          width: 512px !important;
-          max-width: 100vw !important;
-          top: auto !important;
-          left: auto !important;
-          right: 0 !important;
-          bottom: 0 !important;
+          height: 280px !important;
+          width: 280px !important;
+          max-width: 65vw !important;
+          max-height: 55vh !important;
+          top: 50% !important;
+          left: 50% !important;
+          transform: translate(-50%, -50%) !important;
+          right: auto !important;
+          bottom: auto !important;
           z-index: 10;
           box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
         }
@@ -230,11 +223,12 @@ export default function Gallery() {
           padding: 1.5rem;
           background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
           transition: all 0.3s ease;
+          overflow: hidden;
         }
 
         .card:hover .card-content,
         .card-d3:hover .card-content {
-          padding-bottom: 2.5rem;
+          padding-bottom: 2rem;
         }
 
         .card-title {
@@ -250,67 +244,95 @@ export default function Gallery() {
           max-height: 0;
           transition: all 0.3s ease;
           line-height: 1.4;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
 
         .card:hover .card-description,
         .card-d3:hover .card-description {
           opacity: 1;
-          max-height: 100px;
+          max-height: 60px;
         }
 
         @media (max-width: 768px) {
           .card-container {
-            height: 400px;
-            width: 350px;
+            height: 250px;
+            width: 250px;
             max-width: calc(100vw - 2rem);
           }
 
           .card:hover {
-            height: 400px !important;
-            width: 350px !important;
-            max-width: calc(100vw - 2rem) !important;
+            height: 230px !important;
+            width: 230px !important;
+            max-width: calc(75vw - 2rem) !important;
+            max-height: 45vh !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
           }
 
           .card-d3:hover {
-            height: 400px !important;
-            width: 350px !important;
-            max-width: calc(100vw - 2rem) !important;
+            height: 230px !important;
+            width: 230px !important;
+            max-width: calc(75vw - 2rem) !important;
+            max-height: 45vh !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
           }
 
           .card-title {
-            font-size: 1rem;
+            font-size: 0.8rem;
           }
 
           .card-description {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
           }
         }
 
         @media (max-width: 480px) {
           .card-container {
-            height: 350px;
-            width: 300px;
+            height: 200px;
+            width: 200px;
             max-width: calc(100vw - 2rem);
           }
 
           .card:hover {
-            height: 350px !important;
-            width: 300px !important;
-            max-width: calc(100vw - 2rem) !important;
+            height: 180px !important;
+            width: 180px !important;
+            max-width: calc(80vw - 2rem) !important;
+            max-height: 35vh !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
           }
 
           .card-d3:hover {
-            height: 350px !important;
-            width: 300px !important;
-            max-width: calc(100vw - 2rem) !important;
+            height: 180px !important;
+            width: 180px !important;
+            max-width: calc(80vw - 2rem) !important;
+            max-height: 35vh !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
           }
 
           .card-title {
-            font-size: 0.9rem;
+            font-size: 0.7rem;
           }
 
           .card-description {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
           }
         }
       `}</style>
