@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Phone, Menu, X, ChevronDown, Newspaper, Trophy, Facebook, Clock, Archive, FileText } from 'lucide-react';
@@ -8,7 +9,6 @@ import { Phone, Menu, X, ChevronDown, Newspaper, Trophy, Facebook, Clock, Archiv
 const navLinkStyle = {
   display: 'block',
   position: 'relative' as const,
-  color: 'rgba(255, 255, 255, 0.7)',
   transition: '0.3s',
   fontSize: '14px',
   padding: '0 3px',
@@ -19,6 +19,7 @@ const navLinkStyle = {
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNewsDropdownOpen, setIsNewsDropdownOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -28,11 +29,14 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   };
 
+  // Check if current path is news-related
+  const isNewsActive = pathname?.startsWith('/news') || false;
+
   return (
     <>
       {/* Top Bar */}
       <div className="text-white overflow-hidden transition-all duration-500" style={{
-        background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
+        background: '#1e3a8a',
         color: 'rgba(255, 255, 255, 0.9)',
         height: '45px',
         fontSize: '14px',
@@ -52,7 +56,7 @@ export default function Navbar() {
             </div>
             <a
               href="tel:046-411109"
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-2 sm:px-4 py-1.5 sm:py-2 rounded-full flex items-center gap-1 sm:gap-2 transition-all duration-300 text-xs sm:text-sm shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="bg-blue-900 hover:bg-blue-950 px-2 sm:px-4 py-1.5 sm:py-2 rounded flex items-center gap-1 sm:gap-2 transition-all duration-300 text-xs sm:text-sm shadow-md hover:shadow-lg"
             >
               <Phone className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="hidden sm:inline">046-411109</span>
@@ -65,14 +69,14 @@ export default function Navbar() {
       <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
       {/* Main Navbar - Hidden on mobile when sidebar is open */}
-      <div className={`text-white sticky top-0 shadow-lg transition-all duration-300 ${isMobileMenuOpen ? 'lg:block hidden' : 'block'}`} style={{
-        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
-        transition: 'all 0.5s',
+      <div className={`text-white sticky top-0 shadow-md transition-all duration-300 ${isMobileMenuOpen ? 'lg:block hidden' : 'block'}`} style={{
+        background: '#1e40af',
+        transition: 'all 0.3s',
         zIndex: 1000,
         padding: '12px 0',
         position: 'relative' as const,
         fontSize: '14px',
-        borderBottom: '2px solid rgba(59, 130, 246, 0.3)'
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
       }}>
         <div className="mx-auto px-4" style={{ maxWidth: '1160px' }}>
           <div className="flex items-center justify-between" style={{ minHeight: '60px' }}>
@@ -112,14 +116,14 @@ export default function Navbar() {
             <nav className="hidden lg:flex items-center gap-8">
               <Link
                 href="/"
-                className="nav-link font-medium transition-colors relative"
+                className={`nav-link font-medium transition-colors relative ${pathname === '/' ? 'active' : ''}`}
                 style={navLinkStyle}
               >
                 Home
               </Link>
               <Link
                 href="/gallery"
-                className="nav-link font-medium transition-colors relative"
+                className={`nav-link font-medium transition-colors relative ${pathname === '/gallery' ? 'active' : ''}`}
                 style={navLinkStyle}
               >
                 Gallery
@@ -127,7 +131,7 @@ export default function Navbar() {
               <div className="relative group hover-precise">
                 <Link
                   href="/news"
-                  className="nav-link font-medium transition-colors relative flex items-center px-2 py-1"
+                  className={`nav-link font-medium transition-colors relative flex items-center px-2 py-1 ${isNewsActive ? 'active' : ''}`}
                   style={{ ...navLinkStyle, display: 'flex', alignItems: 'center' }}
                 >
                   <span>News & Press</span>
@@ -135,82 +139,84 @@ export default function Navbar() {
                 </Link>
 
                 {/* Animated Mega Menu */}
-                <div className="mega-menu-container absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[1001]">
-                  <div className="mega-menu-arrow"></div>
-                  <div className="mega-menu-content bg-white rounded-lg shadow-2xl overflow-hidden">
-                    {/* All News Section - Top */}
-                    <div className="border-b border-gray-200 p-6">
-                      <Link href="/news" className="mega-menu-item group flex items-center p-4 rounded-md hover:bg-gray-50 transition-all duration-200">
-                        <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-4 group-hover:bg-gray-200 transition-colors">
-                          <Newspaper className="text-gray-600 w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="text-gray-800 font-bold text-base">सम्पूर्ण समाचारहरू</div>
-                          <div className="text-gray-500 text-sm">सबै समाचार र अपडेटहरू एकै ठाउँमा</div>
-                        </div>
-                        <div className="ml-auto">
-                          <ChevronDown className="w-5 h-5 text-gray-400 transform rotate-[-90deg] group-hover:translate-x-1 transition-all" />
-                        </div>
-                      </Link>
-                    </div>
-
-                    <div className="flex">
-                      {/* News Section */}
-                      <div className="mega-menu-section p-6 border-r border-gray-200">
-                        <div className="text-gray-500 uppercase font-semibold tracking-wide text-xs mb-4">समाचार</div>
-                        <div className="space-y-2">
-                          <Link href="/news/success-stories" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
-                            <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
-                              <Trophy className="text-gray-600 w-4 h-4" />
-                            </div>
-                            <div>
-                              <div className="text-gray-800 font-semibold text-sm">सफलताको कथा</div>
-                              <div className="text-gray-500 text-xs">उपलब्धि र सफलताका कथाहरू</div>
-                            </div>
-                          </Link>
-                          <Link href="/news/facebook" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
-                            <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
-                              <Facebook className="text-gray-600 w-4 h-4" />
-                            </div>
-                            <div>
-                              <div className="text-gray-800 font-semibold text-sm">फेसबुक समाचार</div>
-                              <div className="text-gray-500 text-xs">सामाजिक सञ्जालका समाचारहरू</div>
-                            </div>
-                          </Link>
-                          <Link href="/news/latest-updates" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
-                            <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
-                              <Clock className="text-gray-600 w-4 h-4" />
-                            </div>
-                            <div>
-                              <div className="text-gray-800 font-semibold text-sm">ताजा अपडेट</div>
-                              <div className="text-gray-500 text-xs">नवीनतम समाचार र जानकारी</div>
-                            </div>
-                          </Link>
-                        </div>
+                <div className="mega-menu-container absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[1001]" style={{ width: '80vw', maxWidth: '1000px' }}>
+                  <div className="mega-menu-arrow" style={{ left: '50%', transform: 'translateX(-50%) rotate(45deg)' }}></div>
+                  <div className="mega-menu-content bg-white shadow-2xl overflow-hidden">
+                    <div className="px-2">
+                      {/* All News Section - Top */}
+                      <div className="border-b border-gray-200 p-3">
+                        <Link href="/news" className="mega-menu-item group flex items-center p-2 rounded-md hover:bg-gray-50 transition-all duration-200">
+                          <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
+                            <Newspaper className="text-gray-600 w-5 h-5" />
+                          </div>
+                          <div>
+                            <div className="text-gray-800 font-bold text-sm">सम्पूर्ण समाचारहरू</div>
+                            <div className="text-gray-500 text-xs">सबै समाचार र अपडेटहरू एकै ठाउँमा</div>
+                          </div>
+                          <div className="ml-auto">
+                            <ChevronDown className="w-5 h-5 text-gray-400 transform rotate-[-90deg] group-hover:translate-x-1 transition-all" />
+                          </div>
+                        </Link>
                       </div>
 
-                      {/* Archive Section */}
-                      <div className="mega-menu-section p-6">
-                        <div className="text-gray-500 uppercase font-semibold tracking-wide text-xs mb-4">अभिलेख</div>
-                        <div className="space-y-2">
-                          <Link href="/news/archive" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
-                            <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
-                              <Archive className="text-gray-600 w-4 h-4" />
-                            </div>
-                            <div>
-                              <div className="text-gray-800 font-semibold text-sm">पुराना र नयाँ जानकारी</div>
-                              <div className="text-gray-500 text-xs">सम्पूर्ण अभिलेख र डाटाबेस</div>
-                            </div>
-                          </Link>
-                          <Link href="/about/registration" className="mega-menu-item group flex items-center p-3 rounded-md hover:bg-gray-50 transition-colors">
-                            <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
-                              <FileText className="text-gray-600 w-4 h-4" />
-                            </div>
-                            <div>
-                              <div className="text-gray-800 font-semibold text-sm">दर्ता नं. ८/५०/५१</div>
-                              <div className="text-gray-500 text-xs">संस्थाको दर्ता विवरण</div>
-                            </div>
-                          </Link>
+                      <div className="flex">
+                        {/* News Section */}
+                        <div className="mega-menu-section p-3 border-r border-gray-200 flex-1">
+                          <div className="text-gray-500 uppercase font-semibold tracking-wide text-xs mb-2">समाचार</div>
+                          <div className="space-y-1">
+                            <Link href="/news/success-stories" className="mega-menu-item group flex items-center p-2 rounded-md hover:bg-gray-50 transition-colors">
+                              <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
+                                <Trophy className="text-gray-600 w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="text-gray-800 font-semibold text-xs">सफलताको कथा</div>
+                                <div className="text-gray-500 text-xs">उपलब्धि र सफलताका कथाहरू</div>
+                              </div>
+                            </Link>
+                            <Link href="/news/facebook" className="mega-menu-item group flex items-center p-2 rounded-md hover:bg-gray-50 transition-colors">
+                              <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
+                                <Facebook className="text-gray-600 w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="text-gray-800 font-semibold text-xs">फेस्बूक बाट ल्याइेका समाचार</div>
+                                <div className="text-gray-500 text-xs">सामाजिक सञ्जालका समाचारहरू</div>
+                              </div>
+                            </Link>
+                            <Link href="/news/latest-updates" className="mega-menu-item group flex items-center p-2 rounded-md hover:bg-gray-50 transition-colors">
+                              <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
+                                <Clock className="text-gray-600 w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="text-gray-800 font-semibold text-xs">ताजा अपडेट</div>
+                                <div className="text-gray-500 text-xs">नवीनतम समाचार र जानकारी</div>
+                              </div>
+                            </Link>
+                          </div>
+                        </div>
+
+                        {/* Archive Section */}
+                        <div className="mega-menu-section p-3 flex-1">
+                          <div className="text-gray-500 uppercase font-semibold tracking-wide text-xs mb-2">अभिलेख</div>
+                          <div className="space-y-1">
+                            <Link href="/news/archive" className="mega-menu-item group flex items-center p-2 rounded-md hover:bg-gray-50 transition-colors">
+                              <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
+                                <Archive className="text-gray-600 w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="text-gray-800 font-semibold text-xs">पुराना र नयाँ जानकारी</div>
+                                <div className="text-gray-500 text-xs">सम्पूर्ण अभिलेख र डाटाबेस</div>
+                              </div>
+                            </Link>
+                            <Link href="/about/registration" className="mega-menu-item group flex items-center p-2 rounded-md hover:bg-gray-50 transition-colors">
+                              <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
+                                <FileText className="text-gray-600 w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="text-gray-800 font-semibold text-xs">दर्ता नं. ८/५०/५१</div>
+                                <div className="text-gray-500 text-xs">संस्थाको दर्ता विवरण</div>
+                              </div>
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -219,28 +225,28 @@ export default function Navbar() {
               </div>
               <Link
                 href="/success-story"
-                className="nav-link font-medium transition-colors relative"
+                className={`nav-link font-medium transition-colors relative ${pathname === '/success-story' ? 'active' : ''}`}
                 style={navLinkStyle}
               >
                 Success Story
               </Link>
               <Link
                 href="/vacancy"
-                className="nav-link font-medium transition-colors relative"
+                className={`nav-link font-medium transition-colors relative ${pathname === '/vacancy' ? 'active' : ''}`}
                 style={navLinkStyle}
               >
                 All Vacancy
               </Link>
               <Link
                 href="/contact"
-                className="nav-link font-medium transition-colors relative"
+                className={`nav-link font-medium transition-colors relative ${pathname === '/contact' ? 'active' : ''}`}
                 style={navLinkStyle}
               >
                 Contact Us
               </Link>
               <Link
                 href="/downloads"
-                className="nav-link font-medium transition-colors relative"
+                className={`nav-link font-medium transition-colors relative ${pathname === '/downloads' ? 'active' : ''}`}
                 style={navLinkStyle}
               >
                 Downloads
@@ -257,11 +263,11 @@ export default function Navbar() {
           }`}
         style={{
           background: isMobileMenuOpen
-            ? 'linear-gradient(135deg, #1e293b 0%, #334155 100%)'
-            : 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
-          border: '2px solid rgba(59, 130, 246, 0.3)',
+            ? '#1e3a8a'
+            : '#1e40af',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
           backdropFilter: 'blur(10px)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)'
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
         }}
         aria-label="Toggle mobile menu"
       >
@@ -285,9 +291,9 @@ export default function Navbar() {
       {/* Mobile Sidebar */}
       <div className={`fixed top-0 right-0 h-full transition-all duration-1000 ease-in-out z-[9500] lg:hidden ${isMobileMenuOpen ? 'w-64 sm:w-80' : 'w-0'
         }`} style={{
-          background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
-          boxShadow: '-10px 0 25px rgba(0, 0, 0, 0.3)',
-          borderLeft: '2px solid rgba(59, 130, 246, 0.3)'
+          background: '#1e3a8a',
+          boxShadow: '-4px 0 16px rgba(0, 0, 0, 0.2)',
+          borderLeft: '1px solid rgba(255, 255, 255, 0.1)'
         }}>
         {/* Sidebar Content */}
         <div className="flex flex-col h-full border-r border-gray-200 pt-16 pb-4 overflow-hidden">
@@ -376,7 +382,7 @@ export default function Navbar() {
                         className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
                         onClick={closeMobileMenu}
                       >
-                        <span className="truncate">फेसबुक समाचार</span>
+                        <span className="truncate">फेस्बूक बाट ल्याइेका समाचार</span>
                       </Link>
                       <Link
                         href="/news/latest-updates"
@@ -394,9 +400,6 @@ export default function Navbar() {
                   className="text-white hover:bg-blue-800 group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-200"
                   onClick={closeMobileMenu}
                 >
-                  <svg className="text-white mr-3 flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
                   <span className={`transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
                     Success Story
                   </span>
@@ -440,62 +443,11 @@ export default function Navbar() {
                 </Link>
               </div>
 
-              {/* Quick Links Section */}
-              <div className="space-y-1 mt-8">
-                <h3 className={`px-3 text-xs font-semibold text-white uppercase tracking-wider transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
-                  Quick Links
-                </h3>
-                <div className="space-y-1">
-                  <Link
-                    href="/about"
-                    className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
-                    onClick={closeMobileMenu}
-                  >
-                    <span className={`truncate transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
-                      About Us
-                    </span>
-                  </Link>
-                  <Link
-                    href="/gallery"
-                    className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
-                    onClick={closeMobileMenu}
-                  >
-                    <span className={`truncate transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
-                      Photo Gallery
-                    </span>
-                  </Link>
-                  <Link
-                    href="/events"
-                    className="group flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-700 transition-colors duration-200"
-                    onClick={closeMobileMenu}
-                  >
-                    <span className={`truncate transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
-                      Events
-                    </span>
-                  </Link>
-                </div>
-              </div>
+
             </nav>
           </div>
 
-          {/* User Profile Section */}
-          <div className="flex-shrink-0 flex p-4">
-            <div className="flex-shrink-0 w-full group block">
-              <div className="flex items-center">
-                <div>
-                  <img
-                    className="inline-block h-9 w-9 rounded-full object-cover"
-                    src="https://rwua.com.np/wp-content/uploads/2023/02/cropped-RWUA-Logo-Approval-2.jpg"
-                    alt="RWUA Logo"
-                  />
-                </div>
-                <div className={`ml-3 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
-                  <p className="text-sm font-medium text-white group-hover:text-gray-300">RWUA Admin</p>
-                  <p className="text-xs font-medium text-gray-300 group-hover:text-gray-400">View Profile</p>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </>

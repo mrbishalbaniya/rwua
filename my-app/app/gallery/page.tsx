@@ -5,6 +5,8 @@ import { gsap } from 'gsap';
 
 export default function GalleryPage() {
   useEffect(() => {
+    let hideDetailsRef = null;
+
     // Dynamically import Flip to avoid build issues
     import('gsap/dist/Flip').then(({ Flip }) => {
       gsap.registerPlugin(Flip);
@@ -88,17 +90,22 @@ export default function GalleryPage() {
         activeItem = null;
       }
 
+      // Store reference for cleanup
+      hideDetailsRef = hideDetails;
+
       gsap.utils.toArray('.gallery-item').forEach(item =>
         item.addEventListener('click', () => showDetails(item))
       );
     });
 
     return () => {
-      const items = document.querySelectorAll('.gallery-item');
-      items.forEach(item => {
-        const newItem = item.cloneNode(true);
-        item.parentNode?.replaceChild(newItem, item);
-      });
+      // Clean up event listeners and restore scroll if needed
+      if (hideDetailsRef) {
+        document.removeEventListener('click', hideDetailsRef);
+      }
+      if (document.body.style.overflow === 'hidden') {
+        document.body.style.overflow = '';
+      }
     };
   }, []);
 
@@ -215,13 +222,13 @@ export default function GalleryPage() {
         }
         
         .gallery-header {
-          background: white;
+          background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
           color: #1e293b;
-          padding: 60px 40px;
+          padding: 80px 40px;
           text-align: center;
           position: relative;
           overflow: hidden;
-          border-bottom: 1px solid #e2e8f0;
+          border-bottom: 3px solid #e2e8f0;
         }
         
         .gallery-header::before {
@@ -231,8 +238,20 @@ export default function GalleryPage() {
           left: 0;
           right: 0;
           bottom: 0;
-          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(30,41,59,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(30,41,59,0.05)"/><circle cx="50" cy="10" r="0.5" fill="rgba(30,41,59,0.03)"/><circle cx="20" cy="80" r="0.5" fill="rgba(30,41,59,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-          opacity: 0.3;
+          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(30,41,59,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(30,41,59,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(30,41,59,0.02)"/><circle cx="20" cy="80" r="0.5" fill="rgba(30,41,59,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+          opacity: 0.5;
+        }
+        
+        .gallery-header::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100px;
+          height: 4px;
+          background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+          border-radius: 2px;
         }
         
         .gallery-header-content {
@@ -243,32 +262,60 @@ export default function GalleryPage() {
         }
         
         .gallery-main-title {
-          font-size: 3rem;
-          font-weight: 800;
-          margin-bottom: 0.5rem;
+          font-size: 3.5rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
           color: #1e293b;
-          text-shadow: none;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          letter-spacing: -0.02em;
+          line-height: 1.1;
+          font-family: 'Inter', 'Segoe UI', sans-serif;
         }
         
         .gallery-subtitle {
-          font-size: 1.8rem;
+          font-size: 2.2rem;
           font-weight: 600;
-          margin-bottom: 0;
+          margin-bottom: 1.5rem;
+          color: #475569;
+          font-family: 'Mukti', 'Devanagari', serif;
+          letter-spacing: 0.01em;
+          line-height: 1.2;
+        }
+        
+        .gallery-divider {
+          width: 80px;
+          height: 2px;
+          background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+          margin: 0 auto 1.5rem;
+          border-radius: 1px;
+        }
+        
+        .gallery-tagline {
+          font-size: 1.1rem;
           color: #64748b;
-          font-family: 'Devanagari', serif;
+          font-weight: 500;
+          font-style: italic;
+          letter-spacing: 0.02em;
+          line-height: 1.4;
+          max-width: 600px;
+          margin: 0 auto;
         }
         
         @media (max-width: 768px) {
           .gallery-header {
-            padding: 40px 20px;
+            padding: 60px 20px;
           }
           
           .gallery-main-title {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
           }
           
           .gallery-subtitle {
-            font-size: 1.4rem;
+            font-size: 1.8rem;
+          }
+          
+          .gallery-tagline {
+            font-size: 1rem;
           }
           
           .gallery-grid {
@@ -277,6 +324,22 @@ export default function GalleryPage() {
         }
         
         @media (max-width: 480px) {
+          .gallery-header {
+            padding: 50px 15px;
+          }
+          
+          .gallery-main-title {
+            font-size: 2rem;
+          }
+          
+          .gallery-subtitle {
+            font-size: 1.5rem;
+          }
+          
+          .gallery-tagline {
+            font-size: 0.95rem;
+          }
+          
           .gallery-grid {
             padding: 40px 20px;
           }
@@ -288,7 +351,11 @@ export default function GalleryPage() {
         <div className="gallery-header">
           <div className="gallery-header-content">
             <h1 className="gallery-main-title">Our Gallery</h1>
+            <div className="gallery-divider"></div>
             <h2 className="gallery-subtitle">हाम्रो ग्यालरी</h2>
+            <p className="gallery-tagline">
+              "Capturing moments of transformation and community empowerment"
+            </p>
           </div>
         </div>
 
@@ -304,9 +371,6 @@ export default function GalleryPage() {
           </div>
           <div className="gallery-item" data-title="Education Programs" data-secondary="शिक्षा कार्यक्रम" data-text="शिक्षाको क्षेत्रमा हामीले साक्षरता कक्षा, बाल शिक्षा र वयस्क शिक्षाका कार्यक्रमहरू सञ्चालन गर्छौं। यसले समुदायमा शिक्षाको स्तर बढाउँछ।">
             <img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop" alt="Education Programs" />
-          </div>
-          <div className="gallery-item" data-title="Health Awareness" data-secondary="स्वास्थ्य चेतना" data-text="स्वास्थ्य चेतना कार्यक्रमअन्तर्गत हामीले मातृ स्वास्थ्य, बाल स्वास्थ्य र सामान्य स्वास्थ्य सम्बन्धी जानकारी प्रदान गर्छौं।">
-            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=300&fit=crop" alt="Health Awareness" />
           </div>
           <div className="gallery-item" data-title="Agricultural Support" data-secondary="कृषि सहयोग" data-text="कृषि क्षेत्रमा आधुनिक प्रविधि र उन्नत बीउ बिजनका बारेमा जानकारी दिएर किसानहरूलाई सहयोग गर्छौं।">
             <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=300&fit=crop" alt="Agricultural Support" />

@@ -70,6 +70,11 @@ body {
   color: var(--foreground);
   font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
   line-height: 1.6;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 /* RWUA Typography with responsive scaling */
@@ -320,6 +325,7 @@ select:focus-visible {
 /* Navigation Menu Styles */
 .nav-link {
   position: relative;
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 
 .nav-link::before {
@@ -329,20 +335,53 @@ select:focus-visible {
   height: 2px;
   bottom: -5px;
   left: 0;
-  background-color: #f6b024;
+  background-color: #ffffff;
   visibility: hidden;
-  transition: all 0.3s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
 }
 
+/* Active state for current page */
+.nav-link.active {
+  color: #fff !important;
+}
+
+.nav-link.active::before {
+  visibility: visible;
+  width: 100%;
+}
+
+/* Hover states - these override active when hovering */
 .nav-link:hover,
+.nav-link:focus,
 .group:hover .nav-link {
   color: #fff !important;
 }
 
 .nav-link:hover::before,
+.nav-link:focus::before,
 .group:hover .nav-link::before {
   visibility: visible;
   width: 100%;
+}
+
+/* When hovering any nav item, hide active states on other items */
+nav:hover .nav-link.active:not(:hover) {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+nav:hover .nav-link.active:not(:hover)::before {
+  visibility: hidden;
+  width: 0px;
+}
+
+/* When hovering mega menu group, hide active states on other items */
+nav:hover .group:not(:hover) .nav-link.active {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+nav:hover .group:not(:hover) .nav-link.active::before {
+  visibility: hidden;
+  width: 0px;
 }
 
 /* Prevent accidental hover triggers */
@@ -364,6 +403,18 @@ select:focus-visible {
 }
 
 .hover-precise:hover .nav-link::before {
+  visibility: visible;
+  width: 100%;
+}
+
+/* Ensure mega menu parent stays active when hovering submenu */
+.hover-precise:hover .nav-link,
+.hover-precise .nav-link:hover {
+  color: #fff !important;
+}
+
+.hover-precise:hover .nav-link::before,
+.hover-precise .nav-link:hover::before {
   visibility: visible;
   width: 100%;
 }
@@ -426,7 +477,7 @@ img {
 
 /* Animated Mega Menu Styles */
 .mega-menu-container {
-  min-width: 500px;
+  min-width: 600px;
   transform-origin: top center;
 }
 
@@ -434,13 +485,12 @@ img {
   position: absolute;
   top: -6px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) rotate(45deg);
   width: 12px;
   height: 12px;
   background: white;
   box-shadow: -3px -3px 5px rgba(80, 90, 120, 0.05);
   border-radius: 2px 0 0 0;
-  transform: translateX(-50%) rotate(45deg);
   z-index: 10;
 }
 
@@ -449,6 +499,7 @@ img {
   transform-origin: top center;
   transition: all 0.3s ease-out;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 .group:hover .mega-menu-content {
