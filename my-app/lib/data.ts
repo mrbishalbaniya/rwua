@@ -39,43 +39,43 @@ export interface Vacancy {
 export const successStories: SuccessStory[] = [
   {
     id: '1',
-    title: 'सफलताको कथा — दलित समुदायमा परिवर्तन',
-    description: 'सर्लाही जिल्ला ईश्वरपुर नगरपालिकामा अवस्थित सृजनशिल महिला सचेतना केन्द्रले मुसहर समुदायको जीवनमा ल्याएको सकारात्मक परिवर्तनको कथा। शिक्षा र चेतनाको माध्यमबाट समुदायिक विकासको यात्रा।',
-    category: 'Community Development',
+    title: 'Empowering Women in Rural Nepal',
+    description: 'In the remote villages of Nepal, women have faced many challenges, from lack of education to limited job opportunities in rural Nepal.\n\nOur program provided training and resources to help women challenges, from lack of education to limited job opportunities. Our program provided training and resources to help women develop sustainable businesses. Through workshops and mentorship, these women learned new skills, from handicrafts to agriculture, transforming their communities.\n\nOne such success story is Maya, who started her own tailoring shop with our support. She now employs other women and has become a role model in her village.',
+    category: 'Success Story',
     author: 'RWUA Nepal',
     image: '/images/success1.jpg',
-    date: '2024-03-15',
-    tags: ['community', 'education', 'empowerment', 'dalit']
+    date: '2025-07-20',
+    tags: ['women', 'empowerment', 'rural', 'entrepreneurship']
   },
   {
     id: '2',
-    title: 'Women Empowerment Success Story',
-    description: 'A successful implementation of programs aimed at making rural women economically self-reliant. Improvement in women\'s living standards through skill development and entrepreneurship.',
-    category: 'Women Empowerment',
+    title: 'Overcoming Barriers to Education',
+    description: 'Education is the foundation of progress, yet many children in rural Nepal face significant barriers to accessing quality schooling. Distance, poverty, and cultural barriers often prevent children from attending school regularly.\n\nThrough our community education program, we established learning centers in remote villages and provided scholarships to underprivileged children. We also worked with parents to understand the importance of education for both boys and girls.\n\nToday, school enrollment in our target communities has increased by 85%, and dropout rates have decreased significantly. Children like Ramesh, who once worked in fields, are now pursuing higher education and dreaming of becoming teachers and doctors.',
+    category: 'Success Story',
     author: 'RWUA Nepal',
     image: '/images/success2.jpg',
-    date: '2024-02-28',
-    tags: ['women', 'entrepreneurship', 'skills', 'economic']
+    date: '2025-06-15',
+    tags: ['education', 'children', 'community', 'development']
   },
   {
     id: '3',
-    title: 'शिक्षा क्षेत्रमा उल्लेखनीय प्रगति',
-    description: 'बालबालिकाहरूको शिक्षामा पहुँच बढाउने र गुणस्तरीय शिक्षा प्रदान गर्ने दिशामा गरिएका प्रयासहरूको सफल परिणाम। विद्यालय छाड्ने दरमा उल्लेखनीय कमी।',
-    category: 'Education',
+    title: 'Small Farms, Big Dreams',
+    description: 'Agriculture remains the backbone of Nepal\'s economy, yet many small-scale farmers struggle with traditional farming methods, lack of resources, and market access challenges.\n\nOur agricultural development program introduced modern farming techniques, provided quality seeds and tools, and established direct market linkages for farmers. We organized farmer groups and provided training on sustainable farming practices.\n\nFarmer Sita Devi from Sarlahi district increased her crop yield by 200% after implementing our recommended techniques. She now grows organic vegetables and sells them directly to urban markets, earning three times more than before. Her success has inspired 50 other farmers in her village to adopt similar practices.',
+    category: 'Success Story',
     author: 'RWUA Nepal',
     image: '/images/success1.jpg',
-    date: '2024-01-20',
-    tags: ['education', 'children', 'literacy', 'development']
+    date: '2025-05-10',
+    tags: ['agriculture', 'farmers', 'economic', 'development']
   },
   {
     id: '4',
-    title: 'Healthcare Service Improvement',
-    description: 'Positive impact of efforts made to increase access to basic health services in rural areas and reduce maternal and child mortality rates.',
-    category: 'Health',
+    title: 'Health & Wellness Initiative',
+    description: 'Access to healthcare remains a critical challenge in rural Nepal, where the nearest health facility can be hours away on foot. Maternal and child mortality rates were alarmingly high in our target communities.\n\nWe established community health posts and trained local women as health volunteers. These volunteers provide basic healthcare services, conduct health awareness programs, and refer serious cases to nearby hospitals. We also organized regular health camps and vaccination drives.\n\nAs a result, maternal mortality in our program areas has decreased by 60%, and child immunization rates have reached 95%. Community health volunteer Kamala has personally helped deliver over 100 babies safely and has become a trusted healthcare provider in her community.',
+    category: 'Success Story',
     author: 'RWUA Nepal',
     image: '/images/success2.jpg',
-    date: '2023-12-10',
-    tags: ['health', 'maternal', 'rural', 'healthcare']
+    date: '2025-04-25',
+    tags: ['health', 'community', 'maternal', 'wellness']
   }
 ];
 

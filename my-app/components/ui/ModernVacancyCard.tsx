@@ -181,8 +181,8 @@ export default function ModernVacancyCard({ vacancy }: ModernVacancyCardProps) {
               onClick={() => setShowApplicationForm(true)}
               className={`flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 isExpired 
-                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed' 
-                  : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md cursor-pointer'
+                  ? 'bg-stone-200 text-stone-500 cursor-not-allowed' 
+                  : 'bg-deep-purple text-white hover:bg-black hover:shadow-md cursor-pointer'
               }`}
               disabled={isExpired}
             >

@@ -61,8 +61,23 @@ export default function SuccessStoryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-stone-50 to-stone-100 py-12 px-4">
       <div className="max-w-7xl mx-auto">
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <span className="w-16 h-[2px] bg-terracotta"></span>
+            <span className="text-terracotta font-black uppercase tracking-[0.6em] text-[10px]">Impact Stories</span>
+            <span className="w-16 h-[2px] bg-terracotta"></span>
+          </div>
+          <h1 className="text-5xl md:text-6xl font-black text-deep-purple mb-6 tracking-tight">
+            Stories of <span className="text-vibrant-gold font-serif-impact italic">Change</span>
+          </h1>
+          <p className="text-xl text-stone-600 max-w-2xl mx-auto font-medium">
+            Discover inspiring stories of transformation and empowerment from the communities we serve across rural Nepal.
+          </p>
+        </div>
+
         {/* Search and Filter Section */}
         <div className="mb-10">
           <SearchAndFilter
