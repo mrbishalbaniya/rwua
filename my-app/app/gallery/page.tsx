@@ -1,452 +1,203 @@
 'use client';
 
-import { useEffect } from 'react';
-import { gsap } from 'gsap';
+import React, { useState } from 'react';
+import Image from 'next/image';
+
+const galleryImages = [
+  {
+    id: 1,
+    src: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800',
+    alt: 'Women empowerment workshop',
+    title: 'Community Workshop',
+    category: 'Education'
+  },
+  {
+    id: 2,
+    src: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&q=80&w=800',
+    alt: 'Rural development project',
+    title: 'Rural Development',
+    category: 'Infrastructure'
+  },
+  {
+    id: 3,
+    src: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800',
+    alt: 'Healthcare initiative',
+    title: 'Healthcare Program',
+    category: 'Health'
+  },
+  {
+    id: 4,
+    src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800',
+    alt: 'Agricultural training',
+    title: 'Agricultural Training',
+    category: 'Agriculture'
+  },
+  {
+    id: 5,
+    src: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=800',
+    alt: 'Skills development',
+    title: 'Skills Development',
+    category: 'Education'
+  },
+  {
+    id: 6,
+    src: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=800',
+    alt: 'Community meeting',
+    title: 'Community Meeting',
+    category: 'Community'
+  },
+  {
+    id: 7,
+    src: 'https://images.unsplash.com/photo-1544717297-fa95b6ee9643?auto=format&fit=crop&q=80&w=800',
+    alt: 'Skill training session',
+    title: 'Skill Training',
+    category: 'Education'
+  },
+  {
+    id: 8,
+    src: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&q=80&w=800',
+    alt: 'Education program',
+    title: 'Education Programs',
+    category: 'Education'
+  },
+  {
+    id: 9,
+    src: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&q=80&w=800',
+    alt: 'Agricultural support',
+    title: 'Agricultural Support',
+    category: 'Agriculture'
+  },
+  {
+    id: 10,
+    src: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&q=80&w=800',
+    alt: 'Microfinance program',
+    title: 'Microfinance Program',
+    category: 'Finance'
+  },
+  {
+    id: 11,
+    src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800',
+    alt: 'Cooperative formation',
+    title: 'Cooperative Formation',
+    category: 'Community'
+  },
+  {
+    id: 12,
+    src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+    alt: 'Leadership training',
+    title: 'Leadership Training',
+    category: 'Education'
+  }
+];
+
+const categories = ['All', 'Education', 'Health', 'Infrastructure', 'Agriculture', 'Community', 'Finance'];
 
 export default function GalleryPage() {
-  useEffect(() => {
-    let hideDetailsRef: (() => void) | null = null;
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
 
-    // Dynamically import Flip to avoid build issues
-    import('gsap/dist/Flip').then(({ Flip }) => {
-      gsap.registerPlugin(Flip);
-
-      const items = gsap.utils.toArray(".gallery-item");
-      const details = document.querySelector('.gallery-detail');
-      const detailContent = document.querySelector('.gallery-content');
-      const detailImage = document.querySelector('.gallery-detail img');
-      const detailTitle = document.querySelector('.gallery-detail .gallery-title');
-      const detailSecondary = document.querySelector('.gallery-detail .gallery-secondary');
-      const detailDescription = document.querySelector('.gallery-detail .gallery-description');
-
-      let activeItem: Element | null = null;
-
-      gsap.set(detailContent, { yPercent: -100 });
-
-      function showDetails(item: Element) {
-        if (activeItem) {
-          return hideDetails();
-        }
-
-        // Prevent background scrolling
-        document.body.style.overflow = 'hidden';
-
-        let onLoad = () => {
-          Flip.fit(details, item, { scale: true, fitChild: detailImage });
-          const state = Flip.getState(details);
-          gsap.set(details, { clearProps: true });
-          gsap.set(details, { xPercent: -50, top: "50%", yPercent: -50, visibility: "visible", overflow: "hidden" });
-
-          Flip.from(state, {
-            duration: 0.5,
-            ease: "power2.inOut",
-            scale: true,
-            onComplete: () => {
-              gsap.set(details, { overflow: "auto" });
-            }
-          }).to(detailContent, { yPercent: 0 }, 0.2);
-
-          detailImage?.removeEventListener("load", onLoad);
-          document.addEventListener('click', hideDetails);
-        };
-
-        const data = (item as HTMLElement).dataset;
-        if (detailImage && detailTitle && detailSecondary && detailDescription) {
-          detailImage.addEventListener("load", onLoad);
-          const imgSrc = (item.querySelector('img') as HTMLImageElement)?.src || '';
-          (detailImage as HTMLImageElement).src = imgSrc;
-          detailTitle.textContent = data.title || '';
-          detailSecondary.textContent = data.secondary || '';
-          detailDescription.textContent = data.text || '';
-        }
-
-        gsap.to(items, {
-          opacity: 0.3,
-          stagger: { amount: 0.7, from: items.indexOf(item), grid: "auto" }
-        }).kill(item);
-
-        gsap.to(".gallery-app", { backgroundColor: "#64748b", duration: 1, delay: 0.3 });
-        activeItem = item;
-      }
-
-      function hideDetails() {
-        document.removeEventListener('click', hideDetails);
-        gsap.set(details, { overflow: "hidden" });
-
-        // Restore background scrolling
-        document.body.style.overflow = '';
-
-        const state = Flip.getState(details);
-        Flip.fit(details, activeItem, { scale: true, fitChild: detailImage });
-
-        const tl = gsap.timeline();
-        tl.set(details, { overflow: "hidden" })
-          .to(detailContent, { yPercent: -100 })
-          .to(items, { opacity: 1, stagger: { amount: 0.7, from: items.indexOf(activeItem), grid: "auto" } })
-          .to(".gallery-app", { backgroundColor: "#fff" }, "<");
-
-        Flip.from(state, {
-          scale: true,
-          duration: 0.5,
-          delay: 0.2,
-          onInterrupt: () => {
-            tl.kill();
-          }
-        }).set(details, { visibility: "hidden" });
-
-        activeItem = null;
-      }
-
-      // Store reference for cleanup
-      hideDetailsRef = hideDetails;
-
-      gsap.utils.toArray('.gallery-item').forEach(item =>
-        item.addEventListener('click', () => showDetails(item))
-      );
-    });
-
-    return () => {
-      // Clean up event listeners and restore scroll if needed
-      if (hideDetailsRef) {
-        document.removeEventListener('click', hideDetailsRef);
-      }
-      if (document.body.style.overflow === 'hidden') {
-        document.body.style.overflow = '';
-      }
-    };
-  }, []);
+  const filteredImages = selectedCategory === 'All'
+    ? galleryImages
+    : galleryImages.filter(img => img.category === selectedCategory);
 
   return (
-    <div className="gallery-page-container">
-      <style jsx>{`
-        .gallery-page-container {
-          min-height: 100vh;
-          background: white;
-          color: #1e293b;
-          font-size: 14px;
-          font-family: 'Lato', sans-serif;
-          padding: 0;
-        }
-        
-        .gallery-app {
-          width: 100vw;
-          min-height: 100vh;
-          background: white;
-          position: relative;
-          overflow: auto;
-        }
-        
-        .gallery-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 20px;
-          padding: 40px 60px;
-          max-width: 1400px;
-          margin: 0 auto;
-        }
-        
-        .gallery-item {
-          cursor: pointer;
-          font-size: 0;
-          border-radius: 8px;
-          overflow: hidden;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .gallery-item:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .gallery-item img {
-          width: 100%;
-          height: 250px;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover img {
-          transform: scale(1.05);
-        }
-        
-        .gallery-detail {
-          position: fixed;
-          top: 10px;
-          left: 50%;
-          width: 90vw;
-          max-width: 1000px;
-          cursor: pointer;
-          font-size: 0;
-          display: flex;
-          flex-direction: column;
-          visibility: hidden;
-          max-height: 90vh;
-          overflow: auto;
-          z-index: 1000;
-          border-radius: 12px;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        
-        .gallery-detail > img {
-          position: relative;
-          z-index: 1;
-          width: 100%;
-          height: auto;
-        }
-        
-        .gallery-content {
-          background: white;
-          padding: 2rem 1.5rem;
-          font-size: 1rem;
-          box-sizing: border-box;
-          flex-grow: 1;
-          border-top: 1px solid #e2e8f0;
-        }
-        
-        .gallery-content > * {
-          margin-bottom: 1rem;
-        }
-        
-        .gallery-title {
-          font-size: 2rem;
-          text-transform: uppercase;
-          color: #1e293b;
-          font-weight: bold;
-        }
-        
-        .gallery-secondary {
-          color: #64748b;
-          font-size: 1.1rem;
-          font-weight: 500;
-        }
-        
-        .gallery-description {
-          line-height: 1.6;
-          color: #475569;
-          font-size: 1rem;
-        }
-        
-        .gallery-header {
-          background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-          color: #1e293b;
-          padding: 80px 40px;
-          text-align: center;
-          position: relative;
-          overflow: hidden;
-          border-bottom: 3px solid #e2e8f0;
-        }
-        
-        .gallery-header::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(30,41,59,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(30,41,59,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(30,41,59,0.02)"/><circle cx="20" cy="80" r="0.5" fill="rgba(30,41,59,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-          opacity: 0.5;
-        }
-        
-        .gallery-header::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 100px;
-          height: 4px;
-          background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
-          border-radius: 2px;
-        }
-        
-        .gallery-header-content {
-          position: relative;
-          z-index: 1;
-          max-width: 800px;
-          margin: 0 auto;
-        }
-        
-        .gallery-main-title {
-          font-size: 3.5rem;
-          font-weight: 700;
-          margin-bottom: 1rem;
-          color: #1e293b;
-          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          letter-spacing: -0.02em;
-          line-height: 1.1;
-          font-family: 'Inter', 'Segoe UI', sans-serif;
-        }
-        
-        .gallery-subtitle {
-          font-size: 2.2rem;
-          font-weight: 600;
-          margin-bottom: 1.5rem;
-          color: #475569;
-          font-family: 'Mukti', 'Devanagari', serif;
-          letter-spacing: 0.01em;
-          line-height: 1.2;
-        }
-        
-        .gallery-divider {
-          width: 80px;
-          height: 2px;
-          background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-          margin: 0 auto 1.5rem;
-          border-radius: 1px;
-        }
-        
-        .gallery-tagline {
-          font-size: 1.1rem;
-          color: #64748b;
-          font-weight: 500;
-          font-style: italic;
-          letter-spacing: 0.02em;
-          line-height: 1.4;
-          max-width: 600px;
-          margin: 0 auto;
-        }
-        
-        @media (max-width: 768px) {
-          .gallery-header {
-            padding: 60px 20px;
-          }
-          
-          .gallery-main-title {
-            font-size: 2.5rem;
-          }
-          
-          .gallery-subtitle {
-            font-size: 1.8rem;
-          }
-          
-          .gallery-tagline {
-            font-size: 1rem;
-          }
-          
-          .gallery-grid {
-            padding: 40px 30px;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .gallery-header {
-            padding: 50px 15px;
-          }
-          
-          .gallery-main-title {
-            font-size: 2rem;
-          }
-          
-          .gallery-subtitle {
-            font-size: 1.5rem;
-          }
-          
-          .gallery-tagline {
-            font-size: 0.95rem;
-          }
-          
-          .gallery-grid {
-            padding: 40px 20px;
-          }
-        }
-      `}</style>
-
-      <div className="gallery-app">
-        {/* Gallery Header Section - Title Only */}
-        <div className="gallery-header">
-          <div className="gallery-header-content">
-            <h1 className="gallery-main-title">Our Gallery</h1>
-            <div className="gallery-divider"></div>
-            <h2 className="gallery-subtitle">हाम्रो ग्यालरी</h2>
-            <p className="gallery-tagline">
-              "Capturing moments of transformation and community empowerment"
+    <div className="bg-white min-h-screen">
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-8 md:px-16 lg:px-24">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="w-12 h-[2px] bg-orange-500"></div>
+              <span className="text-orange-500 font-bold uppercase tracking-[0.3em] text-xs">
+                Our Impact
+              </span>
+              <div className="w-12 h-[2px] bg-orange-500"></div>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-purple-700 leading-tight mb-6">
+              Gallery of <span className="text-orange-500 italic font-serif">Change</span>
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
+              Witness the transformative journey of rural communities through our comprehensive programs and initiatives.
             </p>
           </div>
+
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300 ${selectedCategory === category
+                  ? 'bg-purple-700 text-white shadow-lg'
+                  : 'bg-white text-gray-600 hover:bg-purple-100 hover:text-purple-700'
+                  }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Gallery Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredImages.map((image) => (
+              <div
+                key={image.id}
+                className="group cursor-pointer"
+                onClick={() => setSelectedImage(image)}
+              >
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-300">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <span className="inline-block px-3 py-1 bg-orange-500 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
+                      {image.category}
+                    </span>
+                    <h3 className="text-lg font-bold">{image.title}</h3>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="gallery-grid">
-          <div className="gallery-item" data-title="Women Empowerment Program" data-secondary="सशक्तिकरण कार्यक्रम" data-text="ग्रामीण नारी उत्थान संघ हरिपुरले महिलाहरूको सशक्तिकरणका लागि विभिन्न कार्यक्रमहरू सञ्चालन गर्दै आएको छ। यी कार्यक्रमहरूले महिलाहरूलाई आर्थिक रूपमा स्वावलम्बी बनाउन मद्दत गर्छ।">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop" alt="Women Empowerment" />
+        {/* Modal for Selected Image */}
+        {selectedImage && (
+          <div
+            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-2"
+            onClick={() => setSelectedImage(null)}
+          >
+            <div className="relative max-w-8xl max-h-[96vh] bg-white rounded-2xl overflow-hidden">
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-6 right-6 w-14 h-14 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-12">
+                <span className="inline-block px-6 py-3 bg-orange-400 text-white rounded-full text-base font-bold uppercase tracking-wider mb-6">
+                  {selectedImage.category}
+                </span>
+                <h3 className="text-4xl font-bold text-purple-500 mb-4">{selectedImage.title}</h3>
+              </div>
+            </div>
           </div>
-          <div className="gallery-item" data-title="Skill Development Training" data-secondary="सीप विकास तालिम" data-text="हाम्रो संस्थाले ग्रामीण महिलाहरूलाई विभिन्न सीपहरू सिकाउने कार्यक्रम सञ्चालन गर्छ। यसमा सिलाई, बुनाई, कृषि र व्यवसायिक सीपहरू समावेश छन्।">
-            <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=400&h=300&fit=crop" alt="Skill Training" />
-          </div>
-          <div className="gallery-item" data-title="Community Development" data-secondary="समुदायिक विकास" data-text="समुदायिक विकासका लागि हामीले स्थानीय समुदायसँग मिलेर काम गर्छौं। यसले समुदायमा सकारात्मक परिवर्तन ल्याउन मद्दत गर्छ।">
-            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=300&fit=crop" alt="Community Development" />
-          </div>
-          <div className="gallery-item" data-title="Education Programs" data-secondary="शिक्षा कार्यक्रम" data-text="शिक्षाको क्षेत्रमा हामीले साक्षरता कक्षा, बाल शिक्षा र वयस्क शिक्षाका कार्यक्रमहरू सञ्चालन गर्छौं। यसले समुदायमा शिक्षाको स्तर बढाउँछ।">
-            <img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop" alt="Education Programs" />
-          </div>
-          <div className="gallery-item" data-title="Agricultural Support" data-secondary="कृषि सहयोग" data-text="कृषि क्षेत्रमा आधुनिक प्रविधि र उन्नत बीउ बिजनका बारेमा जानकारी दिएर किसानहरूलाई सहयोग गर्छौं।">
-            <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=300&fit=crop" alt="Agricultural Support" />
-          </div>
-          <div className="gallery-item" data-title="Microfinance Program" data-secondary="लघुवित्त कार्यक्रम" data-text="महिलाहरूको आर्थिक सशक्तिकरणका लागि लघुवित्त कार्यक्रम सञ्चालन गर्छौं। यसले उनीहरूलाई सानो व्यवसाय सुरु गर्न मद्दत गर्छ।">
-            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=300&fit=crop" alt="Microfinance" />
-          </div>
-          <div className="gallery-item" data-title="Cooperative Formation" data-secondary="सहकारी गठन" data-text="महिला सहकारी संस्थाहरूको गठन र सञ्चालनमा सहयोग गर्छौं। यसले सामूहिक रूपमा काम गर्न प्रेरणा दिन्छ।">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=300&fit=crop" alt="Cooperative" />
-          </div>
-          <div className="gallery-item" data-title="Leadership Training" data-secondary="नेतृत्व विकास" data-text="महिला नेतृत्व विकासका लागि विशेष तालिम कार्यक्रम सञ्चालन गर्छौं। यसले महिलाहरूलाई नेतृत्व क्षमता विकास गर्न मद्दत गर्छ।">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop" alt="Leadership Training" />
-          </div>
-          <div className="gallery-item" data-title="Digital Literacy" data-secondary="डिजिटल साक्षरता" data-text="आजको डिजिटल युगमा महिलाहरूलाई कम्प्युटर र इन्टरनेटको प्रयोग सिकाउने कार्यक्रम सञ्चालन गर्छौं।">
-            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Digital Literacy" />
-          </div>
-          <div className="gallery-item" data-title="Nutrition Program" data-secondary="पोषण कार्यक्रम" data-text="मातृ र शिशु पोषणका बारेमा जानकारी दिने र पोषणयुक्त खाना पकाउने तरिका सिकाउने कार्यक्रम सञ्चालन गर्छौं।">
-            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=300&fit=crop" alt="Nutrition Program" />
-          </div>
-          <div className="gallery-item" data-title="Environmental Conservation" data-secondary="वातावरण संरक्षण" data-text="वातावरण संरक्षणका लागि वृक्षारोपण, फोहोर व्यवस्थापन र सफाई अभियान जस्ता कार्यक्रमहरू सञ्चालन गर्छौं।">
-            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=300&fit=crop" alt="Environment" />
-          </div>
-          <div className="gallery-item" data-title="Youth Development" data-secondary="युवा विकास" data-text="युवाहरूको क्षमता विकास र रोजगारीका अवसर सिर्जना गर्ने कार्यक्रमहरू सञ्चालन गर्छौं।">
-            <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=400&h=300&fit=crop" alt="Youth Development" />
-          </div>
-          <div className="gallery-item" data-title="Disaster Preparedness" data-secondary="विपद् तयारी" data-text="प्राकृतिक विपदका समयमा समुदायलाई तयार राख्न र राहत कार्यमा सहयोग गर्ने कार्यक्रम सञ्चालन गर्छौं।">
-            <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=300&fit=crop" alt="Disaster Preparedness" />
-          </div>
-          <div className="gallery-item" data-title="Cultural Preservation" data-secondary="संस्कृति संरक्षण" data-text="स्थानीय संस्कृति, भाषा र परम्पराको संरक्षण र प्रवर्धनका लागि विभिन्न कार्यक्रमहरू आयोजना गर्छौं।">
-            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&h=300&fit=crop" alt="Cultural Preservation" />
-          </div>
-          <div className="gallery-item" data-title="Legal Awareness" data-secondary="कानुनी चेतना" data-text="महिला अधिकार र कानुनी जानकारीका बारेमा चेतना फैलाउने कार्यक्रम सञ्चालन गर्छौं।">
-            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop" alt="Legal Awareness" />
-          </div>
-          <div className="gallery-item" data-title="Handicraft Training" data-secondary="हस्तकला तालिम" data-text="परम्परागत हस्तकला र आधुनिक डिजाइनको तालिम दिएर महिलाहरूलाई आर्थिक रूपमा सशक्त बनाउँछौं।">
-            <img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=400&h=300&fit=crop" alt="Handicraft" />
-          </div>
-          <div className="gallery-item" data-title="Water & Sanitation" data-secondary="पानी र सरसफाइ" data-text="स्वच्छ खानेपानी र सरसफाइका बारेमा जानकारी दिने र सम्बन्धित पूर्वाधार निर्माणमा सहयोग गर्छौं।">
-            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=300&fit=crop" alt="Water Sanitation" />
-          </div>
-          <div className="gallery-item" data-title="Community Events" data-secondary="सामुदायिक कार्यक्रम" data-text="समुदायिक एकताका लागि विभिन्न सांस्कृतिक र सामाजिक कार्यक्रमहरू आयोजना गर्छौं।">
-            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400&h=300&fit=crop" alt="Community Events" />
-          </div>
-          <div className="gallery-item" data-title="Success Stories" data-secondary="सफलताका कथा" data-text="हाम्रा कार्यक्रमबाट लाभान्वित भएका महिलाहरूका प्रेरणादायक सफलताका कथाहरू साझा गर्छौं।">
-            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=300&fit=crop" alt="Success Stories" />
-          </div>
-          <div className="gallery-item" data-title="Partnership Programs" data-secondary="साझेदारी कार्यक्रम" data-text="अन्य संस्थाहरूसँग साझेदारी गरेर सञ्चालन गरिने विभिन्न विकास कार्यक्रमहरूको तस्बिरहरू।">
-            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop" alt="Partnership" />
-          </div>
-          <div className="gallery-item" data-title="Volunteer Activities" data-secondary="स्वयंसेवक गतिविधि" data-text="स्वयंसेवकहरूको सहयोगमा सञ्चालन हुने विभिन्न सामुदायिक सेवाका गतिविधिहरू।">
-            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=300&fit=crop" alt="Volunteer Activities" />
-          </div>
-          <div className="gallery-item" data-title="Training Workshops" data-secondary="तालिम कार्यशाला" data-text="विभिन्न विषयहरूमा आयोजना गरिने तालिम कार्यशालाहरूका तस्बिरहरू र सहभागीहरूका अनुभवहरू।">
-            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop" alt="Training Workshops" />
-          </div>
-          <div className="gallery-item" data-title="Annual Programs" data-secondary="वार्षिक कार्यक्रम" data-text="हरेक वर्ष आयोजना गरिने विशेष कार्यक्रमहरू र उत्सवहरूका यादगार क्षणहरू।">
-            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop" alt="Annual Programs" />
-          </div>
-        </div>
-      </div>
-
-      <div className="gallery-detail">
-        <img alt="" />
-        <div className="gallery-content">
-          <div className="gallery-title">Placeholder title</div>
-          <div className="gallery-secondary">Placeholder secondary</div>
-          <div className="gallery-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-        </div>
-      </div>
+        )}
+      </section>
     </div>
   );
 }

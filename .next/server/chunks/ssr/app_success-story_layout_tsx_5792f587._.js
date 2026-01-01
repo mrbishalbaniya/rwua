@@ -1,3 +1,0 @@
-module.exports=[71751,a=>{"use strict";var b=a.i(7997),c=a.i(83569);function d({children:a}){return(0,b.jsx)("div",{className:c.default.variable,children:(0,b.jsx)("main",{role:"main",children:a})})}a.s(["default",()=>d,"metadata",0,{title:"Success Stories - RWUA",description:"Inspiring success stories from rural women empowerment programs."}])}];
-
-//# sourceMappingURL=app_success-story_layout_tsx_5792f587._.js.map
