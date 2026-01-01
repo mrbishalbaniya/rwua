@@ -128,8 +128,8 @@ export default function GalleryPage() {
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300 ${selectedCategory === category
-                    ? 'bg-purple-700 text-white shadow-lg'
-                    : 'bg-white text-gray-600 hover:bg-purple-100 hover:text-purple-700'
+                  ? 'bg-purple-700 text-white shadow-lg'
+                  : 'bg-white text-gray-600 hover:bg-purple-100 hover:text-purple-700'
                   }`}
               >
                 {category}
@@ -168,15 +168,15 @@ export default function GalleryPage() {
         {/* Modal for Selected Image */}
         {selectedImage && (
           <div
-            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-2"
             onClick={() => setSelectedImage(null)}
           >
-            <div className="relative max-w-4xl max-h-[90vh] bg-white rounded-2xl overflow-hidden">
+            <div className="relative max-w-8xl max-h-[96vh] bg-white rounded-2xl overflow-hidden">
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10"
+                className="absolute top-6 right-6 w-14 h-14 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -188,12 +188,11 @@ export default function GalleryPage() {
                   className="object-cover"
                 />
               </div>
-              <div className="p-6">
-                <span className="inline-block px-3 py-1 bg-orange-500 text-white rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+              <div className="p-12">
+                <span className="inline-block px-6 py-3 bg-orange-400 text-white rounded-full text-base font-bold uppercase tracking-wider mb-6">
                   {selectedImage.category}
                 </span>
-                <h3 className="text-2xl font-bold text-purple-700 mb-2">{selectedImage.title}</h3>
-                <p className="text-gray-600">Click outside to close</p>
+                <h3 className="text-4xl font-bold text-purple-500 mb-4">{selectedImage.title}</h3>
               </div>
             </div>
           </div>
