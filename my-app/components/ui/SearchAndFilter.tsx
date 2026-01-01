@@ -60,33 +60,8 @@ export default function SearchAndFilter({
     setIsFilterOpen(false);
   };
 
-  const getPageContent = () => {
-    if (pageType === 'vacancies') {
-      return {
-        title: 'Career Opportunities',
-        subtitle: 'Join our mission to empower rural communities across Nepal'
-      };
-    }
-    return {
-      title: 'Success Stories',
-      subtitle: 'Inspiring tales of transformation and community empowerment'
-    };
-  };
-
-  const { title, subtitle } = getPageContent();
-
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-          {title}
-        </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          {subtitle}
-        </p>
-      </div>
-
       {/* Search and Filter Controls - CSS Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-center">
         {/* Left Side: Filter Controls */}
@@ -94,7 +69,7 @@ export default function SearchAndFilter({
           {/* Mobile Filter Toggle */}
           <button
             onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className="md:hidden flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors duration-300 ease-out cursor-pointer"
+            className="md:hidden flex items-center gap-2 px-4 py-2 bg-stone-200 text-deep-purple rounded-lg hover:bg-stone-300 transition-colors duration-300 ease-out cursor-pointer font-bold"
           >
             <Filter className="w-4 h-4" />
             Filter
@@ -106,10 +81,10 @@ export default function SearchAndFilter({
               <button
                 key={category}
                 onClick={() => handleCategoryClick(category)}
-                className={`px-4 py-2 rounded-lg transition-colors duration-300 ease-out cursor-pointer ${
+                className={`px-4 py-2 rounded-lg transition-colors duration-300 ease-out cursor-pointer font-bold ${
                   activeCategory === category
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    ? 'bg-deep-purple text-white shadow-lg'
+                    : 'bg-stone-200 text-deep-purple hover:bg-vibrant-gold hover:text-white'
                 }`}
               >
                 {category}
@@ -130,14 +105,14 @@ export default function SearchAndFilter({
               onFocus={handleFocus}
               onBlur={handleBlur}
               placeholder={placeholder}
-              className={`w-full pl-10 pr-4 py-3 rounded-lg border shadow-sm transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full pl-10 pr-4 py-3 rounded-lg border shadow-sm transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-deep-purple font-medium ${
                 isFocused 
-                  ? 'border-blue-500 focus:border-transparent' 
-                  : 'border-gray-300 focus:border-transparent'
+                  ? 'border-deep-purple focus:border-transparent' 
+                  : 'border-stone-300 focus:border-transparent'
               }`}
             />
             <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 transition-colors duration-300 ease-out ${
-              isFocused ? 'text-blue-500' : 'text-gray-400'
+              isFocused ? 'text-deep-purple' : 'text-stone-400'
             }`} />
           </div>
         </div>
@@ -145,16 +120,16 @@ export default function SearchAndFilter({
 
       {/* Mobile Filter Dropdown */}
       {isFilterOpen && (
-        <div className="md:hidden bg-white border border-gray-200 rounded-lg shadow-lg p-4 transition-all duration-300 ease-out">
+        <div className="md:hidden bg-white border border-stone-200 rounded-lg shadow-lg p-4 transition-all duration-300 ease-out">
           <div className="grid grid-cols-2 gap-2">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => handleCategoryClick(category)}
-                className={`px-3 py-2 rounded-lg text-sm transition-colors duration-300 ease-out cursor-pointer ${
+                className={`px-3 py-2 rounded-lg text-sm transition-colors duration-300 ease-out cursor-pointer font-bold ${
                   activeCategory === category
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-deep-purple text-white'
+                    : 'bg-stone-100 text-deep-purple hover:bg-vibrant-gold hover:text-white'
                 }`}
               >
                 {category}
@@ -166,9 +141,9 @@ export default function SearchAndFilter({
 
       {/* Results Counter */}
       {resultsCount !== undefined && (
-        <div className="text-gray-600">
-          <p>
-            Showing <span className="font-semibold">{resultsCount}</span> results
+        <div className="text-stone-600">
+          <p className="font-medium">
+            Showing <span className="font-bold text-deep-purple">{resultsCount}</span> results
           </p>
         </div>
       )}

@@ -109,7 +109,7 @@ export default function ModernStoryCard({ story }: ModernStoryCardProps) {
           {/* Read More Button - Better design */}
           <Link
             href={`/success-story/${story.id}`}
-            className="inline-flex items-center text-blue-600 hover:text-white text-sm font-medium transition-all duration-300 hover:bg-blue-600 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-600 group hover:shadow-md cursor-pointer"
+            className="inline-flex items-center text-deep-purple hover:text-white text-sm font-medium transition-all duration-300 hover:bg-deep-purple px-3 py-1.5 rounded-full border border-deep-purple/20 hover:border-deep-purple group hover:shadow-md cursor-pointer"
           >
             <span>Read More</span>
             <ChevronRight className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-1" />
