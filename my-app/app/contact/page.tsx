@@ -93,8 +93,8 @@ export default function ContactPage() {
                 {/* Phone */}
                 <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-vibrant-gold/20 transition-all">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-vibrant-gold/10 rounded-lg flex items-center justify-center">
-                      <Phone className="w-5 h-5 text-vibrant-gold" />
+                    <div className="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center">
+                      <Phone className="w-4 h-4 text-black" />
                     </div>
                     <div>
                       <p className="text-sm text-stone-500 uppercase tracking-wide font-black">Phone</p>
@@ -106,8 +106,8 @@ export default function ContactPage() {
                 {/* Email */}
                 <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-vibrant-gold/20 transition-all">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-terracotta/10 rounded-lg flex items-center justify-center">
-                      <Mail className="w-5 h-5 text-terracotta" />
+                    <div className="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center">
+                      <Mail className="w-4 h-4 text-black" />
                     </div>
                     <div>
                       <p className="text-sm text-stone-500 uppercase tracking-wide font-black">Email</p>
@@ -119,8 +119,8 @@ export default function ContactPage() {
                 {/* Address */}
                 <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-vibrant-gold/20 transition-all">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-deep-purple/10 rounded-lg flex items-center justify-center">
-                      <MapPin className="w-5 h-5 text-deep-purple" />
+                    <div className="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center">
+                      <MapPin className="w-4 h-4 text-black" />
                     </div>
                     <div>
                       <p className="text-sm text-stone-500 uppercase tracking-wide font-black">Address</p>
@@ -132,8 +132,8 @@ export default function ContactPage() {
                 {/* Hours */}
                 <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-vibrant-gold/20 transition-all">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-vibrant-gold/10 rounded-lg flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-vibrant-gold" />
+                    <div className="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center">
+                      <Clock className="w-4 h-4 text-black" />
                     </div>
                     <div>
                       <p className="text-sm text-stone-500 uppercase tracking-wide font-black">Hours</p>

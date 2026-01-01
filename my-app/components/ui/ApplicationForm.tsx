@@ -75,7 +75,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-hidden">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 overflow-hidden">
       <div className="relative p-6 bg-white rounded-xl shadow-lg w-full max-w-md">
         {/* Decorative Background - Smaller */}
         <div className="absolute inset-0 -z-10 transform rotate-3 bg-deep-purple rounded-xl"></div>
