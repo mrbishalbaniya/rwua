@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/new-vacancy/layout,_N_T_/new-vacancy/page,_N_T_/new-vacancy"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/new-vacancy/__PAGE__",
+    "/new-vacancy",
+    "/_index",
+    "/_head"
+  ]
+}

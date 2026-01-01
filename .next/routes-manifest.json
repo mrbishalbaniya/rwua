@@ -1,0 +1,155 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/success-story/[id]",
+      "regex": "^/success\\-story/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/success\\-story/(?<nxtPid>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/about/registration",
+      "regex": "^/about/registration(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about/registration(?:/)?$"
+    },
+    {
+      "page": "/contact",
+      "regex": "^/contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contact(?:/)?$"
+    },
+    {
+      "page": "/downloads",
+      "regex": "^/downloads(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/downloads(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/gallery",
+      "regex": "^/gallery(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/gallery(?:/)?$"
+    },
+    {
+      "page": "/new-contact",
+      "regex": "^/new\\-contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/new\\-contact(?:/)?$"
+    },
+    {
+      "page": "/new-vacancy",
+      "regex": "^/new\\-vacancy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/new\\-vacancy(?:/)?$"
+    },
+    {
+      "page": "/news",
+      "regex": "^/news(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/news(?:/)?$"
+    },
+    {
+      "page": "/news/archive",
+      "regex": "^/news/archive(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/news/archive(?:/)?$"
+    },
+    {
+      "page": "/news/facebook",
+      "regex": "^/news/facebook(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/news/facebook(?:/)?$"
+    },
+    {
+      "page": "/news/latest-updates",
+      "regex": "^/news/latest\\-updates(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/news/latest\\-updates(?:/)?$"
+    },
+    {
+      "page": "/news/success-stories",
+      "regex": "^/news/success\\-stories(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/news/success\\-stories(?:/)?$"
+    },
+    {
+      "page": "/success-story",
+      "regex": "^/success\\-story(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/success\\-story(?:/)?$"
+    },
+    {
+      "page": "/vacancy",
+      "regex": "^/vacancy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/vacancy(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}
