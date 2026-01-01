@@ -27,7 +27,7 @@ export const MissionSection: React.FC = () => {
   const [cards, setCards] = useState<CardState[]>([]);
   const [isGrabbing, setIsGrabbing] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const dragStart = useRef({ x: 0, y: 0, cardId: -1 });
   const velocity = useRef({ x: 0, y: 0 });
   const lastPos = useRef({ x: 0, y: 0 });
@@ -36,7 +36,7 @@ export const MissionSection: React.FC = () => {
   useEffect(() => {
     const initial = STACK_IMAGES.map((img, i) => ({
       ...img,
-      x: 0, 
+      x: 0,
       y: 0,
       rot: (i % 2 === 0 ? 1.5 : -1.5) * i,
       scale: 1,
@@ -74,16 +74,16 @@ export const MissionSection: React.FC = () => {
         y: (clientY - lastPos.current.y) / dt
       };
     }
-    
+
     lastPos.current = { x: clientX, y: clientY };
     lastTime.current = now;
 
     const deltaX = clientX - dragStart.current.x;
     const deltaY = clientY - dragStart.current.y;
 
-    setCards(prev => prev.map(c => 
-      c.id === dragStart.current.cardId 
-        ? { ...c, x: deltaX, y: deltaY, rot: deltaX * 0.1 } 
+    setCards(prev => prev.map(c =>
+      c.id === dragStart.current.cardId
+        ? { ...c, x: deltaX, y: deltaY, rot: deltaX * 0.1 }
         : c
     ));
   };
@@ -93,22 +93,22 @@ export const MissionSection: React.FC = () => {
     if (activeId === -1) return;
 
     const speed = Math.sqrt(velocity.current.x ** 2 + velocity.current.y ** 2);
-    
+
     if (speed > 0.6) {
       const throwDirectionX = velocity.current.x * 800;
       const throwDirectionY = velocity.current.y * 800;
 
-      setCards(prev => prev.map(c => 
-        c.id === activeId 
-          ? { 
-              ...c, 
-              isThrown: true, 
-              x: throwDirectionX, 
-              y: throwDirectionY, 
-              rot: c.rot + (velocity.current.x * 50),
-              scale: 0.8,
-              opacity: 0
-            } 
+      setCards(prev => prev.map(c =>
+        c.id === activeId
+          ? {
+            ...c,
+            isThrown: true,
+            x: throwDirectionX,
+            y: throwDirectionY,
+            rot: c.rot + (velocity.current.x * 50),
+            scale: 0.8,
+            opacity: 0
+          }
           : c
       ));
 
@@ -119,15 +119,15 @@ export const MissionSection: React.FC = () => {
 
           return prev.map(c => {
             if (c.id === activeId) {
-              return { 
-                ...c, 
-                isThrown: false, 
-                x: 0, 
-                y: 0, 
-                rot: (Math.random() - 0.5) * 8, 
-                scale: 1, 
-                opacity: 1, 
-                zIndex: 1 
+              return {
+                ...c,
+                isThrown: false,
+                x: 0,
+                y: 0,
+                rot: (Math.random() - 0.5) * 8,
+                scale: 1,
+                opacity: 1,
+                zIndex: 1
               };
             }
             return { ...c, zIndex: c.zIndex + 1 };
@@ -135,7 +135,7 @@ export const MissionSection: React.FC = () => {
         });
       }, 400);
     } else {
-      setCards(prev => prev.map(c => 
+      setCards(prev => prev.map(c =>
         c.id === activeId ? { ...c, x: 0, y: 0, rot: 0 } : c
       ));
     }
@@ -148,9 +148,9 @@ export const MissionSection: React.FC = () => {
     <section className="py-24 lg:py-36 bg-white overflow-hidden select-none" onMouseUp={handleMouseUp} onTouchEnd={handleMouseUp}>
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
-          
+
           <div className="w-full lg:w-1/2 relative flex flex-col items-center">
-            <div 
+            <div
               ref={containerRef}
               className="relative w-full max-w-[460px] aspect-square flex items-center justify-center"
               onMouseMove={handleMouseMove}
@@ -158,7 +158,7 @@ export const MissionSection: React.FC = () => {
               style={{ cursor: isGrabbing ? 'grabbing' : 'grab' }}
             >
               <div className="absolute inset-0 bg-stone-100/40 rounded-full blur-3xl -z-10 scale-125"></div>
-              
+
               {cards.map((card) => (
                 <div
                   key={card.id}
@@ -172,22 +172,22 @@ export const MissionSection: React.FC = () => {
                     transition: card.isThrown ? 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : (isGrabbing && dragStart.current.cardId === card.id ? 'none' : 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)')
                   }}
                 >
-                  <img 
-                    src={card.url} 
-                    alt="Mission focus" 
+                  <img
+                    src={card.url}
+                    alt="Mission focus"
                     className="w-full h-full object-cover rounded-2xl grayscale-[15%] group-hover:grayscale-0 transition-all duration-700"
                     draggable={false}
                   />
                   <div className="absolute bottom-10 left-10 right-10">
-                     <div className="bg-white/95 backdrop-blur-xl px-6 py-2.5 rounded-full shadow-2xl border border-white/20 inline-flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-vibrant-gold animate-pulse"></div>
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-deep-purple">Impact Area 0{card.id}</span>
-                     </div>
+                    <div className="bg-white/95 backdrop-blur-xl px-6 py-2.5 rounded-full shadow-2xl border border-white/20 inline-flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-vibrant-gold animate-pulse"></div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-deep-purple">Impact Area 0{card.id}</span>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-            
+
             <div className="mt-16 flex items-center gap-6 group">
               <div className="w-12 h-[1px] bg-stone-200 group-hover:w-20 transition-all"></div>
               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-stone-300">
@@ -202,7 +202,7 @@ export const MissionSection: React.FC = () => {
               A Dignified <br />
               <span className="text-terracotta italic">Life for All.</span>
             </h2>
-            
+
             <div className="mb-12 p-8 bg-stone-50 border-l-8 border-vibrant-gold rounded-r-3xl">
               <p className="text-stone-800 text-xl lg:text-2xl font-bold italic leading-relaxed">
                 "{CORE_GOAL}"

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Phone, Menu, X, ChevronDown, Newspaper, Trophy, Facebook, Clock, Archive, FileText } from 'lucide-react';
+import { Phone, Menu, X, ChevronDown, Newspaper, Trophy, Users, Clock, Archive, FileText } from 'lucide-react';
 
 const navLinkStyle = {
   display: 'block',
@@ -36,7 +36,7 @@ export default function Navbar() {
     <>
       {/* Top Bar */}
       <div className="text-white overflow-hidden transition-all duration-500" style={{
-        background: '#0c1e3e',
+        background: '#0F172A',
         color: 'rgba(255, 255, 255, 0.9)',
         height: '45px',
         fontSize: '14px',
@@ -56,7 +56,7 @@ export default function Navbar() {
             </div>
             <a
               href="tel:046-411109"
-              className="bg-blue-950 hover:bg-gray-900 px-2 sm:px-4 py-1.5 sm:py-2 rounded flex items-center gap-1 sm:gap-2 transition-all duration-300 text-xs sm:text-sm shadow-md hover:shadow-lg"
+              className="bg-red-600 hover:bg-red-700 px-2 sm:px-4 py-1.5 sm:py-2 rounded-sm flex items-center gap-1 sm:gap-2 transition-all duration-300 text-xs sm:text-sm shadow-md hover:shadow-lg"
             >
               <Phone className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="hidden sm:inline">046-411109</span>
@@ -70,7 +70,7 @@ export default function Navbar() {
 
       {/* Main Navbar - Hidden on mobile when sidebar is open */}
       <div className={`text-white sticky top-0 transition-all duration-300 ${isMobileMenuOpen ? 'lg:block hidden' : 'block'}`} style={{
-        background: '#0f172a',
+        background: '#1E40AF',
         transition: 'all 0.3s',
         zIndex: 1000,
         padding: '12px 0',
@@ -80,40 +80,42 @@ export default function Navbar() {
       }}>
         <div className="mx-auto px-4" style={{ maxWidth: '1160px' }}>
           <div className="flex items-center justify-between" style={{ minHeight: '60px' }}>
-            {/* Logo */}
-            <Link href="/" className="logo" style={{
-              fontSize: '32px',
-              margin: 0,
-              padding: 0,
-              lineHeight: 1,
-              fontWeight: 400,
-              letterSpacing: '2px',
-              textTransform: 'uppercase' as const,
-              position: 'relative' as const,
-              zIndex: 1
-            }}>
-              <Image
-                src="https://rwua.com.np/wp-content/uploads/2023/02/cropped-RWUA-Logo-Approval-2.jpg"
-                alt="RWUA Logo"
-                width={80}
-                height={80}
-                className="img-fluid rounded-full"
-                style={{
-                  maxHeight: '80px',
-                  maxWidth: '80px',
-                  height: 'auto',
-                  width: 'auto',
-                  verticalAlign: 'middle',
-                  borderStyle: 'none',
-                  borderRadius: '50%',
-                  objectFit: 'cover' as const
-                }}
-                priority
-              />
-            </Link>
+            {/* Logo - Left */}
+            <div className="flex-shrink-0">
+              <Link href="/" className="logo" style={{
+                fontSize: '32px',
+                margin: 0,
+                padding: 0,
+                lineHeight: 1,
+                fontWeight: 400,
+                letterSpacing: '2px',
+                textTransform: 'uppercase' as const,
+                position: 'relative' as const,
+                zIndex: 1
+              }}>
+                <Image
+                  src="https://rwua.com.np/wp-content/uploads/2023/02/cropped-RWUA-Logo-Approval-2.jpg"
+                  alt="RWUA Logo"
+                  width={80}
+                  height={80}
+                  className="img-fluid rounded-full"
+                  style={{
+                    maxHeight: '80px',
+                    maxWidth: '80px',
+                    height: 'auto',
+                    width: 'auto',
+                    verticalAlign: 'middle',
+                    borderStyle: 'none',
+                    borderRadius: '50%',
+                    objectFit: 'cover' as const
+                  }}
+                  priority
+                />
+              </Link>
+            </div>
 
-            {/* Desktop Navigation Only - No mobile button here */}
-            <nav className="hidden lg:flex items-center gap-8">
+            {/* Desktop Navigation - Center */}
+            <nav className="hidden lg:flex items-center gap-8 flex-1 justify-center">
               <Link
                 href="/"
                 className={`nav-link font-medium transition-colors relative ${pathname === '/' ? 'active' : ''}`}
@@ -175,7 +177,7 @@ export default function Navbar() {
                             </Link>
                             <Link href="/news/facebook" className="mega-menu-item group flex items-center p-2 rounded-md hover:bg-gray-50 transition-colors">
                               <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center mr-3 group-hover:bg-gray-200 transition-colors">
-                                <Facebook className="text-gray-600 w-4 h-4" />
+                                <Users className="text-gray-600 w-4 h-4" />
                               </div>
                               <div>
                                 <div className="text-gray-800 font-semibold text-xs">फेस्बूक बाट ल्याइेका समाचार</div>
@@ -244,14 +246,20 @@ export default function Navbar() {
               >
                 Contact Us
               </Link>
+            </nav>
+
+            {/* Download Button - Right */}
+            <div className="hidden lg:flex flex-shrink-0">
               <Link
                 href="/downloads"
-                className={`nav-link font-medium transition-colors relative ${pathname === '/downloads' ? 'active' : ''}`}
-                style={navLinkStyle}
+                className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-2 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2"
               >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
                 Downloads
               </Link>
-            </nav>
+            </div>
           </div>
         </div>
       </div>
@@ -263,8 +271,8 @@ export default function Navbar() {
           }`}
         style={{
           background: isMobileMenuOpen
-            ? '#0c1e3e'
-            : '#0f172a',
+            ? '#1E40AF'
+            : '#1E40AF',
           border: '1px solid rgba(255, 255, 255, 0.2)',
           backdropFilter: 'blur(10px)',
           boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
@@ -291,7 +299,7 @@ export default function Navbar() {
       {/* Mobile Sidebar */}
       <div className={`fixed top-0 right-0 h-full transition-all duration-1000 ease-in-out z-[9500] lg:hidden ${isMobileMenuOpen ? 'w-64 sm:w-80' : 'w-0'
         }`} style={{
-          background: '#0c1e3e',
+          background: '#1E40AF',
           boxShadow: '-4px 0 16px rgba(0, 0, 0, 0.2)',
           borderLeft: '1px solid rgba(255, 255, 255, 0.1)'
         }}>

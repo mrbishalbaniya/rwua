@@ -10,11 +10,7 @@ import TopSearch from '../../../components/TopSearch';
 const facebookNewsData = [
     {
         id: 1,
-<<<<<<<< HEAD:app/news/facebook/page.tsx
         title: "फेसबुक: हरिपुर नगरपालिकामा न्यानो कम्बल वितरण",
-========
-        title: "हरिपुर नगरपालिकामा न्यानो कम्बल वितरण",
->>>>>>>> 9573c9cfec9d99caca0b4d7db4297632420682cc:my-app/app/news/facebook/page.tsx
         excerpt: "आजको फेसबुकमा हरिपुर नगरपालिकामा सञ्चालित न्यानो कम्बल वितरण कार्यक्रमको जानकारी साझा गरिएको थियो। यस कार्यक्रममा स्थानीय जनप्रतिनिधिहरूको उपस्थिति रहेको थियो।",
         image: "https://rwua.com.np/wp-content/uploads/2025/12/blimket-780x470-1.png",
         category: "Facebook",
@@ -23,11 +19,7 @@ const facebookNewsData = [
     },
     {
         id: 2,
-<<<<<<<< HEAD:app/news/facebook/page.tsx
         title: "फेसबुक: बालक्लब गठन कार्यक्रम",
-========
-        title: "बालक्लब गठन कार्यक्रम",
->>>>>>>> 9573c9cfec9d99caca0b4d7db4297632420682cc:my-app/app/news/facebook/page.tsx
         excerpt: "बालबालिकाको अधिकार संरक्षणका लागि बालक्लब गठन कार्यक्रमको फेसबुक पोस्ट। यस कार्यक्रममा बालबालिकाहरूको सक्रिय सहभागिता रहेको थियो।",
         image: "https://rwua.com.np/wp-content/uploads/2025/02/shared-image.jpeg",
         category: "Facebook",
@@ -36,11 +28,7 @@ const facebookNewsData = [
     },
     {
         id: 3,
-<<<<<<<< HEAD:app/news/facebook/page.tsx
         title: "फेसबुक: महिला सशक्तिकरण तालिम",
-========
-        title: "महिला सशक्तिकरण तालिम",
->>>>>>>> 9573c9cfec9d99caca0b4d7db4297632420682cc:my-app/app/news/facebook/page.tsx
         excerpt: "ग्रामीण महिलाहरूको आर्थिक सशक्तिकरणका लागि सञ्चालित तालिम कार्यक्रमको फेसबुक अपडेट। तालिममा स्वरोजगारका विभिन्न विषयहरूमा छलफल भएको थियो।",
         image: "https://rwua.com.np/wp-content/uploads/2020/01/13.jpg",
         category: "Facebook",
@@ -49,11 +37,7 @@ const facebookNewsData = [
     },
     {
         id: 4,
-<<<<<<<< HEAD:app/news/facebook/page.tsx
         title: "फेसबुक: खानेपानी सुविधा उद्घाटन",
-========
-        title: "खानेपानी सुविधा उद्घाटन",
->>>>>>>> 9573c9cfec9d99caca0b4d7db4297632420682cc:my-app/app/news/facebook/page.tsx
         excerpt: "समावेशी तथा दिगो ग्रामीण खानेपानी सुविधा कार्यक्रमको उद्घाटन समारोहको फेसबुक पोस्ट। यस अवसरमा स्थानीय समुदायका प्रतिनिधिहरूले खुशी व्यक्त गरेका थिए।",
         image: "https://rwua.com.np/wp-content/uploads/2021/04/11.jpg",
         category: "Facebook",
@@ -62,11 +46,7 @@ const facebookNewsData = [
     },
     {
         id: 5,
-<<<<<<<< HEAD:app/news/facebook/page.tsx
         title: "फेसबुक: वार्षिक साधारण सभा",
-========
-        title: "वार्षिक साधारण सभा",
->>>>>>>> 9573c9cfec9d99caca0b4d7db4297632420682cc:my-app/app/news/facebook/page.tsx
         excerpt: "ग्रामिण नारी उत्थान संघको २९ औं वार्षिक साधारण सभाको फेसबुक अपडेट। सभामा संस्थाको वार्षिक प्रगति प्रतिवेदन प्रस्तुत गरिएको थियो।",
         image: "https://rwua.com.np/wp-content/uploads/2021/10/1.jpg",
         category: "Facebook",
@@ -123,11 +103,7 @@ export default function FacebookPage() {
                 <div className="text-center py-12">
                     <h1 className="text-4xl font-bold text-gray-800 mb-4">फेसबुक समाचार</h1>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-<<<<<<<< HEAD:app/news/facebook/page.tsx
                         हाम्रो फेसबुक पेजबाट साझा गरिएका कार्यक्रमहरू र सामाजिक सञ्जालका समाचारहरू
-========
-                        हाम्रो फेसबुक पेजबाट ल्याइएका कार्यक्रमहरू र सामाजिक सञ्जालका समाचारहरू
->>>>>>>> 9573c9cfec9d99caca0b4d7db4297632420682cc:my-app/app/news/facebook/page.tsx
                     </p>
                 </div>
 
