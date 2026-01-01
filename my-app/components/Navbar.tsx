@@ -36,7 +36,7 @@ export default function Navbar() {
     <>
       {/* Top Bar */}
       <div className="text-white overflow-hidden transition-all duration-500" style={{
-        background: '#1e3a8a',
+        background: '#0c1e3e',
         color: 'rgba(255, 255, 255, 0.9)',
         height: '45px',
         fontSize: '14px',
@@ -56,7 +56,7 @@ export default function Navbar() {
             </div>
             <a
               href="tel:046-411109"
-              className="bg-blue-900 hover:bg-blue-950 px-2 sm:px-4 py-1.5 sm:py-2 rounded flex items-center gap-1 sm:gap-2 transition-all duration-300 text-xs sm:text-sm shadow-md hover:shadow-lg"
+              className="bg-blue-950 hover:bg-gray-900 px-2 sm:px-4 py-1.5 sm:py-2 rounded flex items-center gap-1 sm:gap-2 transition-all duration-300 text-xs sm:text-sm shadow-md hover:shadow-lg"
             >
               <Phone className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="hidden sm:inline">046-411109</span>
@@ -69,8 +69,8 @@ export default function Navbar() {
       <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
       {/* Main Navbar - Hidden on mobile when sidebar is open */}
-      <div className={`text-white sticky top-0 shadow-md transition-all duration-300 ${isMobileMenuOpen ? 'lg:block hidden' : 'block'}`} style={{
-        background: '#1e40af',
+      <div className={`text-white sticky top-0 transition-all duration-300 ${isMobileMenuOpen ? 'lg:block hidden' : 'block'}`} style={{
+        background: '#0f172a',
         transition: 'all 0.3s',
         zIndex: 1000,
         padding: '12px 0',
@@ -269,8 +269,8 @@ export default function Navbar() {
           }`}
         style={{
           background: isMobileMenuOpen
-            ? '#1e3a8a'
-            : '#1e40af',
+            ? '#0c1e3e'
+            : '#0f172a',
           border: '1px solid rgba(255, 255, 255, 0.2)',
           backdropFilter: 'blur(10px)',
           boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
@@ -297,7 +297,7 @@ export default function Navbar() {
       {/* Mobile Sidebar */}
       <div className={`fixed top-0 right-0 h-full transition-all duration-1000 ease-in-out z-[9500] lg:hidden ${isMobileMenuOpen ? 'w-64 sm:w-80' : 'w-0'
         }`} style={{
-          background: '#1e3a8a',
+          background: '#0c1e3e',
           boxShadow: '-4px 0 16px rgba(0, 0, 0, 0.2)',
           borderLeft: '1px solid rgba(255, 255, 255, 0.1)'
         }}>
