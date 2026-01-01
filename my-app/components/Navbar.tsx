@@ -56,7 +56,7 @@ export default function Navbar() {
             </div>
             <a
               href="tel:046-411109"
-              className="bg-red-600 hover:bg-red-700 px-2 sm:px-4 py-1.5 sm:py-2 rounded-sm flex items-center gap-1 sm:gap-2 transition-all duration-300 text-xs sm:text-sm shadow-md hover:shadow-lg"
+              className="bg-red-600 hover:bg-red-700 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg flex items-center gap-1 sm:gap-2 transition-all duration-300 text-xs sm:text-sm shadow-md hover:shadow-lg"
             >
               <Phone className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="hidden sm:inline">046-411109</span>
