@@ -234,14 +234,14 @@ export default function ArchivePage() {
                                                 <span className="text-xs text-gray-500">{news.date}</span>
                                             </div>
                                             <h3 className="font-bold text-lg text-gray-800 mb-3 line-clamp-2 hover:text-blue-800 transition-colors duration-200 cursor-pointer">
-                                                <Link href="/news" className="hover:text-blue-800 transition-colors duration-200">
+                                                <Link href={`/news/${news.id}`} className="hover:text-blue-800 transition-colors duration-200">
                                                     {news.title}
                                                 </Link>
                                             </h3>
                                             <p className="text-gray-600 text-sm line-clamp-3 mb-4">
                                                 {news.excerpt}
                                             </p>
-                                            <Link href="/news" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors duration-200 group">
+                                            <Link href={`/news/${news.id}`} className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors duration-200 group">
                                                 Read Archive
                                                 <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

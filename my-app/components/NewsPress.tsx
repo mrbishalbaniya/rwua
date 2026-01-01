@@ -93,14 +93,14 @@ export default function NewsPressPage() {
                 />
                 <span className="text-green-700 text-sm hidden md:block mt-4">{featuredArticle.category}</span>
                 <h1 className="text-gray-800 text-4xl font-bold mt-2 mb-2 leading-tight cursor-pointer hover:text-blue-800 transition-colors duration-200">
-                  <Link href="/news" className="hover:text-blue-800 transition-colors duration-200">
+                  <Link href={`/news/${featuredArticle.id}`} className="hover:text-blue-800 transition-colors duration-200">
                     {featuredArticle.title}
                   </Link>
                 </h1>
                 <p className="text-gray-600 mb-4">
                   {featuredArticle.excerpt}
                 </p>
-                <Link href="/news" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm mt-4 transition-colors duration-200 group">
+                <Link href={`/news/${featuredArticle.id}`} className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm mt-4 transition-colors duration-200 group">
                   Read more
                   <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -151,7 +151,7 @@ export default function NewsPressPage() {
 
                           {/* Read More Button - Better design */}
                           <Link
-                            href="/news"
+                            href={`/news/${post.id}`}
                             className="inline-flex items-center text-blue-600 hover:text-white text-sm font-medium transition-all duration-300 hover:bg-blue-600 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-600 group hover:shadow-md cursor-pointer"
                           >
                             <span>Read More</span>
@@ -217,7 +217,7 @@ export default function NewsPressPage() {
 
                         {/* Read More Button - Better design */}
                         <Link
-                          href="/news"
+                          href={`/news/${news.id}`}
                           className="inline-flex items-center text-blue-600 hover:text-white text-sm font-medium transition-all duration-300 hover:bg-blue-600 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-600 group hover:shadow-md cursor-pointer"
                         >
                           <span>Read More</span>
@@ -318,7 +318,7 @@ export default function NewsPressPage() {
 
                         {/* Read More Button - Better design */}
                         <Link
-                          href="/news"
+                          href={`/news/${news.id}`}
                           className="inline-flex items-center text-blue-600 hover:text-white text-sm font-medium transition-all duration-300 hover:bg-blue-600 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-600 group hover:shadow-md cursor-pointer"
                         >
                           <span>Read More</span>
