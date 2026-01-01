@@ -15,7 +15,7 @@ import {
 export default function Footer() {
   return (
     <footer className="text-white py-10 px-4 sm:px-6 lg:px-20" style={{
-      background: '#1e3a8a',
+      background: '#0f172a',
       borderTop: '1px solid rgba(255, 255, 255, 0.1)'
     }}>
       <div className="container mx-auto">

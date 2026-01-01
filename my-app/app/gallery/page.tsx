@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 
 export default function GalleryPage() {
   useEffect(() => {
-    let hideDetailsRef = null;
+    let hideDetailsRef: (() => void) | null = null;
 
     // Dynamically import Flip to avoid build issues
     import('gsap/dist/Flip').then(({ Flip }) => {
@@ -19,11 +19,11 @@ export default function GalleryPage() {
       const detailSecondary = document.querySelector('.gallery-detail .gallery-secondary');
       const detailDescription = document.querySelector('.gallery-detail .gallery-description');
 
-      let activeItem;
+      let activeItem: Element | null = null;
 
       gsap.set(detailContent, { yPercent: -100 });
 
-      function showDetails(item) {
+      function showDetails(item: Element) {
         if (activeItem) {
           return hideDetails();
         }
@@ -41,19 +41,24 @@ export default function GalleryPage() {
             duration: 0.5,
             ease: "power2.inOut",
             scale: true,
-            onComplete: () => gsap.set(details, { overflow: "auto" })
+            onComplete: () => {
+              gsap.set(details, { overflow: "auto" });
+            }
           }).to(detailContent, { yPercent: 0 }, 0.2);
 
-          detailImage.removeEventListener("load", onLoad);
+          detailImage?.removeEventListener("load", onLoad);
           document.addEventListener('click', hideDetails);
         };
 
-        const data = item.dataset;
-        detailImage.addEventListener("load", onLoad);
-        detailImage.src = item.querySelector('img').src;
-        detailTitle.innerText = data.title;
-        detailSecondary.innerText = data.secondary;
-        detailDescription.innerText = data.text;
+        const data = (item as HTMLElement).dataset;
+        if (detailImage && detailTitle && detailSecondary && detailDescription) {
+          detailImage.addEventListener("load", onLoad);
+          const imgSrc = (item.querySelector('img') as HTMLImageElement)?.src || '';
+          (detailImage as HTMLImageElement).src = imgSrc;
+          detailTitle.textContent = data.title || '';
+          detailSecondary.textContent = data.secondary || '';
+          detailDescription.textContent = data.text || '';
+        }
 
         gsap.to(items, {
           opacity: 0.3,
@@ -84,7 +89,9 @@ export default function GalleryPage() {
           scale: true,
           duration: 0.5,
           delay: 0.2,
-          onInterrupt: () => tl.kill()
+          onInterrupt: () => {
+            tl.kill();
+          }
         }).set(details, { visibility: "hidden" });
 
         activeItem = null;
