@@ -25,57 +25,23 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
 
   // Lock/unlock body scroll when modal opens/closes
   useEffect(() => {
-    const preventScroll = (e: Event) => {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    };
-
-    const preventTouchMove = (e: TouchEvent) => {
-      e.preventDefault();
-    };
-
     if (isOpen) {
-      // Prevent all scrolling on body and html
+      // Prevent all scrolling on body
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
-      document.body.style.top = '0';
-      document.body.style.left = '0';
-      document.body.style.right = '0';
-      document.documentElement.style.overflow = 'hidden';
-      
-      // Add event listeners to prevent scrolling
-      document.addEventListener('wheel', preventScroll, { passive: false });
-      document.addEventListener('touchmove', preventTouchMove, { passive: false });
-      document.addEventListener('scroll', preventScroll, { passive: false });
+      document.body.style.width = '100%';
     } else {
       // Restore scrolling
-      document.body.style.overflow = 'unset';
-      document.body.style.position = 'unset';
-      document.body.style.top = 'unset';
-      document.body.style.left = 'unset';
-      document.body.style.right = 'unset';
-      document.documentElement.style.overflow = 'unset';
-      
-      // Remove event listeners
-      document.removeEventListener('wheel', preventScroll);
-      document.removeEventListener('touchmove', preventTouchMove);
-      document.removeEventListener('scroll', preventScroll);
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     }
 
     // Cleanup function to restore scroll when component unmounts
     return () => {
-      document.body.style.overflow = 'unset';
-      document.body.style.position = 'unset';
-      document.body.style.top = 'unset';
-      document.body.style.left = 'unset';
-      document.body.style.right = 'unset';
-      document.documentElement.style.overflow = 'unset';
-      
-      // Remove event listeners
-      document.removeEventListener('wheel', preventScroll);
-      document.removeEventListener('touchmove', preventTouchMove);
-      document.removeEventListener('scroll', preventScroll);
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     };
   }, [isOpen]);
 

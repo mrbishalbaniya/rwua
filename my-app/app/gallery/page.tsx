@@ -100,9 +100,10 @@ export default function GalleryPage() {
       // Store reference for cleanup
       hideDetailsRef = hideDetails;
 
-      gsap.utils.toArray('.gallery-item').forEach(item =>
-        item.addEventListener('click', () => showDetails(item))
-      );
+      gsap.utils.toArray('.gallery-item').forEach((item) => {
+        const element = item as Element;
+        element.addEventListener('click', () => showDetails(element));
+      });
     });
 
     return () => {
