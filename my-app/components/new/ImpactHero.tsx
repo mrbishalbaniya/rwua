@@ -58,7 +58,7 @@ export const ImpactHero: React.FC = () => {
               {/* Refined Petal Frame */}
               <div className="relative aspect-[4/5] bg-stone-50 rounded-tr-[200px] rounded-bl-[200px] overflow-hidden shadow-[0_60px_120px_-30px_rgba(0,0,0,0.2)] border-8 border-white">
                 <img 
-                  src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1200" 
+                  src="images/hero.png" 
                   alt="Rural Women Upliftment" 
                   className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 transition-all duration-1000 scale-110 hover:scale-100"
                 />
