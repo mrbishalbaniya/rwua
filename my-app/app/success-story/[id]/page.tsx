@@ -41,48 +41,9 @@ export default function StoryDetailPage() {
     });
   };
 
-  const getTagColor = (tag: string) => {
-    const colors: { [key: string]: string } = {
-      'community': 'bg-blue-100 text-blue-700',
-      'education': 'bg-green-100 text-green-700',
-      'empowerment': 'bg-purple-100 text-purple-700',
-      'women': 'bg-pink-100 text-pink-700',
-      'health': 'bg-red-100 text-red-700',
-      'economic': 'bg-yellow-100 text-yellow-700',
-      'development': 'bg-indigo-100 text-indigo-700',
-      'dalit': 'bg-orange-100 text-orange-700',
-      'entrepreneurship': 'bg-teal-100 text-teal-700',
-      'skills': 'bg-cyan-100 text-cyan-700',
-      'children': 'bg-lime-100 text-lime-700',
-      'literacy': 'bg-emerald-100 text-emerald-700',
-      'maternal': 'bg-rose-100 text-rose-700',
-      'rural': 'bg-amber-100 text-amber-700',
-      'healthcare': 'bg-violet-100 text-violet-700'
-    };
-    return colors[tag] || 'bg-gray-100 text-gray-700';
-  };
-
-  const handleShare = async () => {
-    if (navigator.share && story) {
-      try {
-        await navigator.share({
-          title: story.title,
-          text: story.description.substring(0, 100) + '...',
-          url: window.location.href,
-        });
-      } catch (error) {
-        console.log('Error sharing:', error);
-      }
-    } else {
-      // Fallback: copy to clipboard
-      navigator.clipboard.writeText(window.location.href);
-      alert('Link copied to clipboard!');
-    }
-  };
-
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
+      <div className="min-h-screen bg-gray-50 py-12 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-200 rounded w-32 mb-8"></div>
@@ -103,7 +64,7 @@ export default function StoryDetailPage() {
 
   if (!story) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
+      <div className="min-h-screen bg-gray-50 py-12 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8">
             <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
@@ -126,139 +87,113 @@ export default function StoryDetailPage() {
     );
   }
 
+  // Get related stories (excluding current story)
+  const relatedStories = successStories.filter(s => s.id !== story.id).slice(0, 3);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
+    <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <Link
           href="/success-story"
-          className="inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors mb-8 group"
+          className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors mb-6 text-sm font-medium"
         >
-          <span className="mr-2 transition-transform group-hover:-translate-x-1">←</span>
-          Back to Success Stories
+          <span className="mr-2">←</span>
+          Back to Stories
         </Link>
 
         {/* Main Content */}
-        <article className="bg-white rounded-xl shadow-lg overflow-hidden">
-          {/* Hero Image */}
-          <div className="relative h-64 md:h-80 bg-gradient-to-r from-blue-500 to-purple-500">
-            {!imageError ? (
-              <Image
-                src={story.image}
-                alt={story.title}
-                fill
-                className="object-cover"
-                onError={() => setImageError(true)}
-                priority
-              />
-            ) : (
-              <div className="w-full h-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-                <div className="text-white text-center">
-                  <div className="w-20 h-20 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
-                    <span className="text-4xl">❤️</span>
+        <article className="bg-white rounded-lg shadow-sm overflow-hidden">
+          {/* Content Section */}
+          <div className="grid lg:grid-cols-2 gap-8 p-8">
+            {/* Left Column - Image */}
+            <div className="relative">
+              <div className="relative h-64 lg:h-80 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg overflow-hidden">
+                {!imageError ? (
+                  <Image
+                    src={story.image}
+                    alt={story.title}
+                    fill
+                    className="object-cover"
+                    onError={() => setImageError(true)}
+                    priority
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                    <div className="text-white text-center">
+                      <div className="w-20 h-20 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                        <span className="text-4xl">❤️</span>
+                      </div>
+                      <p className="text-lg font-medium">{story.category}</p>
+                    </div>
                   </div>
-                  <p className="text-lg font-medium">{story.category}</p>
-                </div>
+                )}
               </div>
-            )}
-
-            {/* Category Badge */}
-            <div className="absolute top-6 left-6">
-              <span className="px-4 py-2 bg-white/90 backdrop-blur-sm text-gray-800 rounded-full font-medium">
-                {story.category}
-              </span>
             </div>
 
-            {/* Share Button */}
-            <div className="absolute top-6 right-6">
-              <button
-                onClick={handleShare}
-                className="p-3 bg-white/90 backdrop-blur-sm text-gray-800 rounded-full hover:bg-white transition-colors"
-                aria-label="Share this story"
-              >
-                <span className="text-lg">📤</span>
-              </button>
+            {/* Right Column - Content */}
+            <div className="flex flex-col justify-center">
+              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+                {story.title}
+              </h1>
+
+              <div className="flex items-center gap-4 mb-6 text-sm text-gray-600">
+                <span>{formatDate(story.date)}</span>
+                <span>|</span>
+                <span>{story.category}</span>
+              </div>
+
+              <div className="text-gray-700 leading-relaxed mb-6">
+                <p className="text-lg">
+                  {story.description.split('\n\n')[0]}
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Content */}
-          <div className="p-8 md:p-12">
-            {/* Title */}
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 leading-tight">
-              {story.title}
-            </h1>
-
-            {/* Meta Information */}
-            <div className="flex flex-wrap items-center gap-6 mb-8 text-sm text-gray-600">
-              <div className="flex items-center">
-                <span className="mr-2">👤</span>
-                <span>{story.author}</span>
-              </div>
-              <div className="flex items-center">
-                <span className="mr-2">📅</span>
-                <span>{formatDate(story.date)}</span>
-              </div>
-            </div>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-8">
-              {story.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${getTagColor(tag)}`}
-                >
-                  {tag.charAt(0).toUpperCase() + tag.slice(1)}
-                </span>
-              ))}
-            </div>
-
-            {/* Story Content */}
+          {/* Full Story Content */}
+          <div className="px-8 pb-8">
             <div className="prose prose-lg max-w-none">
               <div className="text-gray-700 leading-relaxed space-y-6">
-                {story.description.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="text-lg leading-relaxed">
+                {story.description.split('\n\n').slice(1).map((paragraph, index) => (
+                  <p key={index} className="text-base leading-relaxed">
                     {paragraph}
                   </p>
                 ))}
               </div>
             </div>
+          </div>
 
-            {/* Call to Action */}
-            <div className="mt-12 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-100">
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                Inspired by this story?
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Join us in creating more success stories like this. Get involved with RWUA Nepal's programs and make a difference in rural communities.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-                >
-                  Get Involved
-                </Link>
-                <Link
-                  href="/vacancy"
-                  className="inline-flex items-center px-6 py-3 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 transition-colors"
-                >
-                  View Opportunities
-                </Link>
+          {/* Related Stories Section */}
+          {relatedStories.length > 0 && (
+            <div className="px-8 pb-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-6">Related Stories</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {relatedStories.map((relatedStory) => (
+                  <div key={relatedStory.id} className="group">
+                    <Link href={`/success-story/${relatedStory.id}`}>
+                      <div className="relative h-40 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg overflow-hidden mb-3">
+                        <Image
+                          src={relatedStory.image}
+                          alt={relatedStory.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          onError={() => {}}
+                        />
+                      </div>
+                      <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                        {relatedStory.title}
+                      </h4>
+                      <button className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                        Read More
+                      </button>
+                    </Link>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          )}
         </article>
-
-        {/* Back to Stories */}
-        <div className="mt-12 text-center">
-          <Link
-            href="/success-story"
-            className="inline-flex items-center px-8 py-4 bg-white text-gray-700 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-          >
-            <span className="mr-2">📚</span>
-            View More Success Stories
-          </Link>
-        </div>
       </div>
     </div>
   );

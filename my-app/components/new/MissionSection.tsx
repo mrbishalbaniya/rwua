@@ -28,7 +28,7 @@ export const MissionSection: React.FC = () => {
   const [cards, setCards] = useState<CardState[]>([]);
   const [isGrabbing, setIsGrabbing] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const dragStart = useRef({ x: 0, y: 0, cardId: -1 });
   const velocity = useRef({ x: 0, y: 0 });
   const lastPos = useRef({ x: 0, y: 0 });
@@ -37,7 +37,7 @@ export const MissionSection: React.FC = () => {
   useEffect(() => {
     const initial = STACK_IMAGES.map((img, i) => ({
       ...img,
-      x: 0, 
+      x: 0,
       y: 0,
       rot: (i % 2 === 0 ? 1.5 : -1.5) * i,
       scale: 1,
@@ -76,7 +76,7 @@ export const MissionSection: React.FC = () => {
         y: (clientY - lastPos.current.y) / dt
       };
     }
-    
+
     lastPos.current = { x: clientX, y: clientY };
     lastTime.current = now;
 
@@ -95,7 +95,7 @@ export const MissionSection: React.FC = () => {
     if (activeId === -1) return;
 
     const speed = Math.sqrt(velocity.current.x ** 2 + velocity.current.y ** 2);
-    
+
     if (speed > 0.6) {
       const throwDirectionX = velocity.current.x * 800;
       const throwDirectionY = velocity.current.y * 800;
@@ -148,9 +148,9 @@ export const MissionSection: React.FC = () => {
     <section className="py-24 lg:py-36 bg-white overflow-hidden select-none" onMouseUp={handleMouseUp} onTouchEnd={handleMouseUp}>
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
-          
+
           <div className="w-full lg:w-1/2 relative flex flex-col items-center">
-            <div 
+            <div
               ref={containerRef}
               className="relative w-full max-w-[460px] aspect-square flex items-center justify-center"
               onMouseMove={handleMouseMove}
@@ -158,7 +158,7 @@ export const MissionSection: React.FC = () => {
               style={{ cursor: isGrabbing ? 'grabbing' : 'grab' }}
             >
               <div className="absolute inset-0 bg-stone-100/40 rounded-full blur-3xl -z-10 scale-125"></div>
-              
+
               {cards.map((card) => (
                 <div
                   key={card.id}
@@ -184,15 +184,15 @@ export const MissionSection: React.FC = () => {
                     draggable={false}
                   />
                   <div className="absolute bottom-10 left-10 right-10">
-                     <div className="bg-white/95 backdrop-blur-xl px-6 py-2.5 rounded-full shadow-2xl border border-white/20 inline-flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-vibrant-gold animate-pulse"></div>
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-deep-purple">Impact Area 0{card.id}</span>
-                     </div>
+                    <div className="bg-white/95 backdrop-blur-xl px-6 py-2.5 rounded-full shadow-2xl border border-white/20 inline-flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-vibrant-gold animate-pulse"></div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-deep-purple">Impact Area 0{card.id}</span>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-            
+
             <div className="mt-16 flex items-center gap-6 group">
               <div className="w-12 h-[1px] bg-stone-200 group-hover:w-20 transition-all"></div>
               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-stone-300">
@@ -207,7 +207,7 @@ export const MissionSection: React.FC = () => {
               A Dignified <br />
               <span className="text-terracotta italic">Life for All.</span>
             </h2>
-            
+
             <div className="mb-12 p-8 bg-stone-50 border-l-8 border-vibrant-gold rounded-r-3xl">
               <p className="text-stone-800 text-xl lg:text-2xl font-bold italic leading-relaxed">
                 "{CORE_GOAL}"

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -14,7 +14,6 @@ export const metadata: Metadata = {
   description: "Empowering rural women through education, skill development, and sustainable livelihood opportunities.",
   keywords: "rural development, women empowerment, education, skill development, NGO",
   authors: [{ name: "RWUA Team" }],
-  viewport: "width=device-width, initial-scale=1",
   openGraph: {
     title: "RWUA - Rural Upliftment Women Association",
     description: "Empowering rural women through education, skill development, and sustainable livelihood opportunities.",
@@ -26,6 +25,11 @@ export const metadata: Metadata = {
     title: "RWUA - Rural Upliftment Women Association",
     description: "Empowering rural women through education, skill development, and sustainable livelihood opportunities.",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

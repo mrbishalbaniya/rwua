@@ -39,15 +39,20 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-stone-50 via-white to-stone-100">
       {/* Hero Section */}
       <section className="py-16 px-4 text-center">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <span className="w-16 h-[2px] bg-terracotta"></span>
+            <span className="text-terracotta font-black uppercase tracking-[0.6em] text-[10px]">Get In Touch</span>
+            <span className="w-16 h-[2px] bg-terracotta"></span>
+          </div>
+          <h1 className="text-5xl md:text-6xl font-black text-deep-purple mb-6 tracking-tight">
             Let&apos;s Work<br />
-            <span className="text-gray-700">Together</span>
+            <span className="text-vibrant-gold font-serif-impact italic">Together</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-stone-600 max-w-2xl mx-auto font-medium">
             Connect with RWUA Nepal. We&apos;re here to help and answer any questions about our programs and services.
           </p>
         </div>
@@ -77,8 +82,8 @@ export default function ContactPage() {
                 {/* Location Pin */}
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-md">
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium text-gray-800">We are here</span>
+                    <div className="w-2 h-2 bg-terracotta rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-deep-purple">We are here</span>
                   </div>
                 </div>
               </div>
@@ -86,53 +91,53 @@ export default function ContactPage() {
               {/* Contact Info Cards */}
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Phone */}
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-vibrant-gold/20 transition-all">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <Phone className="w-5 h-5 text-black" />
+                    <div className="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center">
+                      <Phone className="w-4 h-4 text-black" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">Phone</p>
-                      <p className="font-medium text-gray-900">046-411109</p>
+                      <p className="text-sm text-stone-500 uppercase tracking-wide font-black">Phone</p>
+                      <p className="font-bold text-deep-purple">046-411109</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Email */}
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-vibrant-gold/20 transition-all">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <Mail className="w-5 h-5 text-black" />
+                    <div className="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center">
+                      <Mail className="w-4 h-4 text-black" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">Email</p>
-                      <p className="font-medium text-gray-900">info@rwua.org</p>
+                      <p className="text-sm text-stone-500 uppercase tracking-wide font-black">Email</p>
+                      <p className="font-bold text-deep-purple">info@rwua.org</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Address */}
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-vibrant-gold/20 transition-all">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <MapPin className="w-5 h-5 text-black" />
+                    <div className="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center">
+                      <MapPin className="w-4 h-4 text-black" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">Address</p>
-                      <p className="font-medium text-gray-900">Haripur, Nepal</p>
+                      <p className="text-sm text-stone-500 uppercase tracking-wide font-black">Address</p>
+                      <p className="font-bold text-deep-purple">Haripur, Nepal</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Hours */}
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-vibrant-gold/20 transition-all">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-black" />
+                    <div className="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center">
+                      <Clock className="w-4 h-4 text-black" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">Hours</p>
-                      <p className="font-medium text-gray-900">10AM - 5PM</p>
+                      <p className="text-sm text-stone-500 uppercase tracking-wide font-black">Hours</p>
+                      <p className="font-bold text-deep-purple">10AM - 5PM</p>
                     </div>
                   </div>
                 </div>
@@ -150,7 +155,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent text-lg placeholder-gray-400 focus:border-gray-800 focus:outline-none transition-colors"
+                    className="w-full px-0 py-4 border-0 border-b-2 border-stone-200 bg-transparent text-lg placeholder-stone-400 focus:border-deep-purple focus:outline-none transition-colors font-medium"
                     placeholder="Your Name"
                   />
                 </div>
@@ -163,7 +168,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent text-lg placeholder-gray-400 focus:border-gray-800 focus:outline-none transition-colors"
+                    className="w-full px-0 py-4 border-0 border-b-2 border-stone-200 bg-transparent text-lg placeholder-stone-400 focus:border-deep-purple focus:outline-none transition-colors font-medium"
                     placeholder="Your e-Mail"
                   />
                 </div>
@@ -176,7 +181,7 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent text-lg placeholder-gray-400 focus:border-gray-800 focus:outline-none transition-colors resize-none"
+                    className="w-full px-0 py-4 border-0 border-b-2 border-stone-200 bg-transparent text-lg placeholder-stone-400 focus:border-deep-purple focus:outline-none transition-colors resize-none font-medium"
                     placeholder="Your message to us"
                   />
                 </div>
@@ -189,9 +194,9 @@ export default function ContactPage() {
                     id="needQuickReply"
                     checked={formData.needQuickReply}
                     onChange={handleInputChange}
-                    className="w-5 h-5 text-gray-800 bg-gray-100 border-gray-300 rounded focus:ring-gray-500 focus:ring-2"
+                    className="w-5 h-5 text-deep-purple bg-stone-100 border-stone-300 rounded focus:ring-deep-purple focus:ring-2"
                   />
-                  <label htmlFor="needQuickReply" className="text-gray-700 font-medium cursor-pointer">
+                  <label htmlFor="needQuickReply" className="text-stone-700 font-bold cursor-pointer">
                     I need a quick reply
                   </label>
                 </div>
@@ -200,8 +205,8 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full bg-black text-white font-medium py-4 px-8 rounded-lg hover:bg-gray-800 disabled:bg-gray-400 transition-all duration-200 flex items-center justify-center space-x-3 group ${
-                    isSubmitting ? 'cursor-not-allowed' : 'cursor-pointer'
+                  className={`w-full py-4 text-white bg-deep-purple rounded-2xl hover:bg-black transition-all flex items-center justify-center space-x-3 group font-black uppercase tracking-[0.3em] text-sm shadow-[0_30px_70px_-15px_rgba(76,29,149,0.35)] hover:scale-105 active:scale-95 ${
+                    isSubmitting ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
                   }`}
                 >
                   {isSubmitting ? (
@@ -219,14 +224,14 @@ export default function ContactPage() {
 
                 {/* Status Messages */}
                 {submitStatus === 'success' && (
-                  <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                    <p className="text-green-800 text-sm font-medium">Message sent successfully! We&apos;ll get back to you soon.</p>
+                  <div className="p-4 bg-vibrant-gold/10 border border-vibrant-gold/20 rounded-2xl">
+                    <p className="text-vibrant-gold text-sm font-bold">Message sent successfully! We&apos;ll get back to you soon.</p>
                   </div>
                 )}
                 
                 {submitStatus === 'error' && (
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                    <p className="text-red-800 text-sm font-medium">Failed to send message. Please try again.</p>
+                  <div className="p-4 bg-terracotta/10 border border-terracotta/20 rounded-2xl">
+                    <p className="text-terracotta text-sm font-bold">Failed to send message. Please try again.</p>
                   </div>
                 )}
               </form>

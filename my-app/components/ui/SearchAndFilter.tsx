@@ -10,7 +10,7 @@ interface SearchAndFilterProps {
   activeCategory: string;
   placeholder?: string;
   resultsCount?: number;
-  pageType?: 'stories' | 'vacancies' | 'articles';
+  pageType?: 'stories' | 'vacancies';
 }
 
 export default function SearchAndFilter({
@@ -24,6 +24,7 @@ export default function SearchAndFilter({
 }: SearchAndFilterProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   // Debounced search function
   const debounceSearch = useCallback(
@@ -46,64 +47,29 @@ export default function SearchAndFilter({
     setSearchQuery(query);
   };
 
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
   const handleCategoryClick = (category: string) => {
     onFilter(category);
     setIsFilterOpen(false);
   };
 
-  const getPageContent = () => {
-    if (pageType === 'vacancies') {
-      return {
-        title: 'Career Opportunities',
-        subtitle: 'Join our mission to empower rural communities across Nepal'
-      };
-    }
-    if (pageType === 'articles') {
-      return {
-        title: 'News & Press',
-        subtitle: 'Latest updates and news from our community development initiatives'
-      };
-    }
-    return {
-      title: 'Success Stories',
-      subtitle: 'Inspiring tales of transformation and community empowerment'
-    };
-  };
-
-  const { title, subtitle } = getPageContent();
-
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-          {title}
-        </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          {subtitle}
-        </p>
-      </div>
-
-      {/* Search and Filter Controls */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-        {/* Search Input */}
-        <div className="relative w-full md:w-1/3">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            placeholder={placeholder}
-            className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm transition-all duration-200"
-          />
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-        </div>
-
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap gap-2">
+      {/* Search and Filter Controls - CSS Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-center">
+        {/* Left Side: Filter Controls */}
+        <div className="order-2 md:order-1">
           {/* Mobile Filter Toggle */}
           <button
             onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className="md:hidden flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors cursor-pointer"
+            className="md:hidden flex items-center gap-2 px-4 py-2 bg-stone-200 text-deep-purple rounded-lg hover:bg-stone-300 transition-colors duration-300 ease-out cursor-pointer font-bold"
           >
             <Filter className="w-4 h-4" />
             Filter
@@ -115,30 +81,56 @@ export default function SearchAndFilter({
               <button
                 key={category}
                 onClick={() => handleCategoryClick(category)}
-                className={`px-4 py-2 rounded-lg transition-colors cursor-pointer ${activeCategory === category
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
+                className={`px-4 py-2 rounded-lg transition-colors duration-300 ease-out cursor-pointer font-bold ${
+                  activeCategory === category
+                    ? 'bg-deep-purple text-white shadow-lg'
+                    : 'bg-stone-200 text-deep-purple hover:bg-vibrant-gold hover:text-white'
+                }`}
               >
                 {category}
               </button>
             ))}
           </div>
         </div>
+
+        {/* Right Side: Search Input */}
+        <div className="relative w-full order-1 md:order-2">
+          <div className={`relative transition-all duration-300 ease-out ${
+            isFocused ? 'md:w-96' : 'md:w-80'
+          } w-full`}>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              placeholder={placeholder}
+              className={`w-full pl-10 pr-4 py-3 rounded-lg border shadow-sm transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-deep-purple font-medium ${
+                isFocused 
+                  ? 'border-deep-purple focus:border-transparent' 
+                  : 'border-stone-300 focus:border-transparent'
+              }`}
+            />
+            <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 transition-colors duration-300 ease-out ${
+              isFocused ? 'text-deep-purple' : 'text-stone-400'
+            }`} />
+          </div>
+        </div>
       </div>
 
       {/* Mobile Filter Dropdown */}
       {isFilterOpen && (
-        <div className="md:hidden bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+        <div className="md:hidden bg-white border border-stone-200 rounded-lg shadow-lg p-4 transition-all duration-300 ease-out">
           <div className="grid grid-cols-2 gap-2">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => handleCategoryClick(category)}
-                className={`px-3 py-2 rounded-lg text-sm transition-colors cursor-pointer ${activeCategory === category
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
+                className={`px-3 py-2 rounded-lg text-sm transition-colors duration-300 ease-out cursor-pointer font-bold ${
+                  activeCategory === category
+                    ? 'bg-deep-purple text-white'
+                    : 'bg-stone-100 text-deep-purple hover:bg-vibrant-gold hover:text-white'
+                }`}
               >
                 {category}
               </button>
@@ -149,9 +141,9 @@ export default function SearchAndFilter({
 
       {/* Results Counter */}
       {resultsCount !== undefined && (
-        <div className="text-gray-600">
-          <p>
-            Showing <span className="font-semibold">{resultsCount}</span> results
+        <div className="text-stone-600">
+          <p className="font-medium">
+            Showing <span className="font-bold text-deep-purple">{resultsCount}</span> results
           </p>
         </div>
       )}
