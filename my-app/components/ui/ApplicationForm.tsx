@@ -25,15 +25,57 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
 
   // Lock/unlock body scroll when modal opens/closes
   useEffect(() => {
+    const preventScroll = (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    };
+
+    const preventTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+    };
+
     if (isOpen) {
+      // Prevent all scrolling on body and html
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = '0';
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.documentElement.style.overflow = 'hidden';
+      
+      // Add event listeners to prevent scrolling
+      document.addEventListener('wheel', preventScroll, { passive: false });
+      document.addEventListener('touchmove', preventTouchMove, { passive: false });
+      document.addEventListener('scroll', preventScroll, { passive: false });
     } else {
+      // Restore scrolling
       document.body.style.overflow = 'unset';
+      document.body.style.position = 'unset';
+      document.body.style.top = 'unset';
+      document.body.style.left = 'unset';
+      document.body.style.right = 'unset';
+      document.documentElement.style.overflow = 'unset';
+      
+      // Remove event listeners
+      document.removeEventListener('wheel', preventScroll);
+      document.removeEventListener('touchmove', preventTouchMove);
+      document.removeEventListener('scroll', preventScroll);
     }
 
     // Cleanup function to restore scroll when component unmounts
     return () => {
       document.body.style.overflow = 'unset';
+      document.body.style.position = 'unset';
+      document.body.style.top = 'unset';
+      document.body.style.left = 'unset';
+      document.body.style.right = 'unset';
+      document.documentElement.style.overflow = 'unset';
+      
+      // Remove event listeners
+      document.removeEventListener('wheel', preventScroll);
+      document.removeEventListener('touchmove', preventTouchMove);
+      document.removeEventListener('scroll', preventScroll);
     };
   }, [isOpen]);
 
@@ -75,8 +117,22 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 overflow-hidden">
-      <div className="relative p-6 bg-white rounded-xl shadow-lg w-full max-w-md">
+    <div 
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 overflow-hidden"
+      style={{ 
+        touchAction: 'none',
+        overscrollBehavior: 'none'
+      }}
+      onWheel={(e) => e.preventDefault()}
+      onTouchMove={(e) => e.preventDefault()}
+    >
+      <div 
+        className="relative p-6 bg-white rounded-xl shadow-lg w-full max-w-md overflow-hidden"
+        style={{ 
+          maxHeight: '90vh',
+          touchAction: 'none'
+        }}
+      >
         {/* Decorative Background - Smaller */}
         <div className="absolute inset-0 -z-10 transform rotate-3 bg-deep-purple rounded-xl"></div>
         
