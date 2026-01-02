@@ -1,3 +1,0 @@
-module.exports=[82384,a=>{"use strict";var b=a.i(7997),c=a.i(83569);function d({children:a}){return(0,b.jsx)("div",{className:c.default.variable,children:(0,b.jsx)("main",{role:"main",children:a})})}a.s(["default",()=>d,"metadata",0,{title:"Vacancies - RWUA",description:"Current job opportunities at Rural Upliftment Women Association."}])}];
-
-//# sourceMappingURL=app_vacancy_layout_tsx_53fb12fc._.js.map

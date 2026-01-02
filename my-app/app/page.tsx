@@ -14,9 +14,9 @@ import { About } from '@/components/new/About';
 export default function Home() {
   return (
     <div className="bg-white">
-      <ImpactHero />
-      <MissionSection />
-      <FocusAreas />
+      <ImpactHero / >
+      <MissionSection /    >
+      <FocusAreas  />
       <ChairpersonSection />
       <About />
       <CoolDivider />

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { vacancies } from '@/lib/data';
-import VacancyCard from '@/components/ui/VacancyCard';
+import ModernVacancyCard from '@/components/ui/ModernVacancyCard';
 
 export default function VacancyPage() {
   // Filter only open vacancies
@@ -19,7 +19,7 @@ export default function VacancyPage() {
         </div>
         
         <div className="grid md:grid-cols-2 gap-10">
-          {openVacancies.map(v => <VacancyCard key={v.id} vacancy={v} />)}
+          {openVacancies.map(v => <ModernVacancyCard key={v.id} vacancy={v} />)}
         </div>
 
         {openVacancies.length === 0 && (
