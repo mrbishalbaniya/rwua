@@ -56,6 +56,22 @@ const facebookNewsData = [
 ];
 
 export default function FacebookPage() {
+    const [searchQuery, setSearchQuery] = useState('');
+
+    // Filter news based on search query
+    const filteredNews = useMemo(() => {
+        if (!searchQuery.trim()) {
+            return facebookNewsData;
+        }
+
+        const query = searchQuery.toLowerCase();
+        return facebookNewsData.filter(news =>
+            news.title.toLowerCase().includes(query) ||
+            news.excerpt.toLowerCase().includes(query) ||
+            news.category.toLowerCase().includes(query)
+        );
+    }, [searchQuery]);
+
     return (
         <div className="min-h-screen" style={{ backgroundColor: '#ffffff' }}>
             {/* Breadcrumb Section */}
@@ -179,6 +195,8 @@ export default function FacebookPage() {
                     </div>
                 </main>
             </div>
+
+            <div className="pb-24"></div>
         </div>
     );
 }
