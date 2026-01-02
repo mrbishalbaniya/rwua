@@ -26,14 +26,22 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
   // Lock/unlock body scroll when modal opens/closes
   useEffect(() => {
     if (isOpen) {
+      // Prevent all scrolling on body
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
     } else {
-      document.body.style.overflow = 'unset';
+      // Restore scrolling
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     }
 
     // Cleanup function to restore scroll when component unmounts
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     };
   }, [isOpen]);
 
@@ -75,8 +83,22 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 overflow-hidden">
-      <div className="relative p-6 bg-white rounded-xl shadow-lg w-full max-w-md">
+    <div 
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 overflow-hidden"
+      style={{ 
+        touchAction: 'none',
+        overscrollBehavior: 'none'
+      }}
+      onWheel={(e) => e.preventDefault()}
+      onTouchMove={(e) => e.preventDefault()}
+    >
+      <div 
+        className="relative p-6 bg-white rounded-xl shadow-lg w-full max-w-md overflow-hidden"
+        style={{ 
+          maxHeight: '90vh',
+          touchAction: 'none'
+        }}
+      >
         {/* Decorative Background - Smaller */}
         <div className="absolute inset-0 -z-10 transform rotate-3 bg-deep-purple rounded-xl"></div>
         
