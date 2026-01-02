@@ -165,7 +165,7 @@ export default function ArchivePage() {
                             <select
                                 value={selectedYear}
                                 onChange={(e) => setSelectedYear(e.target.value)}
-                                className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                                className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400"
                             >
                                 <option value="">सबै वर्षहरू</option>
                                 {availableYears.map(year => (
@@ -233,15 +233,15 @@ export default function ArchivePage() {
                                                 </span>
                                                 <span className="text-xs text-gray-500">{news.date}</span>
                                             </div>
-                                            <h3 className="font-bold text-lg text-gray-800 mb-3 line-clamp-2 hover:text-blue-800 transition-colors duration-200 cursor-pointer">
-                                                <Link href={`/news/${news.id}`} className="hover:text-blue-800 transition-colors duration-200">
+                                            <h3 className="font-bold text-lg text-gray-800 mb-3 line-clamp-2 hover:text-deep-purple transition-colors duration-200 cursor-pointer">
+                                                <Link href={`/news/${news.id}`} className="hover:text-deep-purple transition-colors duration-200">
                                                     {news.title}
                                                 </Link>
                                             </h3>
                                             <p className="text-gray-600 text-sm line-clamp-3 mb-4">
                                                 {news.excerpt}
                                             </p>
-                                            <Link href={`/news/${news.id}`} className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors duration-200 group">
+                                            <Link href={`/news/${news.id}`} className="inline-flex items-center text-deep-purple hover:text-black font-semibold text-sm transition-colors duration-200 group">
                                                 Read Archive
                                                 <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -257,7 +257,7 @@ export default function ArchivePage() {
                     {/* Load More Button */}
                     {!searchQuery && !selectedYear && (
                         <div className="text-center mt-12">
-                            <button className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors duration-200 group bg-transparent border-2 border-blue-600 hover:border-blue-800 rounded-lg py-3 px-6">
+                            <button className="inline-flex items-center text-deep-purple hover:text-white font-semibold text-sm transition-all duration-300 group bg-transparent border-2 border-deep-purple hover:border-deep-purple hover:bg-deep-purple rounded-lg py-3 px-6">
                                 Load More Archives
                                 <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />

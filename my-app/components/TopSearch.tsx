@@ -38,7 +38,7 @@ export default function TopSearch({ onSearch }: TopSearchProps) {
                         name="q"
                         value={searchValue}
                         onChange={handleInputChange}
-                        className="w-full border h-12 shadow p-4 rounded-full dark:text-gray-800 dark:border-gray-700 dark:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-slate-400 transition-all duration-200"
+                        className="w-full border h-12 shadow p-4 rounded-full dark:text-gray-800 dark:border-gray-700 dark:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 transition-all duration-200"
                         placeholder="Search News & Articles..."
                     />
                     <button type="submit" className="absolute top-3.5 right-3 hover:scale-110 transition-transform duration-200">

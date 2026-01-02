@@ -178,13 +178,13 @@ export default function StoryDetailPage() {
                           alt={relatedStory.title}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          onError={() => {}}
+                          onError={() => { }}
                         />
                       </div>
                       <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
                         {relatedStory.title}
                       </h4>
-                      <button className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                      <button className="inline-flex items-center px-4 py-2 bg-deep-purple text-white text-sm font-medium rounded-lg hover:bg-black transition-colors">
                         Read More
                       </button>
                     </Link>

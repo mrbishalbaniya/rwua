@@ -194,7 +194,7 @@ export default function ContactPage() {
                     id="needQuickReply"
                     checked={formData.needQuickReply}
                     onChange={handleInputChange}
-                    className="w-5 h-5 text-deep-purple bg-stone-100 border-stone-300 rounded focus:ring-deep-purple focus:ring-2"
+                    className="w-5 h-5 text-deep-purple bg-stone-100 border-stone-300 rounded focus:ring-indigo-200 focus:ring-2"
                   />
                   <label htmlFor="needQuickReply" className="text-stone-700 font-bold cursor-pointer">
                     I need a quick reply
