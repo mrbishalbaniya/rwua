@@ -1,11 +1,10 @@
-
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { CORE_GOAL, OBJECTIVES } from '@/lib/constants';
 
 const STACK_IMAGES = [
-  { id: 1, url: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1200', title: 'Life in Hands' },
+  { id: 1, url: 'https://rwua.com.np/wp-content/uploads/2021/04/7-rotated.jpg', title: 'Life in Hands' },
   { id: 2, url: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200', title: 'Community Bonds' },
   { id: 3, url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200', title: 'Empowerment' },
   { id: 4, url: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1200', title: 'Sustainable Growth' },
@@ -14,6 +13,7 @@ const STACK_IMAGES = [
 interface CardState {
   id: number;
   url: string;
+  title: string;
   x: number;
   y: number;
   rot: number;
@@ -21,6 +21,7 @@ interface CardState {
   opacity: number;
   isThrown: boolean;
   zIndex: number;
+  noAnim?: boolean; // New flag to disable transition during reset
 }
 
 export const MissionSection: React.FC = () => {
@@ -42,7 +43,8 @@ export const MissionSection: React.FC = () => {
       scale: 1,
       opacity: 1,
       isThrown: false,
-      zIndex: STACK_IMAGES.length - i
+      zIndex: STACK_IMAGES.length - i,
+      noAnim: false
     }));
     setCards(initial);
   }, []);
@@ -83,7 +85,7 @@ export const MissionSection: React.FC = () => {
 
     setCards(prev => prev.map(c => 
       c.id === dragStart.current.cardId 
-        ? { ...c, x: deltaX, y: deltaY, rot: deltaX * 0.1 } 
+        ? { ...c, x: deltaX, y: deltaY, rot: deltaX * 0.1, noAnim: false } 
         : c
     ));
   };
@@ -98,25 +100,16 @@ export const MissionSection: React.FC = () => {
       const throwDirectionX = velocity.current.x * 800;
       const throwDirectionY = velocity.current.y * 800;
 
+      // 1. Start the throw
       setCards(prev => prev.map(c => 
         c.id === activeId 
-          ? { 
-              ...c, 
-              isThrown: true, 
-              x: throwDirectionX, 
-              y: throwDirectionY, 
-              rot: c.rot + (velocity.current.x * 50),
-              scale: 0.8,
-              opacity: 0
-            } 
+          ? { ...c, isThrown: true, x: throwDirectionX, y: throwDirectionY, opacity: 0, scale: 0.5 } 
           : c
       ));
 
+      // 2. Teleport back to center while invisible
       setTimeout(() => {
         setCards(prev => {
-          const movingCard = prev.find(c => c.id === activeId);
-          if (!movingCard) return prev;
-
           return prev.map(c => {
             if (c.id === activeId) {
               return { 
@@ -126,17 +119,24 @@ export const MissionSection: React.FC = () => {
                 y: 0, 
                 rot: (Math.random() - 0.5) * 8, 
                 scale: 1, 
-                opacity: 1, 
-                zIndex: 1 
+                opacity: 0, // Keep invisible
+                zIndex: 1,
+                noAnim: true // Disable transition for the jump
               };
             }
-            return { ...c, zIndex: c.zIndex + 1 };
+            return { ...c, zIndex: c.zIndex + 1, noAnim: false };
           });
         });
+
+        // 3. Fade back in at the bottom of the stack
+        setTimeout(() => {
+            setCards(prev => prev.map(c => c.id === activeId ? { ...c, opacity: 1, noAnim: false } : c));
+        }, 50);
+
       }, 400);
     } else {
       setCards(prev => prev.map(c => 
-        c.id === activeId ? { ...c, x: 0, y: 0, rot: 0 } : c
+        c.id === activeId ? { ...c, x: 0, y: 0, rot: 0, noAnim: false } : c
       ));
     }
 
@@ -164,17 +164,22 @@ export const MissionSection: React.FC = () => {
                   key={card.id}
                   onMouseDown={(e) => handleMouseDown(e, card.id)}
                   onTouchStart={(e) => handleMouseDown(e, card.id)}
-                  className={`absolute w-full h-full bg-white p-4 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.12)] border border-stone-100 rounded-[32px] pointer-events-auto overflow-hidden`}
+                  className="absolute w-full h-full bg-white p-4 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.12)] border border-stone-100 rounded-[32px] pointer-events-auto overflow-hidden"
                   style={{
                     transform: `translate(${card.x}px, ${card.y}px) rotate(${card.rot}deg) scale(${card.scale})`,
                     zIndex: card.zIndex,
                     opacity: card.opacity,
-                    transition: card.isThrown ? 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : (isGrabbing && dragStart.current.cardId === card.id ? 'none' : 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)')
+                    // The logic here handles the removal of the 'back-going' animation
+                    transition: card.noAnim 
+                      ? 'none' 
+                      : (card.isThrown 
+                          ? 'all 0.4s ease-out' 
+                          : (isGrabbing && dragStart.current.cardId === card.id ? 'none' : 'all 0.5s ease-out'))
                   }}
                 >
                   <img 
                     src={card.url} 
-                    alt="Mission focus" 
+                    alt={card.title} 
                     className="w-full h-full object-cover rounded-2xl grayscale-[15%] group-hover:grayscale-0 transition-all duration-700"
                     draggable={false}
                   />
