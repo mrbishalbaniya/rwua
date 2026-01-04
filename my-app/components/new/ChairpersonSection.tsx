@@ -1,154 +1,171 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useCallback } from 'react';
+import { ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
 import { ORG_MEMBERS } from '@/lib/constants';
 
+interface ShowcaseMember {
+  id: string;
+  title: string;
+  nepaliName: string;
+  role: string;
+  description: string;
+  imageUrl: string;
+  themeColor: string;
+  buttonColor: string;
+}
+
+const MEMBER_SLIDES: ShowcaseMember[] = ORG_MEMBERS.map((member, index) => ({
+  id: member.id,
+  title: member.name.split(' ')[0], // First name for large display
+  nepaliName: member.nepaliName,
+  role: member.role,
+  description: 'Leading the transformation of rural communities through women empowerment and sustainable development initiatives. Dedicated to creating lasting change through education, healthcare, and economic opportunities.',
+  imageUrl: index === 0 
+    ? 'https://rwua.com.np/wp-content/uploads/2014/12/goma.jpg?auto=format&fit=crop&q=80&w=1200' 
+    : 'https://rwua.com.np/wp-content/uploads/2023/03/Bishnu-chalise-scaled.jpg?auto=format&fit=crop&q=80&w=1200',
+  themeColor: index === 0 ? 'rgba(30, 58, 138, 0.4)' : 'rgba(37, 99, 235, 0.4)', // Blue theme variations
+  buttonColor: index === 0 ? 'bg-blue-800 hover:bg-blue-700' : 'bg-blue-600 hover:bg-blue-500',
+}));
+
+// Background images for the backdrop
+const BACKGROUND_IMAGES = [
+  '/images/bg1.png?auto=format&fit=crop&q=80&w=1200', // bg1
+  '/images/bg2.png?auto=format&fit=crop&q=80&w=1200', // bg2
+];
+
 export const ChairpersonSection: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [slides] = useState<ShowcaseMember[]>(MEMBER_SLIDES);
 
-  const nextSlide = () => setActiveIndex((prev) => (prev + 1) % ORG_MEMBERS.length);
-  const prevSlide = () => setActiveIndex((prev) => (prev - 1 + ORG_MEMBERS.length) % ORG_MEMBERS.length);
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % slides.length);
+  }, [slides.length]);
 
-  useEffect(() => {
-    const timer = setInterval(nextSlide, 8000);
-    return () => clearInterval(timer);
-  }, []);
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  }, [slides.length]);
 
-  const member = ORG_MEMBERS[activeIndex];
+  const handleReset = () => {
+    setCurrentIndex(0);
+  };
+
+  const currentSlide = slides[currentIndex];
+  const nextSlide = slides[(currentIndex + 1) % slides.length];
 
   return (
-    <section className="relative w-full h-screen min-h-[750px] overflow-hidden bg-black text-white flex items-center">
-      
-      {/* 1. DYNAMIC BACKGROUND LAYER */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`bg-${member.id}`}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 0.5, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute inset-0 z-0"
-        >
-          <img 
-            // Dynamically selects bg1.png, bg2.png based on activeIndex
-            src={`/images/bg${activeIndex + 1}.png`} 
-            className="w-full h-full object-cover grayscale-[20%]" 
-            alt="Background" 
-            // Fallback to member image if bg file is missing
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = member.imageUrl;
-            }}
-          />
-          {/* Cinematic Red-Black Gradient Mask */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-black via-black/90 to-red-950/20" />
-        </motion.div>
-      </AnimatePresence>
-
-      <div className="container mx-auto px-8 md:px-16 lg:px-24 relative z-10 w-full">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
-          
-          {/* 2. OVERWRITTEN TEXT STYLE BOX */}
-          <div className="w-full lg:w-1/3 pt-20 lg:pt-0">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`text-${member.id}`}
-                initial={{ opacity: 0, x: -40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.6 }}
-              >
-                <h2 className="text-7xl lg:text-[110px] font-serif-impact mb-6 tracking-tighter leading-[0.85] drop-shadow-2xl">
-                  {member.name.split(' ')[0]}
-                </h2>
-                
-                <div className="max-w-sm">
-                  <p className="text-stone-300 text-sm md:text-base leading-relaxed mb-10 opacity-80 font-nepali">
-                    {member.quote}
-                  </p>
-                  
-                  <button className="bg-red-800 hover:bg-red-700 text-white px-10 py-4 rounded-xl font-bold text-[10px] uppercase tracking-[0.2em] transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(153,27,27,0.4)]">
-                    Explore Story
-                  </button>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* 3. STACKED IMAGE CARDS */}
-          <div className="w-full lg:w-2/3 flex items-center justify-center lg:justify-end h-[500px] relative">
-            <div className="relative w-[300px] h-[400px]">
-              <AnimatePresence mode="popLayout">
-                {ORG_MEMBERS.map((m, i) => {
-                  const relativeIndex = i - activeIndex;
-                  const isVisible = relativeIndex >= 0 && relativeIndex <= 2;
-                  
-                  if (!isVisible) return null;
-
-                  return (
-                    <motion.div
-                      key={m.id}
-                      initial={{ opacity: 0, x: 150 }}
-                      animate={{
-                        x: relativeIndex * 50,
-                        scale: 1 - relativeIndex * 0.1,
-                        opacity: 1 - relativeIndex * 0.4,
-                        z: -relativeIndex * 100,
-                        borderWidth: relativeIndex === 0 ? '6px' : '0px',
-                      }}
-                      exit={{ opacity: 0, x: -200, scale: 0.8 }}
-                      transition={{ type: "spring", stiffness: 150, damping: 22 }}
-                      style={{ 
-                        zIndex: ORG_MEMBERS.length - i,
-                        position: 'absolute'
-                      }}
-                      className="w-[320px] h-[420px] rounded-[45px] overflow-hidden border-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] bg-stone-900"
-                    >
-                      <img src={m.imageUrl} className="w-full h-full object-cover" alt={m.name} />
-                      
-                      {relativeIndex === 0 && (
-                        <motion.div 
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="absolute bottom-6 left-6 right-6 bg-black/40 backdrop-blur-xl p-4 rounded-2xl border border-white/10"
-                        >
-                          <h4 className="text-xl font-bold font-nepali">{m.nepaliName}</h4>
-                          <p className="text-red-500 text-[10px] font-black uppercase tracking-widest">{m.role}</p>
-                        </motion.div>
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    </motion.div>
-                  );
-                })}
-              </AnimatePresence>
-            </div>
-          </div>
-        </div>
-
-        {/* 4. BOTTOM CONTROLS */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6">
-          <div className="flex gap-2">
-            {ORG_MEMBERS.map((_, i) => (
-              <div 
-                key={i} 
-                className={`h-1.5 rounded-full transition-all duration-500 ${
-                  i === activeIndex ? 'w-10 bg-white' : 'w-2 bg-white/20'
-                }`} 
-              />
-            ))}
-          </div>
-
-          <div className="flex bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
-            <button onClick={prevSlide} className="px-6 py-4 hover:bg-white/10 transition-colors border-r border-white/10 text-white">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M15 19l-7-7 7-7" /></svg>
-            </button>
-            <button onClick={nextSlide} className="px-6 py-4 hover:bg-white/10 transition-colors border-r border-white/10 text-white">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7" /></svg>
-            </button>
-          
-          </div>
-        </div>
+    <div className="relative w-full h-screen overflow-hidden flex flex-col bg-black text-white">
+      {/* BACKGROUND LAYER */}
+      <div className="absolute inset-0 z-0">
+        <div 
+          className="absolute inset-0 transition-all duration-1000 ease-in-out"
+          style={{
+            backgroundImage: `url(${BACKGROUND_IMAGES[currentIndex % BACKGROUND_IMAGES.length]})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'brightness(0.35)',
+          }}
+        />
+        <div 
+          className="absolute inset-0 transition-colors duration-1000 ease-in-out opacity-25"
+          style={{ backgroundColor: currentSlide.themeColor }}
+        />
       </div>
-    </section>
+
+      {/* MAIN SHOWCASE */}
+      <main className="relative z-10 flex-1 w-full max-w-[1600px] mx-auto px-12 md:px-20 flex flex-col lg:flex-row items-center gap-16 lg:gap-24 pt-10">
+        {/* TEXT CONTENT */}
+        <div className="flex-1 w-full text-left max-w-xl">
+          <h1 className="font-serif text-[80px] md:text-[120px] mb-4 leading-[0.9] tracking-tighter drop-shadow-2xl animate-slide">
+            {currentSlide.title}
+          </h1>
+          
+          {/* Nepali Name */}
+          <h2 className="text-blue-200 text-2xl md:text-3xl font-bold mb-2 font-nepali animate-slide [animation-delay:0.05s]">
+            {currentSlide.nepaliName}
+          </h2>
+          
+          {/* Role */}
+          <p className="text-blue-300 text-sm md:text-base font-semibold mb-8 uppercase tracking-wider animate-slide [animation-delay:0.1s]">
+            {currentSlide.role}
+          </p>
+
+          <p className="text-zinc-200 text-base md:text-lg leading-relaxed mb-10 max-w-lg opacity-90 animate-slide [animation-delay:0.15s]">
+            {currentSlide.description}
+          </p>
+
+          <div className="animate-slide [animation-delay:0.2s]">
+           
+          </div>
+        </div>
+
+        {/* IMAGE SLIDER */}
+        <div className="flex-1 relative w-full h-[400px] md:h-[550px] flex items-center">
+          <div className="relative w-[300px] h-[300px] md:w-[500px] md:h-[500px]">
+            {/* MAIN IMAGE */}
+            <div className="relative z-30 w-full h-full">
+              <div className="w-full h-full rounded-[3.5rem] p-1 border-[8px] border-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] overflow-hidden">
+                <img 
+                  key={`main-${currentSlide.id}`}
+                  src={currentSlide.imageUrl} 
+                  alt={currentSlide.title}
+                  className="w-full h-full object-cover rounded-[3rem] animate-slide"
+                />
+              </div>
+            </div>
+
+            {/* SECONDARY IMAGE */}
+            {slides.length > 1 && (
+              <div 
+                onClick={handleNext}
+                className="absolute z-20 top-1/2 -translate-y-1/2 cursor-pointer transition-all duration-700 opacity-90 hover:opacity-60"
+                style={{
+                  left: 'calc(100% - 60px)',
+                  width: '85%',
+                  height: '85%'
+                }}
+              >
+                <div className="w-full h-full rounded-[3.5rem] overflow-hidden shadow-2xl bg-zinc-900 border border-white/10">
+                  <img 
+                    key={`next-${nextSlide.id}`}
+                    src={nextSlide.imageUrl} 
+                    alt="Next"
+                    className="w-full h-full object-cover rounded-[3.5rem]"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </main>
+
+      {/* FOOTER CONTROLS */}
+      <footer className="relative z-50 w-full pb-14 flex flex-col items-center gap-8">
+        {/* PAGINATION DOTS */}
+        <div className="flex items-center gap-4">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`w-3 h-3 rounded-full transition-all duration-500 ${
+                idx === currentIndex ? 'bg-white scale-125' : 'bg-white/30'
+              }`}
+            />
+          ))}
+        </div>
+
+        
+      </footer>
+
+      <style jsx>{`
+        @keyframes slideIn {
+          0% { opacity: 0; transform: translateY(20px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide {
+          animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      `}</style>
+    </div>
   );
 };

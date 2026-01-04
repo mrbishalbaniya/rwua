@@ -43,6 +43,7 @@ export const ORG_MEMBERS: OrgMember[] = [
       </>
     )
   },
+  
   {
     id: 'm2',
     name: 'Bishnu Parshad Chalise',
