@@ -188,32 +188,25 @@ export default function GalleryPage() {
         {/* Modal for Selected Image */}
         {selectedImage && (
           <div
-            className="fixed inset-0 bg-black/80 flex items-center justify-center z-[9999] p-2"
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-[9999] p-4"
             onClick={closeModal}
           >
-            <div className="relative max-w-8xl max-h-[96vh] bg-white rounded-2xl overflow-hidden">
+            <div className="relative max-w-[90vw] max-h-[90vh]">
               <button
                 onClick={closeModal}
-                className="absolute top-6 right-6 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-red-500 hover:bg-white/30 transition-colors z-10"
+                className="absolute top-4 right-4 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors z-10"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
-              <div className="relative aspect-[4/3]">
-                <Image
-                  src={selectedImage.src}
-                  alt={selectedImage.alt}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-12">
-                <span className="inline-block px-6 py-3 bg-orange-400 text-white rounded-full text-base font-bold uppercase tracking-wider mb-6">
-                  {selectedImage.category}
-                </span>
-                <h3 className="text-4xl font-bold text-purple-500 mb-4">{selectedImage.title}</h3>
-              </div>
+              <Image
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                width={1200}
+                height={800}
+                className="max-w-full max-h-full object-contain rounded-lg"
+              />
             </div>
           </div>
         )}
