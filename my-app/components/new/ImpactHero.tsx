@@ -39,7 +39,7 @@ export const ImpactHero: React.FC = () => {
             </div>
             
             <div className="flex flex-wrap gap-8 animate-in fade-in duration-1000 delay-500">
-              <button className="bg-impact-red hover:bg-black text-white font-black py-6 px-14 rounded-2xl transition-all shadow-[0_30px_70px_-15px_rgba(1,0,250,0.35)] hover:scale-105 active:scale-95 text-[11px] uppercase tracking-[0.3em]">
+              <button className="bg-impact-red/80 hover:bg-impact-red text-white font-black py-6 px-14 rounded-2xl transition-all shadow-[0_30px_70px_-15px_rgba(1,0,250,0.35)] hover:scale-105 active:scale-95 text-[11px] uppercase tracking-[0.3em]">
                 Join the movement
               </button>
               <button className="flex items-center gap-6 text-core-blue font-black text-[11px] uppercase tracking-[0.3em] group">

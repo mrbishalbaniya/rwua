@@ -107,33 +107,33 @@ export const PartnerSection: React.FC = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white border-t border-stone-50 overflow-hidden">
-      <div className="container mx-auto px-8 md:px-16 lg:px-24 mb-24">
+    <section ref={sectionRef} className="pb-24 bg-white border-t border-stone-50 overflow-hidden">
+      <div className="container mx-auto px-8 md:px-16 mb-10">
         {/* Statistics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 items-center mb-24">
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <div className="text-vibrant-gold text-7xl lg:text-8xl font-black tracking-tighter mb-4">
+            <div className="text-impact-red text-7xl lg:text-8xl font-black tracking-tighter mb-4">
               {count.toLocaleString()}+
             </div>
             <div className="flex items-center gap-3">
               <div className="w-6 h-[2px] bg-deep-purple"></div>
-              <span className="text-deep-purple text-xs font-black uppercase tracking-[0.3em]">Lives Empowered</span>
+              <span className="text-black text-xs font-black uppercase tracking-[0.3em]">Lives Empowered</span>
             </div>
           </div>
 
           <div className="flex flex-col items-center md:items-start text-center md:text-left border-y md:border-y-0 md:border-x border-stone-100 py-12 md:py-0 md:px-12 lg:px-24">
-            <div className="text-terracotta text-6xl lg:text-7xl font-black tracking-tighter mb-4">442</div>
+            <div className="text-core-blue text-6xl lg:text-7xl font-black tracking-tighter mb-4">442</div>
             <div className="flex items-center gap-3">
               <div className="w-6 h-[2px] bg-stone-200"></div>
-              <span className="text-stone-400 text-xs font-black uppercase tracking-[0.3em]">Blankets Provided</span>
+              <span className="text-black text-xs font-black uppercase tracking-[0.3em]">Blankets Provided</span>
             </div>
           </div>
 
           <div className="flex flex-col items-center md:items-start text-center md:text-left border-y md:border-y-0 md:border-x border-stone-100 py-12 md:py-0 md:px-12 lg:px-24">
-            <div className="text-deep-purple text-6xl lg:text-7xl font-black tracking-tighter mb-4">SDG</div>
+            <div className="text-flash-yellow text-6xl lg:text-7xl font-black tracking-tighter mb-4">SDG</div>
             <div className="flex items-center gap-3">
               <div className="w-6 h-[2px] bg-stone-200"></div>
-              <span className="text-stone-400 text-xs font-black uppercase tracking-[0.3em]">Policy Aligned</span>
+              <span className="text-black text-xs font-black uppercase tracking-[0.3em]">Policy Aligned</span>
             </div>
           </div>
         </div>
@@ -141,7 +141,7 @@ export const PartnerSection: React.FC = () => {
         <div className="flex flex-col items-center">
           <div className="flex items-center gap-6 mb-16">
             <div className="h-[1px] w-12 bg-stone-200"></div>
-            <span className="text-stone-400 font-black uppercase tracking-[0.5em] text-[10px]">Strategic Partners</span>
+            <span className="text-black font-black uppercase tracking-[0.5em] text-[10px]">Strategic Partners</span>
             <div className="h-[1px] w-12 bg-stone-200"></div>
           </div>
         </div>

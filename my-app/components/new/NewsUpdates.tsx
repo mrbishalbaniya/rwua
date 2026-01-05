@@ -37,14 +37,14 @@ export const NewsUpdates: React.FC = () => {
               <div className="w-8 h-[2px] bg-vibrant-gold"></div>
               <h4 className="text-vibrant-gold font-black uppercase tracking-[0.4em] text-[10px]">Latest Updates</h4>
             </div>
-            <h2 className="text-5xl lg:text-6xl font-serif-impact text-deep-purple leading-tight">
-              Impact <span className="italic">Highlights</span>.
+            <h2 className="text-5xl lg:text-6xl font-serif-impact text-core-blue leading-tight">
+              Impact <span className="italic text-impact-red">Highlights</span>.
             </h2>
           </div>
           
           <button className={`group flex items-center gap-4 text-deep-purple font-black text-xs uppercase tracking-[0.3em] transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <span className="border-b border-deep-purple/20 group-hover:border-deep-purple pb-1">All Vacancy & Press</span>
-            <div className="w-10 h-10 rounded-full border border-deep-purple/10 flex items-center justify-center group-hover:bg-deep-purple group-hover:text-vibrant-gold transition-all">
+            <span className="border-b border-impact-red/20 group-hover:border-impact-red pb-1">All Vacancy & Press</span>
+            <div className="w-10 h-10 rounded-full border border-impact-red/10 flex items-center justify-center group-hover:bg-impact-red group-hover:text-white transition-all">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
@@ -73,7 +73,7 @@ export const NewsUpdates: React.FC = () => {
                     {news.date}
                   </span>
                 </div>
-                <div className="px-4 py-1.5 rounded-full border border-stone-100 bg-stone-50 text-deep-purple text-[9px] font-black uppercase tracking-widest group-hover:bg-deep-purple group-hover:text-vibrant-gold group-hover:border-deep-purple transition-all duration-500">
+                <div className="px-4 py-1.5 rounded-full border border-stone-100 bg-stone-50 text-impact-red text-[9px] font-black uppercase tracking-widest group-hover:bg-impact-red group-hover:text-white group-hover:border-impact-red transition-all duration-500">
                   {news.category}
                 </div>
               </div>

@@ -22,7 +22,7 @@ export default function Home() {
       <CoolDivider />
       <NewsUpdates />
       <GallerySection />
-      <FacesOfChange />
+      <FacesOfChange /> 
       <PartnerSection />
     </div>
   );

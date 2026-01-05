@@ -61,8 +61,8 @@ export const FacesOfChange: React.FC = () => {
               <h4 className="text-terracotta font-black uppercase tracking-[0.4em] text-[10px]">Voices of Impact</h4>
               <div className="w-8 h-[2px] bg-terracotta/40"></div>
             </div>
-            <h2 className="text-5xl lg:text-7xl font-serif-impact text-deep-purple leading-tight tracking-tighter">
-              Real people. <span className="italic opacity-80 ml-2">Real stories.</span>
+            <h2 className="text-5xl lg:text-7xl font-serif-impact text-core-blue leading-tight tracking-tighter">
+              Real people. <span className="italic text-impact-red opacity-80 ml-2">Real stories.</span>
             </h2>
           </div>
         </div>

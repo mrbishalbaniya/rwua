@@ -226,7 +226,7 @@ export const MissionSection: React.FC = () => {
             </div>
 
             <div className="mt-16">
-              <button className="bg-impact-red text-white font-black py-5 px-12 rounded-2xl text-[10px] tracking-[0.3em] uppercase hover:bg-black transition-all shadow-2xl active:scale-95">
+              <button className="bg-impact-red/80 hover:bg-impact-red text-white font-black py-5 px-12 rounded-2xl text-[10px] tracking-[0.3em] uppercase hover:bg-black transition-all shadow-2xl active:scale-95">
                 Explore Our Ecosystem
               </button>
             </div>

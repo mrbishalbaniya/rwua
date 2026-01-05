@@ -11,7 +11,7 @@ const focusData = [
     desc: "Desire of Rural Women Upliftment Association “Establishment of Quality and Equitable and Prosperous Society.",
     metric: "1,200+ Students",
     icon: <Globe className="w-6 h-6" />,
-    color: "from-[#4C1D95] to-[#6D28D9]",
+    color: "bg-core-blue",
     glow: "bg-[#4C1D95]/5",
     // Constant deeper shadow for icons
     shadow: "shadow-[0_20px_50px_rgba(76,29,149,0.3)]", 
@@ -23,7 +23,7 @@ const focusData = [
     desc: "To transform the community by mobilizing and empowering the target group, improving economic and social life.",
     metric: "45+ Cooperatives",
     icon: <Rocket className="w-6 h-6" />,
-    color: "from-[#C2410C] to-[#EA580C]",
+    color: "bg-impact-red",
     glow: "bg-[#C2410C]/5",
     shadow: "shadow-[0_20px_50px_rgba(194,65,12,0.3)]",
     border: "group-hover:border-[#C2410C]/40"
@@ -34,7 +34,7 @@ const focusData = [
     desc: "A dignified life will be built by improving the quality of education healthy life and income of the Community.",
     metric: "5k+ Lives",
     icon: <Target className="w-6 h-6" />,
-    color: "from-[#D97706] to-[#F59E0B]",
+    color: "bg-flash-yellow",
     glow: "bg-[#D97706]/5",
     shadow: "shadow-[0_20px_50px_rgba(217,119,6,0.3)]",
     border: "group-hover:border-[#D97706]/40"
@@ -99,7 +99,7 @@ export const FocusAreas: React.FC = () => {
 
                 <div>
                   {/* Constant Deep Brand Shadow for Icons */}
-                  <div className={`w-16 h-16 rounded-2xl bg-core-blue ${item.color} flex items-center justify-center mb-10 ${item.shadow} group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out`}>
+                  <div className={`w-16 h-16 rounded-2xl ${item.color} flex items-center justify-center mb-10 ${item.shadow} group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out`}>
                     <div className="text-white">
                       {item.icon}
                     </div>
@@ -122,7 +122,7 @@ export const FocusAreas: React.FC = () => {
                     <span className="text-sm font-bold text-slate-700 uppercase">{item.metric}</span>
                   </div>
                   
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center bg-white shadow-lg text-slate-400 group-hover:bg-gradient-to-br ${item.color} group-hover:text-white transition-all duration-500`}>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center bg-white shadow-lg text-slate-400  transition-all duration-500`}>
                     <ArrowUpRight className="w-5 h-5" />
                   </div>
                 </div>
