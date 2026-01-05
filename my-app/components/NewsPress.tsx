@@ -92,15 +92,15 @@ export default function NewsPressPage() {
                   className="rounded-md object-cover w-full h-64 hover:scale-105 transition-transform duration-300"
                 />
                 <span className="text-green-700 text-sm hidden md:block mt-4">{featuredArticle.category}</span>
-                <h1 className="text-gray-800 text-4xl font-bold mt-2 mb-2 leading-tight cursor-pointer hover:text-blue-800 transition-colors duration-200">
-                  <Link href="/news" className="hover:text-blue-800 transition-colors duration-200">
+                <h1 className="text-gray-800 text-4xl font-bold mt-2 mb-2 leading-tight cursor-pointer hover:text-deep-purple transition-colors duration-200">
+                  <Link href={`/news/${featuredArticle.id}`} className="hover:text-deep-purple transition-colors duration-200">
                     {featuredArticle.title}
                   </Link>
                 </h1>
                 <p className="text-gray-600 mb-4">
                   {featuredArticle.excerpt}
                 </p>
-                <Link href="/news" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm mt-4 transition-colors duration-200 group">
+                <Link href={`/news/${featuredArticle.id}`} className="inline-flex items-center text-deep-purple hover:text-white font-semibold text-sm mt-4 transition-all duration-300 hover:bg-deep-purple px-3 py-1.5 rounded-full border border-deep-purple/20 hover:border-deep-purple group hover:shadow-md">
                   Read more
                   <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -151,8 +151,8 @@ export default function NewsPressPage() {
 
                           {/* Read More Button - Better design */}
                           <Link
-                            href="/news"
-                            className="inline-flex items-center text-blue-600 hover:text-white text-sm font-medium transition-all duration-300 hover:bg-blue-600 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-600 group hover:shadow-md cursor-pointer"
+                            href={`/news/${post.id}`}
+                            className="inline-flex items-center text-deep-purple hover:text-white text-sm font-medium transition-all duration-300 hover:bg-deep-purple px-3 py-1.5 rounded-full border border-deep-purple/20 hover:border-deep-purple group hover:shadow-md cursor-pointer"
                           >
                             <span>Read More</span>
                             <svg className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,7 +172,7 @@ export default function NewsPressPage() {
           {latestNews.length > 0 && (
             <>
               <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
-                <h2 className="font-bold text-3xl text-gray-800 cursor-pointer hover:text-blue-800 transition-colors duration-200">
+                <h2 className="font-bold text-3xl text-gray-800 cursor-pointer hover:text-deep-purple transition-colors duration-200">
                   Latest News
                 </h2>
               </div>
@@ -217,8 +217,8 @@ export default function NewsPressPage() {
 
                         {/* Read More Button - Better design */}
                         <Link
-                          href="/news"
-                          className="inline-flex items-center text-blue-600 hover:text-white text-sm font-medium transition-all duration-300 hover:bg-blue-600 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-600 group hover:shadow-md cursor-pointer"
+                          href={`/news/${news.id}`}
+                          className="inline-flex items-center text-deep-purple hover:text-white text-sm font-medium transition-all duration-300 hover:bg-deep-purple px-3 py-1.5 rounded-full border border-deep-purple/20 hover:border-deep-purple group hover:shadow-md cursor-pointer"
                         >
                           <span>Read More</span>
                           <svg className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -255,10 +255,10 @@ export default function NewsPressPage() {
               <form className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="email"
-                  className="flex-1 rounded-lg bg-gray-50 px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:bg-white focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                  className="flex-1 rounded-lg bg-gray-50 px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:bg-white focus:ring-indigo-200 focus:border-indigo-400 text-gray-900"
                   placeholder="your@email.com"
                 />
-                <button className="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors duration-200 group bg-transparent border-2 border-blue-600 hover:border-blue-800 rounded-lg py-2 px-4">
+                <button className="inline-flex items-center text-deep-purple hover:text-white font-semibold text-sm transition-all duration-300 group bg-transparent border-2 border-deep-purple hover:border-deep-purple hover:bg-deep-purple rounded-lg py-2 px-4">
                   Subscribe
                   <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -273,7 +273,7 @@ export default function NewsPressPage() {
           {popularNews.length > 0 && (
             <>
               <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
-                <h2 className="font-bold text-3xl text-gray-800 cursor-pointer hover:text-blue-800 transition-colors duration-200">
+                <h2 className="font-bold text-3xl text-gray-800 cursor-pointer hover:text-deep-purple transition-colors duration-200">
                   Popular News
                 </h2>
               </div>
@@ -318,8 +318,8 @@ export default function NewsPressPage() {
 
                         {/* Read More Button - Better design */}
                         <Link
-                          href="/news"
-                          className="inline-flex items-center text-blue-600 hover:text-white text-sm font-medium transition-all duration-300 hover:bg-blue-600 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-600 group hover:shadow-md cursor-pointer"
+                          href={`/news/${news.id}`}
+                          className="inline-flex items-center text-deep-purple hover:text-white text-sm font-medium transition-all duration-300 hover:bg-deep-purple px-3 py-1.5 rounded-full border border-deep-purple/20 hover:border-deep-purple group hover:shadow-md cursor-pointer"
                         >
                           <span>Read More</span>
                           <svg className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

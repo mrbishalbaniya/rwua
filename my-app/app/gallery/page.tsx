@@ -100,6 +100,26 @@ export default function GalleryPage() {
     ? galleryImages
     : galleryImages.filter(img => img.category === selectedCategory);
 
+  // Function to open modal and block background scroll
+  const openModal = (image: typeof galleryImages[0]) => {
+    setSelectedImage(image);
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${window.scrollY}px`;
+    document.body.style.width = '100%';
+  };
+
+  // Function to close modal and restore background scroll
+  const closeModal = () => {
+    const scrollY = document.body.style.top;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.overflow = '';
+    document.body.style.width = '';
+    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    setSelectedImage(null);
+  };
+
   return (
     <div className="bg-white min-h-screen">
       <section className="py-24 bg-gray-50">
@@ -143,7 +163,7 @@ export default function GalleryPage() {
               <div
                 key={image.id}
                 className="group cursor-pointer"
-                onClick={() => setSelectedImage(image)}
+                onClick={() => openModal(image)}
               >
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-300">
                   <Image
@@ -168,32 +188,25 @@ export default function GalleryPage() {
         {/* Modal for Selected Image */}
         {selectedImage && (
           <div
-            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-2"
-            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-[9999] p-4"
+            onClick={closeModal}
           >
-            <div className="relative max-w-8xl max-h-[96vh] bg-white rounded-2xl overflow-hidden">
+            <div className="relative max-w-[90vw] max-h-[90vh]">
               <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute top-6 right-6 w-14 h-14 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10"
+                onClick={closeModal}
+                className="absolute top-4 right-4 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors z-10"
               >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
-              <div className="relative aspect-[4/3]">
-                <Image
-                  src={selectedImage.src}
-                  alt={selectedImage.alt}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-12">
-                <span className="inline-block px-6 py-3 bg-orange-400 text-white rounded-full text-base font-bold uppercase tracking-wider mb-6">
-                  {selectedImage.category}
-                </span>
-                <h3 className="text-4xl font-bold text-purple-500 mb-4">{selectedImage.title}</h3>
-              </div>
+              <Image
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                width={1200}
+                height={800}
+                className="max-w-full max-h-full object-contain rounded-lg"
+              />
             </div>
           </div>
         )}

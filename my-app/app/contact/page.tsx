@@ -24,7 +24,7 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
@@ -62,7 +62,7 @@ export default function ContactPage() {
       <section className="pb-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            
+
             {/* Left Side - Map */}
             <div className="order-2 lg:order-1">
               <div className="relative">
@@ -78,7 +78,7 @@ export default function ContactPage() {
                     className="rounded-2xl"
                   ></iframe>
                 </div>
-                
+
                 {/* Location Pin */}
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-md">
                   <div className="flex items-center space-x-2">
@@ -194,7 +194,7 @@ export default function ContactPage() {
                     id="needQuickReply"
                     checked={formData.needQuickReply}
                     onChange={handleInputChange}
-                    className="w-5 h-5 text-deep-purple bg-stone-100 border-stone-300 rounded focus:ring-deep-purple focus:ring-2"
+                    className="w-5 h-5 text-deep-purple bg-stone-100 border-stone-300 rounded focus:ring-indigo-200 focus:ring-2"
                   />
                   <label htmlFor="needQuickReply" className="text-stone-700 font-bold cursor-pointer">
                     I need a quick reply
@@ -205,9 +205,8 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-4 text-white bg-deep-purple rounded-2xl hover:bg-black transition-all flex items-center justify-center space-x-3 group font-black uppercase tracking-[0.3em] text-sm shadow-[0_30px_70px_-15px_rgba(76,29,149,0.35)] hover:scale-105 active:scale-95 ${
-                    isSubmitting ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
-                  }`}
+                  className={`w-full py-4 text-white bg-deep-purple rounded-2xl hover:bg-black transition-all flex items-center justify-center space-x-3 group font-black uppercase tracking-[0.3em] text-sm shadow-[0_30px_70px_-15px_rgba(76,29,149,0.35)] hover:scale-105 active:scale-95 ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+                    }`}
                 >
                   {isSubmitting ? (
                     <>
@@ -228,7 +227,7 @@ export default function ContactPage() {
                     <p className="text-vibrant-gold text-sm font-bold">Message sent successfully! We&apos;ll get back to you soon.</p>
                   </div>
                 )}
-                
+
                 {submitStatus === 'error' && (
                   <div className="p-4 bg-terracotta/10 border border-terracotta/20 rounded-2xl">
                     <p className="text-terracotta text-sm font-bold">Failed to send message. Please try again.</p>

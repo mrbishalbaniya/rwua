@@ -81,11 +81,10 @@ export default function SearchAndFilter({
               <button
                 key={category}
                 onClick={() => handleCategoryClick(category)}
-                className={`px-4 py-2 rounded-lg transition-colors duration-300 ease-out cursor-pointer font-bold ${
-                  activeCategory === category
-                    ? 'bg-core-blue text-white shadow-lg'
-                    : 'bg-stone-200 text-core-blue hover:bg-flash-yellow hover:text-white'
-                }`}
+                className={`px-4 py-2 rounded-lg transition-colors duration-300 ease-out cursor-pointer font-bold ${activeCategory === category
+                    ? 'bg-deep-purple text-white shadow-lg'
+                    : 'bg-stone-200 text-deep-purple hover:bg-vibrant-gold hover:text-white'
+                  }`}
               >
                 {category}
               </button>
@@ -95,9 +94,8 @@ export default function SearchAndFilter({
 
         {/* Right Side: Search Input */}
         <div className="relative w-full order-1 md:order-2">
-          <div className={`relative transition-all duration-300 ease-out ${
-            isFocused ? 'md:w-96' : 'md:w-80'
-          } w-full`}>
+          <div className={`relative transition-all duration-300 ease-out ${isFocused ? 'md:w-96' : 'md:w-80'
+            } w-full`}>
             <input
               type="text"
               value={searchQuery}
@@ -105,15 +103,13 @@ export default function SearchAndFilter({
               onFocus={handleFocus}
               onBlur={handleBlur}
               placeholder={placeholder}
-              className={`w-full pl-10 pr-4 py-3 rounded-lg border shadow-sm transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-deep-purple font-medium ${
-                isFocused 
-                  ? 'border-deep-purple focus:border-transparent' 
-                  : 'border-stone-300 focus:border-transparent'
-              }`}
+              className={`w-full pl-10 pr-4 py-3 rounded-lg border shadow-sm transition-all duration-300 ease-out focus:outline-none focus:ring-2 font-medium ${isFocused
+                  ? 'border-indigo-400 focus:border-indigo-400 focus:ring-indigo-200'
+                  : 'border-stone-300 focus:border-indigo-400 focus:ring-indigo-200'
+                }`}
             />
-            <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 transition-colors duration-300 ease-out ${
-              isFocused ? 'text-core-blue' : 'text-stone-400'
-            }`} />
+            <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 transition-colors duration-300 ease-out ${isFocused ? 'text-deep-purple' : 'text-stone-400'
+              }`} />
           </div>
         </div>
       </div>
@@ -126,11 +122,10 @@ export default function SearchAndFilter({
               <button
                 key={category}
                 onClick={() => handleCategoryClick(category)}
-                className={`px-3 py-2 rounded-lg text-sm transition-colors duration-300 ease-out cursor-pointer font-bold ${
-                  activeCategory === category
-                    ? 'bg-core-blue text-white'
-                    : 'bg-stone-100 text-core-blue hover:bg-flash-yellow hover:text-white'
-                }`}
+                className={`px-3 py-2 rounded-lg text-sm transition-colors duration-300 ease-out cursor-pointer font-bold ${activeCategory === category
+                    ? 'bg-deep-purple text-white'
+                    : 'bg-stone-100 text-deep-purple hover:bg-vibrant-gold hover:text-white'
+                  }`}
               >
                 {category}
               </button>

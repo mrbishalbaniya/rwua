@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import ModernNavbar from "@/components/ModernNavbar";
 import Footer from "@/components/Footer";
 
 const inter = Inter({
@@ -43,7 +43,7 @@ export default function RootLayout({
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-rwua-primary text-white px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2">
           Skip to main content
         </a>
-        <Navbar />
+        <ModernNavbar />
         <main id="main-content" className="flex-1" role="main">
           {children}
         </main>

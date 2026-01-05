@@ -35,15 +35,18 @@ export default function Navbar() {
   return (
     <>
       {/* Top Bar */}
-      <div className="text-white overflow-hidden transition-all duration-500" style={{
-        background: '#0F172A',
-        color: 'rgba(255, 255, 255, 0.9)',
-        height: '45px',
-        fontSize: '14px',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-        position: 'relative' as const,
-        zIndex: 999
-      }}>
+      <div
+        className="text-white overflow-hidden transition-all duration-500"
+        style={{
+          background: '#0F172A',
+          color: 'rgba(255, 255, 255, 0.9)',
+          height: '45px',
+          fontSize: '14px',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+          position: 'relative' as const,
+          zIndex: 999
+        }}
+      >
         <div className="mx-auto px-4" style={{ maxWidth: '1160px' }}>
           <div className="flex items-center justify-between h-11">
             <div className="flex items-center gap-2 sm:gap-6">
@@ -56,7 +59,7 @@ export default function Navbar() {
             </div>
             <a
               href="tel:046-411109"
-              className="bg-red-600 hover:bg-red-700 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg flex items-center gap-1 sm:gap-2 transition-all duration-300 text-xs sm:text-sm shadow-md hover:shadow-lg"
+              className="bg-red-600 hover:bg-red-700 px-2 sm:px-4 py-1.5 sm:py-2 rounded-full flex items-center gap-1 sm:gap-2 transition-all duration-300 text-xs sm:text-sm shadow-md hover:shadow-lg"
             >
               <Phone className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="hidden sm:inline">046-411109</span>
@@ -69,15 +72,17 @@ export default function Navbar() {
       <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
       {/* Main Navbar - Hidden on mobile when sidebar is open */}
-      <div className={`text-white sticky top-0 transition-all duration-300 ${isMobileMenuOpen ? 'lg:block hidden' : 'block'}`} style={{
-        background: '#1E40AF',
-        transition: 'all 0.3s',
-        zIndex: 1000,
-        padding: '12px 0',
-        position: 'relative' as const,
-        fontSize: '14px',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
-      }}>
+      <div
+        className={`text-white sticky top-0 transition-all duration-300 ${isMobileMenuOpen ? 'lg:block hidden' : 'block'}`}
+        style={{
+          background: '#1E40AF',
+          transition: 'all 0.3s',
+          zIndex: 1000,
+          padding: '12px 0',
+          position: 'relative' as const,
+          fontSize: '14px',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+        }}>
         <div className="mx-auto px-4" style={{ maxWidth: '1160px' }}>
           <div className="flex items-center justify-between" style={{ minHeight: '60px' }}>
             {/* Logo - Left */}
@@ -267,12 +272,9 @@ export default function Navbar() {
       {/* Floating Mobile Toggle Button - Always visible on mobile */}
       <button
         onClick={toggleMobileMenu}
-        className={`fixed z-[9999] lg:hidden flex items-center justify-center p-3 rounded-full shadow-lg transition-all duration-1000 hover:scale-110 active:scale-95 ${isMobileMenuOpen ? 'top-[85px] right-4' : 'top-[85px] right-4'
-          }`}
+        className={`fixed z-[9999] lg:hidden flex items-center justify-center p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 top-[85px] right-4`}
         style={{
-          background: isMobileMenuOpen
-            ? '#1E40AF'
-            : '#1E40AF',
+          background: '#1E40AF',
           border: '1px solid rgba(255, 255, 255, 0.2)',
           backdropFilter: 'blur(10px)',
           boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
@@ -297,7 +299,7 @@ export default function Navbar() {
       )}
 
       {/* Mobile Sidebar */}
-      <div className={`fixed top-0 right-0 h-full transition-all duration-1000 ease-in-out z-[9500] lg:hidden ${isMobileMenuOpen ? 'w-64 sm:w-80' : 'w-0'
+      <div className={`mobile-sidebar fixed top-0 right-0 h-full transition-all duration-300 ease-in-out z-[9500] lg:hidden ${isMobileMenuOpen ? 'w-64 sm:w-80' : 'w-0'
         }`} style={{
           background: '#1E40AF',
           boxShadow: '-4px 0 16px rgba(0, 0, 0, 0.2)',
