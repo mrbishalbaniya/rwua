@@ -13,7 +13,8 @@ const focusData = [
     icon: <Globe className="w-6 h-6" />,
     color: "from-[#4C1D95] to-[#6D28D9]",
     glow: "bg-[#4C1D95]/5",
-    shadow: "shadow-[#4C1D95]/20",
+    // Constant deeper shadow for icons
+    shadow: "shadow-[0_20px_50px_rgba(76,29,149,0.3)]", 
     border: "group-hover:border-[#4C1D95]/40"
   },
   {
@@ -24,7 +25,7 @@ const focusData = [
     icon: <Rocket className="w-6 h-6" />,
     color: "from-[#C2410C] to-[#EA580C]",
     glow: "bg-[#C2410C]/5",
-    shadow: "shadow-[#C2410C]/20",
+    shadow: "shadow-[0_20px_50px_rgba(194,65,12,0.3)]",
     border: "group-hover:border-[#C2410C]/40"
   },
   {
@@ -35,7 +36,7 @@ const focusData = [
     icon: <Target className="w-6 h-6" />,
     color: "from-[#D97706] to-[#F59E0B]",
     glow: "bg-[#D97706]/5",
-    shadow: "shadow-[#D97706]/20",
+    shadow: "shadow-[0_20px_50px_rgba(217,119,6,0.3)]",
     border: "group-hover:border-[#D97706]/40"
   }
 ];
@@ -50,7 +51,7 @@ export const FocusAreas: React.FC = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         
-        {/* Header Section - Adjusted for Single Line */}
+        {/* Header Section */}
         <div className="mb-24 flex flex-col lg:flex-row lg:items-end gap-8 justify-between border-b border-slate-100 pb-16">
           <div className="flex-1">
             <motion.div 
@@ -76,23 +77,29 @@ export const FocusAreas: React.FC = () => {
         </div>
 
         {/* The Warp Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12"> {/* Increased gap for larger shadows */}
           {focusData.map((item, idx) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.15, duration: 0.8 }}
-              whileHover={{ scale: 1.02, rotateY: 8, rotateX: 2 }} 
+              whileHover={{ scale: 1.02, rotateY: 5, rotateX: 2 }} 
               className="group relative"
               style={{ perspective: '1200px' }}
             >
-              <div className={`h-full bg-white border border-slate-100 rounded-[2.5rem] p-10 flex flex-col justify-between transition-all duration-500 ${item.border} hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)]`}>
+              {/* DEEP PERMANENT SHADOW on the main card container */}
+              <div className={`h-full bg-white border border-slate-50 rounded-[2.5rem] p-10 flex flex-col justify-between transition-all duration-500 
+                ${item.border} 
+                shadow-[0_30px_70px_-15px_rgba(0,0,0,0.12),0_20px_40px_-20px_rgba(0,0,0,0.08)]
+                group-hover:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.18),0_30px_60px_-30px_rgba(0,0,0,0.22)]`}
+              >
                 
                 <div className={`absolute inset-0 ${item.glow} opacity-0 group-hover:opacity-100 rounded-[2.5rem] transition-opacity duration-500 -z-10`} />
 
                 <div>
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-10 shadow-xl ${item.shadow} group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out`}>
+                  {/* Constant Deep Brand Shadow for Icons */}
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-10 ${item.shadow} group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out`}>
                     <div className="text-white">
                       {item.icon}
                     </div>
@@ -109,17 +116,19 @@ export const FocusAreas: React.FC = () => {
                 </div>
 
                 <div className="mt-12 flex items-center justify-between">
-                  <div className="px-5 py-2.5 rounded-2xl bg-slate-50 border border-slate-100 group-hover:bg-white transition-colors">
+                  {/* Elevated footer metric box */}
+                  <div className="px-5 py-2.5 rounded-2xl bg-white border border-slate-100 shadow-sm group-hover:shadow-md transition-shadow">
                     <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 block mb-0.5">Reach</span>
                     <span className="text-sm font-bold text-slate-700 uppercase">{item.metric}</span>
                   </div>
                   
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center bg-slate-50 text-slate-400 group-hover:bg-gradient-to-br ${item.color} group-hover:text-white transition-all duration-500`}>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center bg-white shadow-lg text-slate-400 group-hover:bg-gradient-to-br ${item.color} group-hover:text-white transition-all duration-500`}>
                     <ArrowUpRight className="w-5 h-5" />
                   </div>
                 </div>
 
-                <div className={`absolute bottom-0 left-12 right-12 h-[3px] bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full`} />
+                {/* Bottom Line Accent */}
+                <div className={`absolute bottom-0 left-12 right-12 h-[3px] bg-gradient-to-r ${item.color} opacity-20 group-hover:opacity-100 transition-all duration-500 rounded-full`} />
               </div>
             </motion.div>
           ))}
