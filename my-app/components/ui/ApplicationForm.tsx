@@ -100,7 +100,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
         }}
       >
         {/* Decorative Background - Smaller */}
-        <div className="absolute inset-0 -z-10 transform rotate-3 bg-deep-purple rounded-xl"></div>
+        <div className="absolute inset-0 -z-10 transform rotate-3 bg-core-blue rounded-xl"></div>
         
         {/* Close Button */}
         <button
@@ -183,7 +183,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full py-2.5 text-white bg-deep-purple rounded-md hover:bg-black transition flex items-center justify-center space-x-2 text-sm font-bold ${
+            className={`w-full py-2.5 text-white bg-core-blue rounded-md hover:bg-black transition flex items-center justify-center space-x-2 text-sm font-bold ${
               isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           >

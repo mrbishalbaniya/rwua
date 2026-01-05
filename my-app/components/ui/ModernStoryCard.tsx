@@ -15,19 +15,19 @@ export default function ModernStoryCard({ story }: ModernStoryCardProps) {
 
   const getTagColor = (tag: string) => {
     const colors: { [key: string]: string } = {
-      'community': 'bg-blue-100 text-blue-700',
-      'education': 'bg-green-100 text-green-700',
-      'empowerment': 'bg-purple-100 text-purple-700',
-      'women': 'bg-pink-100 text-pink-700',
-      'health': 'bg-red-100 text-red-700',
-      'economic': 'bg-yellow-100 text-yellow-700',
-      'development': 'bg-indigo-100 text-indigo-700',
-      'dalit': 'bg-orange-100 text-orange-700',
-      'entrepreneurship': 'bg-teal-100 text-teal-700',
-      'skills': 'bg-cyan-100 text-cyan-700',
-      'children': 'bg-lime-100 text-lime-700',
-      'literacy': 'bg-emerald-100 text-emerald-700',
-      'maternal': 'bg-rose-100 text-rose-700',
+      'community': 'bg-core-blue/10 text-core-blue',
+      'education': 'bg-flash-yellow/20 text-core-blue',
+      'empowerment': 'bg-impact-red/10 text-impact-red',
+      'women': 'bg-impact-red/10 text-impact-red',
+      'health': 'bg-impact-red/10 text-impact-red',
+      'economic': 'bg-flash-yellow/20 text-core-blue',
+      'development': 'bg-core-blue/10 text-core-blue',
+      'dalit': 'bg-flash-yellow/20 text-core-blue',
+      'entrepreneurship': 'bg-flash-yellow/20 text-core-blue',
+      'skills': 'bg-core-blue/10 text-core-blue',
+      'children': 'bg-flash-yellow/20 text-core-blue',
+      'literacy': 'bg-core-blue/10 text-core-blue',
+      'maternal': 'bg-impact-red/10 text-impact-red',
       'rural': 'bg-amber-100 text-amber-700',
       'healthcare': 'bg-violet-100 text-violet-700'
     };
@@ -109,7 +109,7 @@ export default function ModernStoryCard({ story }: ModernStoryCardProps) {
           {/* Read More Button - Better design */}
           <Link
             href={`/success-story/${story.id}`}
-            className="inline-flex items-center text-deep-purple hover:text-white text-sm font-medium transition-all duration-300 hover:bg-deep-purple px-3 py-1.5 rounded-full border border-deep-purple/20 hover:border-deep-purple group hover:shadow-md cursor-pointer"
+            className="inline-flex items-center text-core-blue hover:text-white text-sm font-medium transition-all duration-300 hover:bg-core-blue px-3 py-1.5 rounded-full border border-core-blue/20 hover:border-core-blue group hover:shadow-md cursor-pointer"
           >
             <span>Read More</span>
             <ChevronRight className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-1" />
