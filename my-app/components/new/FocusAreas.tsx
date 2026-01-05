@@ -64,7 +64,7 @@ export const FocusAreas: React.FC = () => {
             </motion.div>
             
             <h2 className="text-5xl md:text-7xl lg:text-[110px] font-black tracking-tighter leading-none uppercase text-[#1e293b] whitespace-nowrap">
-              Pillars of <span className="text-[#4C1D95] italic font-serif lowercase px-2 lg:px-4">Impact.</span>
+              Pillars of <span className="text-impact-red italic font-serif lowercase px-2 lg:px-4">Impact.</span>
             </h2>
           </div>
 
@@ -99,7 +99,7 @@ export const FocusAreas: React.FC = () => {
 
                 <div>
                   {/* Constant Deep Brand Shadow for Icons */}
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-10 ${item.shadow} group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out`}>
+                  <div className={`w-16 h-16 rounded-2xl bg-core-blue ${item.color} flex items-center justify-center mb-10 ${item.shadow} group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out`}>
                     <div className="text-white">
                       {item.icon}
                     </div>

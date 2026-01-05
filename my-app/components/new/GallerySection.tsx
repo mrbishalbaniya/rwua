@@ -53,8 +53,8 @@ export const GallerySection: React.FC = () => {
               onClick={() => { setSelectedCategory(category); setCurrentIndex(null); }}
               className={`px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300 ${
                 selectedCategory === category
-                  ? 'bg-purple-700 text-white shadow-lg'
-                  : 'bg-white text-gray-600 hover:bg-purple-100 hover:text-purple-700'
+                  ? 'bg-impact-red text-white shadow-lg'
+                  : 'bg-white text-gray-600 hover:bg-impact-red/10 hover:text-impact-red'
               }`}
             >
               {category}

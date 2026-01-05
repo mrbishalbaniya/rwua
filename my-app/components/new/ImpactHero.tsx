@@ -26,7 +26,7 @@ export const ImpactHero: React.FC = () => {
             <h1 className="text-6xl md:text-8xl lg:text-[70px] font-black text-core-blue leading-[0.85] mb-12 tracking-tighter animate-in fade-in slide-in-from-bottom duration-1000 delay-100">
               Dignified <br/>
               <span className="font-serif-impact italic text-impact-red font-medium">Voices</span>, <br/>
-              United <span className="text-flash-yellow">Power.</span>
+              United <span className="text-impact-red">Power.</span>
             </h1>
             
             <div className="max-w-xl mb-14 animate-in fade-in duration-1000 delay-300">
@@ -39,7 +39,7 @@ export const ImpactHero: React.FC = () => {
             </div>
             
             <div className="flex flex-wrap gap-8 animate-in fade-in duration-1000 delay-500">
-              <button className="bg-core-blue hover:bg-black text-white font-black py-6 px-14 rounded-2xl transition-all shadow-[0_30px_70px_-15px_rgba(1,0,250,0.35)] hover:scale-105 active:scale-95 text-[11px] uppercase tracking-[0.3em]">
+              <button className="bg-impact-red hover:bg-black text-white font-black py-6 px-14 rounded-2xl transition-all shadow-[0_30px_70px_-15px_rgba(1,0,250,0.35)] hover:scale-105 active:scale-95 text-[11px] uppercase tracking-[0.3em]">
                 Join the movement
               </button>
               <button className="flex items-center gap-6 text-core-blue font-black text-[11px] uppercase tracking-[0.3em] group">
@@ -65,8 +65,8 @@ export const ImpactHero: React.FC = () => {
                 
                 <div className="absolute bottom-10 left-10 right-10 p-10 bg-white/95 backdrop-blur-2xl rounded-[40px] shadow-2xl border border-white/20 transform hover:-translate-y-3 transition-transform duration-700">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-flash-yellow flex items-center justify-center text-stone-950 shadow-lg">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <div className="w-10 h-10 rounded-full bg-impact-red flex items-center justify-center text-stone-950 shadow-lg">
+                      <svg className="w-5 h-5" fill="white" viewBox="0 0 24 24">
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                       </svg>
                     </div>

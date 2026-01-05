@@ -185,7 +185,7 @@ export const MissionSection: React.FC = () => {
                   />
                   <div className="absolute bottom-10 left-10 right-10">
                     <div className="bg-white/95 backdrop-blur-xl px-6 py-2.5 rounded-full shadow-2xl border border-white/20 inline-flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-flash-yellow animate-pulse"></div>
+                      <div className="w-2 h-2 rounded-full bg-impact-red animate-pulse"></div>
                       <span className="text-[10px] font-black uppercase tracking-[0.2em] text-core-blue">Impact Area 0{card.id}</span>
                     </div>
                   </div>
@@ -226,7 +226,7 @@ export const MissionSection: React.FC = () => {
             </div>
 
             <div className="mt-16">
-              <button className="bg-core-blue text-white font-black py-5 px-12 rounded-2xl text-[10px] tracking-[0.3em] uppercase hover:bg-black transition-all shadow-2xl active:scale-95">
+              <button className="bg-impact-red text-white font-black py-5 px-12 rounded-2xl text-[10px] tracking-[0.3em] uppercase hover:bg-black transition-all shadow-2xl active:scale-95">
                 Explore Our Ecosystem
               </button>
             </div>
