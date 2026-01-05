@@ -185,8 +185,8 @@ export const MissionSection: React.FC = () => {
                   />
                   <div className="absolute bottom-10 left-10 right-10">
                     <div className="bg-white/95 backdrop-blur-xl px-6 py-2.5 rounded-full shadow-2xl border border-white/20 inline-flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-vibrant-gold animate-pulse"></div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-deep-purple">Impact Area 0{card.id}</span>
+                      <div className="w-2 h-2 rounded-full bg-flash-yellow animate-pulse"></div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-core-blue">Impact Area 0{card.id}</span>
                     </div>
                   </div>
                 </div>
@@ -203,12 +203,12 @@ export const MissionSection: React.FC = () => {
           </div>
 
           <div className="w-full lg:w-1/2">
-            <h2 className="text-6xl lg:text-[84px] font-serif-impact text-deep-purple leading-[0.9] tracking-tighter mb-10">
+            <h2 className="text-6xl lg:text-[84px] font-serif-impact text-core-blue leading-[0.9] tracking-tighter mb-10">
               A Dignified <br />
-              <span className="text-terracotta italic">Life for All.</span>
+              <span className="text-impact-red italic">Life for All.</span>
             </h2>
 
-            <div className="mb-12 p-8 bg-stone-50 border-l-8 border-vibrant-gold rounded-r-3xl">
+            <div className="mb-12 p-8 bg-stone-50 border-l-8 border-flash-yellow rounded-r-3xl">
               <p className="text-stone-800 text-xl lg:text-2xl font-bold italic leading-relaxed">
                 "{CORE_GOAL}"
               </p>
@@ -217,7 +217,7 @@ export const MissionSection: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
               {OBJECTIVES.map((obj, index) => (
                 <div key={index} className="group flex gap-5 items-start">
-                  <span className="text-terracotta font-black text-xs shrink-0 mt-1 transition-transform group-hover:scale-125">0{index + 1}</span>
+                  <span className="text-impact-red font-black text-xs shrink-0 mt-1 transition-transform group-hover:scale-125">0{index + 1}</span>
                   <p className="text-stone-500 text-[15px] leading-relaxed font-semibold opacity-80 group-hover:opacity-100 transition-opacity">
                     {obj}
                   </p>
@@ -226,7 +226,7 @@ export const MissionSection: React.FC = () => {
             </div>
 
             <div className="mt-16">
-              <button className="bg-deep-purple text-white font-black py-5 px-12 rounded-2xl text-[10px] tracking-[0.3em] uppercase hover:bg-black transition-all shadow-2xl active:scale-95">
+              <button className="bg-core-blue text-white font-black py-5 px-12 rounded-2xl text-[10px] tracking-[0.3em] uppercase hover:bg-black transition-all shadow-2xl active:scale-95">
                 Explore Our Ecosystem
               </button>
             </div>

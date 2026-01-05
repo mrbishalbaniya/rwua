@@ -16,29 +16,29 @@ export default function ModernVacancyCard({ vacancy }: ModernVacancyCardProps) {
 
   const getTagColor = (tag: string) => {
     const colors: { [key: string]: string } = {
-      'management': 'bg-blue-100 text-blue-700',
-      'finance': 'bg-green-100 text-green-700',
-      'administration': 'bg-purple-100 text-purple-700',
-      'field work': 'bg-orange-100 text-orange-700',
-      'monitoring': 'bg-indigo-100 text-indigo-700',
-      'communications': 'bg-pink-100 text-pink-700',
-      'community': 'bg-teal-100 text-teal-700',
-      'development': 'bg-cyan-100 text-cyan-700',
-      'leadership': 'bg-red-100 text-red-700',
-      'budgeting': 'bg-yellow-100 text-yellow-700',
-      'compliance': 'bg-gray-100 text-gray-700',
-      'women': 'bg-rose-100 text-rose-700',
-      'empowerment': 'bg-violet-100 text-violet-700',
-      'training': 'bg-lime-100 text-lime-700',
-      'evaluation': 'bg-emerald-100 text-emerald-700',
-      'reporting': 'bg-amber-100 text-amber-700',
-      'quality': 'bg-slate-100 text-slate-700',
-      'media': 'bg-fuchsia-100 text-fuchsia-700',
-      'content': 'bg-sky-100 text-sky-700',
+      'management': 'bg-core-blue/10 text-core-blue',
+      'finance': 'bg-flash-yellow/20 text-core-blue',
+      'administration': 'bg-impact-red/10 text-impact-red',
+      'field work': 'bg-flash-yellow/20 text-core-blue',
+      'monitoring': 'bg-core-blue/10 text-core-blue',
+      'communications': 'bg-impact-red/10 text-impact-red',
+      'community': 'bg-flash-yellow/20 text-core-blue',
+      'development': 'bg-core-blue/10 text-core-blue',
+      'leadership': 'bg-impact-red/10 text-impact-red',
+      'budgeting': 'bg-flash-yellow/20 text-core-blue',
+      'compliance': 'bg-stone-100 text-stone-700',
+      'women': 'bg-impact-red/10 text-impact-red',
+      'empowerment': 'bg-core-blue/10 text-core-blue',
+      'training': 'bg-flash-yellow/20 text-core-blue',
+      'evaluation': 'bg-core-blue/10 text-core-blue',
+      'reporting': 'bg-flash-yellow/20 text-core-blue',
+      'quality': 'bg-stone-100 text-stone-700',
+      'media': 'bg-impact-red/10 text-impact-red',
+      'content': 'bg-core-blue/10 text-core-blue',
       'advocacy': 'bg-stone-100 text-stone-700',
-      'education': 'bg-green-100 text-green-700',
-      'coordination': 'bg-blue-100 text-blue-700',
-      'literacy': 'bg-purple-100 text-purple-700'
+      'education': 'bg-flash-yellow/20 text-core-blue',
+      'coordination': 'bg-core-blue/10 text-core-blue',
+      'literacy': 'bg-impact-red/10 text-impact-red'
     };
     return colors[tag] || 'bg-gray-100 text-gray-700';
   };
@@ -111,8 +111,8 @@ export default function ModernVacancyCard({ vacancy }: ModernVacancyCardProps) {
             {!isExpired && (
               <div className={`flex items-center px-2 py-1 rounded-full text-xs font-medium ${
                 isUrgent 
-                  ? 'bg-red-100 text-red-700' 
-                  : 'bg-green-100 text-green-700'
+                  ? 'bg-impact-red/10 text-impact-red' 
+                  : 'bg-flash-yellow/20 text-core-blue'
               }`}>
                 <Clock className="w-3 h-3 mr-1" />
                 {isUrgent ? 'Urgent' : `${daysRemaining}d left`}
@@ -168,8 +168,8 @@ export default function ModernVacancyCard({ vacancy }: ModernVacancyCardProps) {
           <div className="flex justify-between items-center">
             {/* Status */}
             <div className="flex items-center">
-              <div className={`w-2 h-2 rounded-full mr-2 ${
-                isExpired ? 'bg-gray-400' : isUrgent ? 'bg-red-400' : 'bg-green-400'
+              <div className="w-2 h-2 rounded-full mr-2 ${
+                isExpired ? 'bg-gray-400' : isUrgent ? 'bg-impact-red' : 'bg-flash-yellow'
               }`}></div>
               <span className="text-xs text-gray-600">
                 {isExpired ? 'Closed' : 'Open'}
@@ -182,7 +182,7 @@ export default function ModernVacancyCard({ vacancy }: ModernVacancyCardProps) {
               className={`flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 isExpired 
                   ? 'bg-stone-200 text-stone-500 cursor-not-allowed' 
-                  : 'bg-deep-purple text-white hover:bg-black hover:shadow-md cursor-pointer'
+                  : 'bg-core-blue text-white hover:bg-black hover:shadow-md cursor-pointer'
               }`}
               disabled={isExpired}
             >
