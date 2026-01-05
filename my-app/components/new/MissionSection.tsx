@@ -214,7 +214,7 @@ export const MissionSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
               {OBJECTIVES.map((obj, index) => (
                 <div key={index} className="group flex gap-5 items-start">
                   <span className="text-impact-red font-black text-xs shrink-0 mt-1 transition-transform group-hover:scale-125">0{index + 1}</span>
@@ -223,7 +223,7 @@ export const MissionSection: React.FC = () => {
                   </p>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             <div className="mt-16">
               <button className="bg-impact-red/80 hover:bg-impact-red text-white font-black py-5 px-12 rounded-2xl text-[10px] tracking-[0.3em] uppercase hover:bg-black transition-all shadow-2xl active:scale-95">

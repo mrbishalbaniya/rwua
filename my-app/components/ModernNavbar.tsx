@@ -100,7 +100,7 @@ export default function ModernNavbar() {
     return (
         <>
             {/* Top Contact Bar */}
-            <div className="bg-white text-gray-700 py-2 px-4 text-sm border-b border-gray-200">
+            <div className="bg-core-blue text-white   py-2 px-4 text-sm border-b border-gray-200">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center space-x-6">
@@ -116,7 +116,7 @@ export default function ModernNavbar() {
                         </div>
                         <a
                             href="tel:046-411109"
-                            className="bg-red-600 hover:bg-red-700 px-4 py-1 rounded-full flex items-center space-x-2 transition-colors text-white"
+                            className="bg-impact-red hover:bg-red-700 px-4 py-1 rounded-full flex items-center space-x-2 transition-colors text-white"
                         >
                             <Phone className="w-4 h-4" />
                             <span className="hidden sm:inline">046-411109</span>
@@ -334,7 +334,7 @@ export default function ModernNavbar() {
                         <div className="hidden lg:block">
                             <Link
                                 href="/downloads"
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg flex items-center space-x-2 transition-colors shadow-md hover:shadow-lg"
+                                className="bg-core-blue hover:bg-blue-700 text-white px-6 py-2 rounded-lg flex items-center space-x-2 transition-colors shadow-md hover:shadow-lg"
                             >
                                 <Download className="w-4 h-4" />
                                 <span>Downloads</span>
