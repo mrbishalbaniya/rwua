@@ -1,16 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Phone, Menu, X, ChevronDown, Newspaper, Trophy, Users, Clock, Archive, FileText, MessageCircle, Download } from 'lucide-react';
+import { gsap } from 'gsap';
 
 export default function ModernNavbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
+    const megaMenuRef = useRef<HTMLDivElement>(null);
+    const megaMenuItemsRef = useRef<HTMLDivElement>(null);
+    const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     // Handle scroll effect
     useEffect(() => {
@@ -33,6 +37,64 @@ export default function ModernNavbar() {
     const closeAllMenus = () => {
         setIsMobileMenuOpen(false);
         setActiveDropdown(null);
+    };
+
+    // GSAP animations for mega menu
+    const handleMegaMenuEnter = () => {
+        // Clear any pending hide timeout
+        if (hoverTimeoutRef.current) {
+            clearTimeout(hoverTimeoutRef.current);
+            hoverTimeoutRef.current = null;
+        }
+
+        if (megaMenuRef.current && megaMenuItemsRef.current) {
+            gsap.set(megaMenuRef.current, { visibility: 'visible', opacity: 0, y: -15, scaleY: 0.95 });
+            gsap.set(megaMenuItemsRef.current.children, { opacity: 0, y: -25, rotationX: -10, transformOrigin: "top center" });
+
+            const tl = gsap.timeline();
+            tl.to(megaMenuRef.current, {
+                opacity: 1,
+                y: 0,
+                scaleY: 1,
+                duration: 0.5,
+                ease: "power3.out"
+            })
+                .to(megaMenuItemsRef.current.children, {
+                    opacity: 1,
+                    y: 0,
+                    rotationX: 0,
+                    duration: 0.4,
+                    stagger: 0.12,
+                    ease: "back.out(1.2)"
+                }, "-=0.3");
+        }
+    };
+
+    const handleMegaMenuLeave = () => {
+        // Add delay before hiding to prevent accidental closes
+        hoverTimeoutRef.current = setTimeout(() => {
+            if (megaMenuRef.current && megaMenuItemsRef.current) {
+                const tl = gsap.timeline();
+                tl.to(megaMenuItemsRef.current.children, {
+                    opacity: 0,
+                    y: -20,
+                    rotationX: -8,
+                    duration: 0.25,
+                    stagger: 0.05,
+                    ease: "power2.in"
+                })
+                    .to(megaMenuRef.current, {
+                        opacity: 0,
+                        y: -10,
+                        scaleY: 0.98,
+                        duration: 0.35,
+                        ease: "power3.in",
+                        onComplete: () => {
+                            gsap.set(megaMenuRef.current, { visibility: 'hidden' });
+                        }
+                    }, "-=0.15");
+            }
+        }, 150); // 150ms delay before hiding
     };
 
     return (
@@ -64,7 +126,7 @@ export default function ModernNavbar() {
             </div>
 
             {/* Main Navigation */}
-            <nav className={`sticky top-0 z-50 transition-all duration-300 shadow-md ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white'
+            <nav className={`transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white shadow-md'
                 }`}>
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="flex justify-between items-center h-20">
@@ -82,7 +144,6 @@ export default function ModernNavbar() {
                             </div>
                             <div className="hidden sm:block">
                                 <h1 className="text-xl font-bold text-blue-900">RWUA</h1>
-                                <p className="text-xs text-gray-600">Rural Women Upliftment Association</p>
                             </div>
                         </Link>
 
@@ -92,55 +153,54 @@ export default function ModernNavbar() {
                             {/* Home */}
                             <Link
                                 href="/"
-                                className={`px-4 py-2 rounded-lg transition-colors whitespace-nowrap relative ${pathname === '/'
-                                    ? 'text-red-600'
-                                    : 'text-gray-700 hover:text-blue-600'
-                                    }`}
+                                className={`px-4 py-2 rounded-lg transition-colors whitespace-nowrap relative group ${pathname === '/' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600`}
                             >
                                 Home
+                                {/* Active border only - with transition effect */}
                                 {pathname === '/' && (
-                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 rounded-full"></div>
+                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ease-in-out"></div>
                                 )}
                             </Link>
 
                             {/* Gallery */}
                             <Link
                                 href="/gallery"
-                                className={`px-4 py-2 rounded-lg transition-colors whitespace-nowrap relative ${pathname === '/gallery'
-                                    ? 'text-red-600'
-                                    : 'text-gray-700 hover:text-blue-600'
-                                    }`}
+                                className={`px-4 py-2 rounded-lg transition-colors whitespace-nowrap relative group ${pathname === '/gallery' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600`}
                             >
                                 Gallery
+                                {/* Active border only - with transition effect */}
                                 {pathname === '/gallery' && (
-                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 rounded-full"></div>
+                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ease-in-out"></div>
                                 )}
                             </Link>
 
                             {/* News & Press Mega Menu */}
-                            <div className="relative group">
+                            <div
+                                className="relative group"
+                                onMouseEnter={handleMegaMenuEnter}
+                                onMouseLeave={handleMegaMenuLeave}
+                            >
                                 <button
-                                    className={`flex items-center space-x-1 px-4 py-2 rounded-lg transition-colors whitespace-nowrap relative ${pathname?.startsWith('/news')
-                                        ? 'text-red-600'
-                                        : 'text-gray-700 hover:text-blue-600'
-                                        }`}
+                                    className={`flex items-center space-x-1 px-4 py-2 rounded-lg transition-colors whitespace-nowrap relative group/button ${pathname?.startsWith('/news') ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600 group-hover:text-blue-600`}
                                 >
                                     <span>News & Press</span>
                                     <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+                                    {/* Active border only - with transition effect */}
                                     {pathname?.startsWith('/news') && (
-                                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 rounded-full"></div>
+                                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ease-in-out"></div>
                                     )}
                                 </button>
 
                                 {/* Full Width Mega Menu */}
-                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                                    <div className="w-screen max-w-6xl bg-white rounded-lg shadow-2xl border border-gray-100 overflow-hidden">
-                                        {/* Arrow */}
-                                        <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 rotate-45"></div>
-
-                                        <div className="p-8">
+                                <div
+                                    ref={megaMenuRef}
+                                    className="fixed left-0 right-0 invisible z-50 pt-2"
+                                    style={{ top: '118px' }}
+                                >
+                                    <div className="w-full bg-white shadow-2xl border-t border-gray-100">
+                                        <div className="max-w-7xl mx-auto p-8">
                                             {/* Grid Layout */}
-                                            <div className="grid grid-cols-3 gap-8">
+                                            <div ref={megaMenuItemsRef} className="grid grid-cols-3 gap-8">
                                                 {/* Column 1: Main News */}
                                                 <div className="space-y-4">
                                                     <h4 className="font-semibold text-gray-900 text-lg border-b border-gray-200 pb-2">Latest News</h4>
@@ -227,42 +287,45 @@ export default function ModernNavbar() {
                             {/* Success Story */}
                             <Link
                                 href="/success-story"
-                                className={`px-4 py-2 rounded-lg transition-colors whitespace-nowrap relative ${pathname === '/success-story'
-                                    ? 'text-red-600'
-                                    : 'text-gray-700 hover:text-blue-600'
-                                    }`}
+                                className={`px-4 py-2 rounded-lg transition-colors whitespace-nowrap relative group ${pathname === '/success-story'
+                                    ? 'text-blue-600'
+                                    : 'text-gray-700'
+                                    } hover:text-blue-600`}
                             >
                                 Success Story
+                                {/* Active border only - with transition effect */}
                                 {pathname === '/success-story' && (
-                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 rounded-full"></div>
+                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ease-in-out"></div>
                                 )}
                             </Link>
 
                             {/* Vacancy */}
                             <Link
                                 href="/vacancy"
-                                className={`px-4 py-2 rounded-lg transition-colors whitespace-nowrap relative ${pathname === '/vacancy'
-                                    ? 'text-red-600'
-                                    : 'text-gray-700 hover:text-blue-600'
-                                    }`}
+                                className={`px-4 py-2 rounded-lg transition-colors whitespace-nowrap relative group ${pathname === '/vacancy'
+                                    ? 'text-blue-600'
+                                    : 'text-gray-700'
+                                    } hover:text-blue-600`}
                             >
                                 Vacancy
+                                {/* Active border only - with transition effect */}
                                 {pathname === '/vacancy' && (
-                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 rounded-full"></div>
+                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ease-in-out"></div>
                                 )}
                             </Link>
 
                             {/* Contact */}
                             <Link
                                 href="/contact"
-                                className={`px-4 py-2 rounded-lg transition-colors whitespace-nowrap relative ${pathname === '/contact'
-                                    ? 'text-red-600'
-                                    : 'text-gray-700 hover:text-blue-600'
-                                    }`}
+                                className={`px-4 py-2 rounded-lg transition-colors whitespace-nowrap relative group ${pathname === '/contact'
+                                    ? 'text-blue-600'
+                                    : 'text-gray-700'
+                                    } hover:text-blue-600`}
                             >
                                 Contact
+                                {/* Active border only - with transition effect */}
                                 {pathname === '/contact' && (
-                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 rounded-full"></div>
+                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ease-in-out"></div>
                                 )}
                             </Link>
                         </div>
