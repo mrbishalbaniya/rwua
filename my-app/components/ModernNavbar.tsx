@@ -126,7 +126,7 @@ export default function ModernNavbar() {
             </div>
 
             {/* Main Navigation */}
-            <nav className={`transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white shadow-md'
+            <nav className={`transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.15)] border-b border-gray-100 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-[0_6px_20px_rgba(0,0,0,0.2)]' : 'bg-white'
                 }`}>
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="flex justify-between items-center h-20">
