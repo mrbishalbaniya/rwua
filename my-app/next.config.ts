@@ -23,19 +23,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Add empty turbopack config to silence the warning
-  turbopack: {},
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        path: false,
-        os: false,
-      };
-    }
-    return config;
+  // Optimize for development
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'react-icons'],
   },
+  // Remove webpack fallback config as it's not needed for most cases
+  // and can slow down compilation
 };
 
 export default nextConfig;
