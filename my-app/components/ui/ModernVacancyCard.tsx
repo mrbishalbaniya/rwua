@@ -168,7 +168,7 @@ export default function ModernVacancyCard({ vacancy }: ModernVacancyCardProps) {
           <div className="flex justify-between items-center">
             {/* Status */}
             <div className="flex items-center">
-              <div className="w-2 h-2 rounded-full mr-2 ${
+              <div className={`w-2 h-2 rounded-full mr-2 ${
                 isExpired ? 'bg-gray-400' : isUrgent ? 'bg-impact-red' : 'bg-flash-yellow'
               }`}></div>
               <span className="text-xs text-gray-600">
@@ -182,7 +182,7 @@ export default function ModernVacancyCard({ vacancy }: ModernVacancyCardProps) {
               className={`flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 isExpired 
                   ? 'bg-stone-200 text-stone-500 cursor-not-allowed' 
-                  : 'bg-core-blue text-white hover:bg-black hover:shadow-md cursor-pointer'
+                  : 'bg-core-blue text-white hover:bg-impact-red hover:shadow-md cursor-pointer'
               }`}
               disabled={isExpired}
             >

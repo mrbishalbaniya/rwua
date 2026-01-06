@@ -148,35 +148,6 @@ export default function VacancyPage({ params }: VacancyPageProps) {
             `${vacancy.department} मा ${vacancy.position} को रूपमा RWUA मा सामेल हुनुहोस्। नेपालमा ग्रामीण महिला सशक्तिकरणमा फरक पार्नुहोस्।`
           ),
         ]}
-        
-        // JSON-LD structured data for job posting
-        additionalJsonLd={[
-          jobPostingStructuredData,
-          {
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                position: 1,
-                name: 'Home',
-                item: 'https://rwua.com.np/',
-              },
-              {
-                '@type': 'ListItem',
-                position: 2,
-                name: 'Careers',
-                item: 'https://rwua.com.np/vacancy',
-              },
-              {
-                '@type': 'ListItem',
-                position: 3,
-                name: vacancy.position,
-                item: `https://rwua.com.np/vacancy/${slug}`,
-              },
-            ],
-          },
-        ]}
       />
       
       <div className="min-h-screen bg-white">

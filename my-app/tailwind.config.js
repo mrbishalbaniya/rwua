@@ -10,11 +10,12 @@ module.exports = {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
-      'core-blue': '#0100FA',
-'flash-yellow': '#FEFF3E',
-'impact-red': '#FA0105',
-
-
+        'deep-purple': '#4c1d95',
+        'vibrant-gold': '#d97706',
+        'terracotta': '#dc2626',
+        'core-blue': '#0100FA',
+        'flash-yellow': '#FEFF3E',
+        'impact-red': '#FA0105',
       },
       fontFamily: {
         'nepali': ['Noto Sans Devanagari', 'sans-serif'],
