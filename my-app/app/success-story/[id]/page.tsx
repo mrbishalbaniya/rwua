@@ -76,7 +76,7 @@ export default function StoryDetailPage() {
             </p>
             <Link
               href="/success-story"
-              className="inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              className="inline-flex items-center px-6 py-3 bg-core-blue text-white rounded-lg hover:bg-impact-red transition-colors"
             >
               <span className="mr-2">←</span>
               Back to Success Stories
@@ -96,7 +96,7 @@ export default function StoryDetailPage() {
         {/* Back Button */}
         <Link
           href="/success-story"
-          className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors mb-6 text-sm font-medium"
+          className="inline-flex items-center text-core-blue hover:text-impact-red transition-colors mb-6 text-sm font-medium"
         >
           <span className="mr-2">←</span>
           Back to Stories
@@ -108,7 +108,7 @@ export default function StoryDetailPage() {
           <div className="grid lg:grid-cols-2 gap-8 p-8">
             {/* Left Column - Image */}
             <div className="relative">
-              <div className="relative h-64 lg:h-80 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg overflow-hidden">
+              <div className="relative h-64 lg:h-80 bg-gradient-to-r from-core-blue to-impact-red rounded-lg overflow-hidden">
                 {!imageError ? (
                   <Image
                     src={story.image}
@@ -119,7 +119,7 @@ export default function StoryDetailPage() {
                     priority
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                  <div className="w-full h-full bg-gradient-to-r from-core-blue to-impact-red flex items-center justify-center">
                     <div className="text-white text-center">
                       <div className="w-20 h-20 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
                         <span className="text-4xl">❤️</span>
@@ -172,7 +172,7 @@ export default function StoryDetailPage() {
                 {relatedStories.map((relatedStory) => (
                   <div key={relatedStory.id} className="group">
                     <Link href={`/success-story/${relatedStory.id}`}>
-                      <div className="relative h-40 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg overflow-hidden mb-3">
+                      <div className="relative h-40 bg-gradient-to-r from-core-blue to-impact-red rounded-lg overflow-hidden mb-3">
                         <Image
                           src={relatedStory.image}
                           alt={relatedStory.title}
@@ -181,10 +181,10 @@ export default function StoryDetailPage() {
                           onError={() => {}}
                         />
                       </div>
-                      <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                      <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-core-blue transition-colors line-clamp-2">
                         {relatedStory.title}
                       </h4>
-                      <button className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                      <button className="inline-flex items-center px-4 py-2 bg-core-blue text-white text-sm font-medium rounded-lg hover:bg-impact-red transition-colors">
                         Read More
                       </button>
                     </Link>

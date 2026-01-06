@@ -69,7 +69,7 @@ export default function SearchAndFilter({
           {/* Mobile Filter Toggle */}
           <button
             onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className="md:hidden flex items-center gap-2 px-4 py-2 bg-stone-200 text-deep-purple rounded-lg hover:bg-stone-300 transition-colors duration-300 ease-out cursor-pointer font-bold"
+            className="md:hidden flex items-center gap-2 px-4 py-2 bg-stone-200 text-core-blue rounded-lg hover:bg-stone-300 transition-colors duration-300 ease-out cursor-pointer font-bold"
           >
             <Filter className="w-4 h-4" />
             Filter
@@ -83,8 +83,8 @@ export default function SearchAndFilter({
                 onClick={() => handleCategoryClick(category)}
                 className={`px-4 py-2 rounded-lg transition-colors duration-300 ease-out cursor-pointer font-bold ${
                   activeCategory === category
-                    ? 'bg-deep-purple text-white shadow-lg'
-                    : 'bg-stone-200 text-deep-purple hover:bg-vibrant-gold hover:text-white'
+                    ? 'bg-core-blue text-white shadow-lg'
+                    : 'bg-stone-200 text-core-blue hover:bg-flash-yellow hover:text-core-blue'
                 }`}
               >
                 {category}
@@ -105,14 +105,14 @@ export default function SearchAndFilter({
               onFocus={handleFocus}
               onBlur={handleBlur}
               placeholder={placeholder}
-              className={`w-full pl-10 pr-4 py-3 rounded-lg border shadow-sm transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-deep-purple font-medium ${
+              className={`w-full pl-10 pr-4 py-3 rounded-lg border shadow-sm transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-core-blue font-medium ${
                 isFocused 
-                  ? 'border-deep-purple focus:border-transparent' 
+                  ? 'border-core-blue focus:border-transparent' 
                   : 'border-stone-300 focus:border-transparent'
               }`}
             />
             <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 transition-colors duration-300 ease-out ${
-              isFocused ? 'text-deep-purple' : 'text-stone-400'
+              isFocused ? 'text-core-blue' : 'text-stone-400'
             }`} />
           </div>
         </div>
@@ -128,8 +128,8 @@ export default function SearchAndFilter({
                 onClick={() => handleCategoryClick(category)}
                 className={`px-3 py-2 rounded-lg text-sm transition-colors duration-300 ease-out cursor-pointer font-bold ${
                   activeCategory === category
-                    ? 'bg-deep-purple text-white'
-                    : 'bg-stone-100 text-deep-purple hover:bg-vibrant-gold hover:text-white'
+                    ? 'bg-core-blue text-white'
+                    : 'bg-stone-100 text-core-blue hover:bg-flash-yellow hover:text-core-blue'
                 }`}
               >
                 {category}
@@ -143,7 +143,7 @@ export default function SearchAndFilter({
       {resultsCount !== undefined && (
         <div className="text-stone-600">
           <p className="font-medium">
-            Showing <span className="font-bold text-deep-purple">{resultsCount}</span> results
+            Showing <span className="font-bold text-core-blue">{resultsCount}</span> results
           </p>
         </div>
       )}

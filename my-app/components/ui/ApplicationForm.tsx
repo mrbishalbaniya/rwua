@@ -100,7 +100,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
         }}
       >
         {/* Decorative Background - Smaller */}
-        <div className="absolute inset-0 -z-10 transform rotate-3 bg-deep-purple rounded-xl"></div>
+        <div className="absolute inset-0 -z-10 transform rotate-3 bg-core-blue rounded-xl"></div>
         
         {/* Close Button */}
         <button
@@ -127,7 +127,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
               onChange={handleInputChange}
               required
               placeholder="Enter your full name"
-              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-deep-purple focus:border-transparent outline-none text-sm"
+              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-core-blue focus:border-transparent outline-none text-sm"
             />
           </div>
 
@@ -140,7 +140,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
               onChange={handleInputChange}
               required
               placeholder="Enter your email address"
-              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-deep-purple focus:border-transparent outline-none text-sm"
+              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-core-blue focus:border-transparent outline-none text-sm"
             />
           </div>
 
@@ -157,7 +157,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
               />
               <label
                 htmlFor="cv-upload"
-                className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-deep-purple focus:border-transparent outline-none text-sm cursor-pointer flex items-center justify-between hover:bg-gray-50 transition-colors"
+                className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-core-blue focus:border-transparent outline-none text-sm cursor-pointer flex items-center justify-between hover:bg-gray-50 transition-colors"
               >
                 <span className={formData.cv ? 'text-gray-900' : 'text-gray-500'}>
                   {formData.cv ? formData.cv.name : 'Choose CV file (PDF, DOC, DOCX)'}
@@ -176,14 +176,14 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
               required
               placeholder="Tell us why you're interested in this position..."
               rows={3}
-              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-deep-purple focus:border-transparent outline-none text-sm resize-none"
+              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-core-blue focus:border-transparent outline-none text-sm resize-none"
             />
           </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full py-2.5 text-white bg-deep-purple rounded-md hover:bg-black transition flex items-center justify-center space-x-2 text-sm font-bold ${
+            className={`w-full py-2.5 text-white bg-core-blue rounded-md hover:bg-impact-red transition flex items-center justify-center space-x-2 text-sm font-bold ${
               isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           >
