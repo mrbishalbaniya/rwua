@@ -19,9 +19,7 @@ export default function SuccessStoryLayout({
 }>) {
   return (
     <div className={inter.variable}>
-      <main role="main">
-        {children}
-      </main>
+      <main role="main">{children}</main>
     </div>
   );
 }

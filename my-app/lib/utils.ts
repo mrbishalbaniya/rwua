@@ -10,3 +10,8 @@ export function filterStories(stories: any[], query: string) {
     story.description.toLowerCase().includes(lowercaseQuery)
   );
 }
+
+// Generate URL slug from title
+export function generateSlug(title: string): string {
+  return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}

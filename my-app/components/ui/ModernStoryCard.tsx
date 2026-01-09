@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, User, Tag, ChevronRight } from 'lucide-react';
 import { SuccessStory } from '@/lib/data';
+import { generateSlug } from '@/lib/utils';
 
 interface ModernStoryCardProps {
   story: SuccessStory;
@@ -108,7 +109,7 @@ export default function ModernStoryCard({ story }: ModernStoryCardProps) {
 
           {/* Read More Button - Better design */}
           <Link
-            href={`/success-story/${story.id}`}
+            href={`/success-story/${generateSlug(story.title)}`}
             className="inline-flex items-center text-core-blue hover:text-white text-sm font-medium transition-all duration-300 hover:bg-core-blue px-3 py-1.5 rounded-full border border-core-blue/20 hover:border-core-blue group hover:shadow-md cursor-pointer"
           >
             <span>Read More</span>
