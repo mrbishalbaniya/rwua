@@ -24,7 +24,7 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
@@ -44,13 +44,13 @@ export default function ContactPage() {
       <section className="py-16 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-center gap-4 mb-8">
-            <span className="w-16 h-[2px] bg-impact-red"></span>
-            <span className="text-impact-red font-black uppercase tracking-[0.6em] text-[10px]">Get In Touch</span>
-            <span className="w-16 h-[2px] bg-impact-red"></span>
+            <span className="w-16 h-[2px] bg-terracotta"></span>
+            <span className="text-terracotta font-black uppercase tracking-[0.6em] text-[10px]">Get In Touch</span>
+            <span className="w-16 h-[2px] bg-terracotta"></span>
           </div>
           <h1 className="text-5xl md:text-6xl font-black text-core-blue mb-6 tracking-tight">
             Let&apos;s Work<br />
-            <span className="text-flash-yellow font-serif-impact italic">Together</span>
+            <span className="text-impact-red font-serif-impact italic">Together</span>
           </h1>
           <p className="text-xl text-stone-600 max-w-2xl mx-auto font-medium">
             Connect with RWUA Nepal. We&apos;re here to help and answer any questions about our programs and services.
@@ -62,7 +62,7 @@ export default function ContactPage() {
       <section className="pb-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            
+
             {/* Left Side - Map */}
             <div className="order-2 lg:order-1">
               <div className="relative">
@@ -78,12 +78,12 @@ export default function ContactPage() {
                     className="rounded-2xl"
                   ></iframe>
                 </div>
-                
+
                 {/* Location Pin */}
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-md">
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-impact-red rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium text-core-blue">We are here</span>
+                    <div className="w-2 h-2 bg-terracotta rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-deep-purple">We are here</span>
                   </div>
                 </div>
               </div>
@@ -91,10 +91,10 @@ export default function ContactPage() {
               {/* Contact Info Cards */}
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Phone */}
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-flash-yellow/20 transition-all">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-impact-red/20 transition-all">
                   <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center">
-                      <Phone className="w-4 h-4 text-black" />
+                    <div className="w-8 h-8 bg-core-blue/10 rounded-lg flex items-center justify-center">
+                      <Phone className="w-4 h-4 text-core-blue" />
                     </div>
                     <div>
                       <p className="text-sm text-stone-500 uppercase tracking-wide font-black">Phone</p>
@@ -104,10 +104,10 @@ export default function ContactPage() {
                 </div>
 
                 {/* Email */}
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-flash-yellow/20 transition-all">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-impact-red/20 transition-all">
                   <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center">
-                      <Mail className="w-4 h-4 text-black" />
+                    <div className="w-8 h-8 bg-core-blue/10 rounded-lg flex items-center justify-center">
+                      <Mail className="w-4 h-4 text-core-blue" />
                     </div>
                     <div>
                       <p className="text-sm text-stone-500 uppercase tracking-wide font-black">Email</p>
@@ -117,10 +117,10 @@ export default function ContactPage() {
                 </div>
 
                 {/* Address */}
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-flash-yellow/20 transition-all">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-impact-red/20 transition-all">
                   <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center">
-                      <MapPin className="w-4 h-4 text-black" />
+                    <div className="w-8 h-8 bg-core-blue/10 rounded-lg flex items-center justify-center">
+                      <MapPin className="w-4 h-4 text-core-blue" />
                     </div>
                     <div>
                       <p className="text-sm text-stone-500 uppercase tracking-wide font-black">Address</p>
@@ -130,10 +130,10 @@ export default function ContactPage() {
                 </div>
 
                 {/* Hours */}
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-flash-yellow/20 transition-all">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-stone-200 hover:shadow-md hover:border-impact-red/20 transition-all">
                   <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center">
-                      <Clock className="w-4 h-4 text-black" />
+                    <div className="w-8 h-8 bg-core-blue/10 rounded-lg flex items-center justify-center">
+                      <Clock className="w-4 h-4 text-core-blue" />
                     </div>
                     <div>
                       <p className="text-sm text-stone-500 uppercase tracking-wide font-black">Hours</p>
@@ -194,7 +194,7 @@ export default function ContactPage() {
                     id="needQuickReply"
                     checked={formData.needQuickReply}
                     onChange={handleInputChange}
-                    className="w-5 h-5 text-core-blue bg-stone-100 border-stone-300 rounded focus:ring-core-blue focus:ring-2"
+                    className="w-5 h-5 text-core-blue bg-stone-100 border-stone-300 rounded focus:ring-core-blue-light focus:ring-2"
                   />
                   <label htmlFor="needQuickReply" className="text-stone-700 font-bold cursor-pointer">
                     I need a quick reply
@@ -205,9 +205,8 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-4 text-white bg-core-blue rounded-2xl hover:bg-impact-red transition-all flex items-center justify-center space-x-3 group font-black uppercase tracking-[0.3em] text-sm shadow-[0_30px_70px_-15px_rgba(1,0,250,0.35)] hover:scale-105 active:scale-95 ${
-                    isSubmitting ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
-                  }`}
+                  className={`w-full py-4 text-white bg-core-blue rounded-2xl hover:bg-core-blue-light transition-all duration-300 flex items-center justify-center space-x-3 group font-black uppercase tracking-[0.3em] text-sm shadow-[0_30px_70px_-15px_rgba(1,0,250,0.35)] hover:scale-105 active:scale-95 ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+                    }`}
                 >
                   {isSubmitting ? (
                     <>
@@ -224,14 +223,14 @@ export default function ContactPage() {
 
                 {/* Status Messages */}
                 {submitStatus === 'success' && (
-                  <div className="p-4 bg-flash-yellow/10 border border-flash-yellow/20 rounded-2xl">
-                    <p className="text-core-blue text-sm font-bold">Message sent successfully! We&apos;ll get back to you soon.</p>
+                  <div className="p-4 bg-impact-red/10 border border-impact-red/20 rounded-2xl">
+                    <p className="text-impact-red text-sm font-bold">Message sent successfully! We&apos;ll get back to you soon.</p>
                   </div>
                 )}
-                
+
                 {submitStatus === 'error' && (
-                  <div className="p-4 bg-impact-red/10 border border-impact-red/20 rounded-2xl">
-                    <p className="text-impact-red text-sm font-bold">Failed to send message. Please try again.</p>
+                  <div className="p-4 bg-terracotta/10 border border-terracotta/20 rounded-2xl">
+                    <p className="text-terracotta text-sm font-bold">Failed to send message. Please try again.</p>
                   </div>
                 )}
               </form>

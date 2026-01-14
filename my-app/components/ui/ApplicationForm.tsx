@@ -26,22 +26,14 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
   // Lock/unlock body scroll when modal opens/closes
   useEffect(() => {
     if (isOpen) {
-      // Prevent all scrolling on body
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
     } else {
-      // Restore scrolling
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      document.body.style.overflow = 'unset';
     }
 
     // Cleanup function to restore scroll when component unmounts
     return () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
@@ -58,7 +50,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
@@ -83,25 +75,11 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
   if (!isOpen) return null;
 
   return (
-    <div 
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 overflow-hidden"
-      style={{ 
-        touchAction: 'none',
-        overscrollBehavior: 'none'
-      }}
-      onWheel={(e) => e.preventDefault()}
-      onTouchMove={(e) => e.preventDefault()}
-    >
-      <div 
-        className="relative p-6 bg-white rounded-xl shadow-lg w-full max-w-md overflow-hidden"
-        style={{ 
-          maxHeight: '90vh',
-          touchAction: 'none'
-        }}
-      >
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 overflow-hidden">
+      <div className="relative p-6 bg-white rounded-xl shadow-lg w-full max-w-md">
         {/* Decorative Background - Smaller */}
-        <div className="absolute inset-0 -z-10 transform rotate-3 bg-core-blue rounded-xl"></div>
-        
+        <div className="absolute inset-0 -z-10 transform rotate-3 bg-deep-purple rounded-xl"></div>
+
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -112,7 +90,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
 
         {/* Header - More compact */}
         <h2 className="text-lg font-semibold text-gray-800 mb-3 pr-8">
-          <span className="text-blue-600 font-bold">Apply for {vacancy.position}</span>
+          <span className="text-core-blue font-bold">Apply for {vacancy.position}</span>
         </h2>
         <p className="text-sm text-gray-600 mb-4">Please fill out the form below to submit your application.</p>
 
@@ -127,7 +105,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
               onChange={handleInputChange}
               required
               placeholder="Enter your full name"
-              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-core-blue focus:border-transparent outline-none text-sm"
+              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 outline-none text-sm"
             />
           </div>
 
@@ -140,7 +118,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
               onChange={handleInputChange}
               required
               placeholder="Enter your email address"
-              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-core-blue focus:border-transparent outline-none text-sm"
+              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 outline-none text-sm"
             />
           </div>
 
@@ -157,7 +135,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
               />
               <label
                 htmlFor="cv-upload"
-                className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-core-blue focus:border-transparent outline-none text-sm cursor-pointer flex items-center justify-between hover:bg-gray-50 transition-colors"
+                className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 outline-none text-sm cursor-pointer flex items-center justify-between hover:bg-gray-50 transition-colors"
               >
                 <span className={formData.cv ? 'text-gray-900' : 'text-gray-500'}>
                   {formData.cv ? formData.cv.name : 'Choose CV file (PDF, DOC, DOCX)'}
@@ -176,16 +154,15 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
               required
               placeholder="Tell us why you're interested in this position..."
               rows={3}
-              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-core-blue focus:border-transparent outline-none text-sm resize-none"
+              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 outline-none text-sm resize-none"
             />
           </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full py-2.5 text-white bg-core-blue rounded-md hover:bg-impact-red transition flex items-center justify-center space-x-2 text-sm font-bold ${
-              isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            className={`w-full py-2.5 text-white bg-core-blue rounded-md hover:bg-core-blue-light transition-all duration-300 flex items-center justify-center space-x-2 text-sm font-bold ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
           >
             {isSubmitting ? (
               <>
@@ -208,7 +185,7 @@ export default function ApplicationForm({ vacancy, isOpen, onClose }: Applicatio
               </p>
             </div>
           )}
-          
+
           {submitStatus === 'error' && (
             <div className="p-2.5 bg-red-50 border border-red-200 rounded-md">
               <p className="text-red-800 text-xs font-medium">
